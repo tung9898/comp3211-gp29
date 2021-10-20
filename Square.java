@@ -6,7 +6,8 @@ public class Square{
 
     public void setOwner(int id) {
         /**
-         * This function set the owner of the property.
+         * This function set the owner of the property to the owner Id.
+         * -1 means unowned.
          */
         Landlord = id;
     }
