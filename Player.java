@@ -1,10 +1,9 @@
 public class Player{
+    String Name;
+    int Id;
     int Money;
     int CurrentSquare;
     int CurrentStatus;
-    int Id;
-    String Name;
-    int[] Property;
 
     public void setMoney(int money){
         /**
@@ -78,21 +77,5 @@ public class Player{
          * This function will return the name of the player
          */
         return Name;
-    }
-
-    public void setProperty(int[] property) {
-         /*
-            Changed from string array to integer array.
-            -2 : Government Property
-            -1 : Unowned Property
-            >0 : Property that owned by that Id player 
-
-            
-         */
-        Property = property;
-    }
-
-    public int[] getProperty() {
-        return Property;
     }
 }
