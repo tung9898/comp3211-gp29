@@ -3,6 +3,9 @@ public class SquareEffect {
      * This function is mainly return value or data of the game back to other function.
      */
 
+     int[]Price = {800, 700, 600, 400, 500, 400, 700, 400, 500, 400, 400, 600};
+     int[]Rent = {90, 65, 60, 10, 40, 15, 75, 20, 25, 10, 25, 25};
+
      public void EffectCenter(int squareId) {
         /**
          * This function is to redirect the sqaure to its belonging effect
@@ -25,7 +28,7 @@ public class SquareEffect {
             default:     
                 NoEffect();
             break;
-            }    
+        }    
      }
 
      public int GoSalary() {
@@ -59,5 +62,19 @@ public class SquareEffect {
           * No effect square, this function do nothing, just the its name.
           */
          return 0;
+     }
+
+     public int SquarePrice(int id) {
+         /**
+          * This function return the price of its square.
+          */
+        return Price[id-1];
+     }
+
+     public int SquareRent(int id) {
+         /**
+          * This function return the rent of its square.
+          */
+        return Rent[id-1];
      }
 }
