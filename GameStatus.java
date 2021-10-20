@@ -54,6 +54,6 @@ public class GameStatus{
          * This function will check who is the richest player in the game.
          * Tie (multiple winners) is possible.
          */
-        // todo
+        // print out winner and stop the game (maybe ask for restart)
     }
 }
