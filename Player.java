@@ -29,30 +29,54 @@ public class Player{
     }
 
     public int getCurrentSquare() {
+        /**
+         * This function will return the location where the player is current on.
+         */
         return CurrentSquare;
     }
 
     public void setCurrentStatus(int currentStatus) {
+        /**
+         * This funtion set the player status, the status are as follows:
+         * -1 : bankruptcy
+         *  0 : no effect
+         * >0 : days of in jail.
+         */
         CurrentStatus = currentStatus;
     }
 
     public int getCurrentStatus() {
+        /**
+         * This function will return the current status of the player
+         */
         return CurrentStatus;
     }
 
     public void setId(int id) {
+        /**
+         * This function set the player ID.
+         */
         Id = id;
     }
 
     public int getId() {
+        /**
+         * This function will return the ID of the player
+         */
         return Id;
     }
 
     public void setName(String name) {
+        /**
+         * This function set the player name.
+         */
         Name = name;
     }
 
     public String getName() {
+        /**
+         * This function will return the name of the player
+         */
         return Name;
     }
 
