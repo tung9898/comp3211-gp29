@@ -54,12 +54,6 @@ public class GameStatus{
          * This function will check who is the richest player in the game.
          * Tie (multiple winners) is possible.
          */
-        /*
-         * This function will be called if there is only 1 player left
-         * or after 100 rounds. 
-         * This function will check who is the richest player in the game.
-         * Tie (multiple winners) is possible.
-         */
         // todo
     }
 }
