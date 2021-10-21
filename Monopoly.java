@@ -16,57 +16,65 @@ public class Monopoly{
         // init board using list, make a list of square, from 0 to 19
         // request a number from 2 to 6, use for the number of player.
         // Ask for number of players input.
-        
+        int x = 4;
+        if(2 <= x && x <= 6) InitSqaure(x);
         // start the game
-    }
-
-    public void GameStart(){
-        int turns = GameStatus.CurrentNumberOfPlayers;
-
-        for(int i = 0; i < turns; i++){
-            if(players[i].bankruptcy) continue;
-            CurrentPlayer = i;
-            if(players[i].DaysInJail > 0) {
-                // Check the player in jail days, if it is not -1, thats mean the player is in jail.
-            }
-            int[] dice = rollingDice();
-            PlayerMakeAMove(dice[0] + dice[1]);
-            // turns--;
+        boolean keepTheGameRun = true;
+        while(keepTheGameRun) {
+            GameStart();
+            // ask for input if player want to continue;
+                // break if necessary
+            // ask for input if player want to change to number of player;
+                // call InitSquare if necessary
         }
-            
-        GameStatus.RoundEnd();
+        // end
     }
 
-    public void InitSqaure(int numberOfPlayer) {
-        GameStatus.TotalNumberOfPlayers = numberOfPlayer;
-        GameStatus.CurrentNumberOfPlayers = numberOfPlayer;
+    public static void GameStart(){
+        int turns = GameStatus.CurrentNumberOfPlayers;
+        while(true){
+            for(int i = 0; i < turns; i++){
+                if(players[i].bankruptcy) continue;
+                CurrentPlayer = i;
+                if(players[i].DaysInJail > 0) {
+                    // Check the player in jail days, if it is not -1, thats mean the player is in jail.
+                }
+                int[] dice = rollingDice();
+                PlayerMakeAMove(dice[0] + dice[1]);
+                // turns--;
+            }
+            GameStatus.RoundEnd();
+        }
+    }
+
+    public static void InitSqaure(int numberOfPlayer) {
+        GameStatus.setTotalNumberOfPlayers(numberOfPlayer);
+        GameStatus.setCurrentNumberOfPlayers(numberOfPlayer);
         players = new Player[numberOfPlayer];
         for(int i = 0; i < numberOfPlayer; i++) {
-            board[i].Id = i;
-            board[i].Landlord = -1;
-            board[i].PriceTag = SquareEffect.SquarePrice(i);
-            board[i].Rent = SquareEffect.SquareRent(i);
+            board[i].setId(i);
+            board[i].setOwner(i);
         }
         for(int i = 0; i < numberOfPlayer; i++) {
-            players[i].Id = i;
-            players[i].CurrentSquare = 0;
-            players[i].Money = SquareEffect.GoSalary();
+            players[i].setId(i);
+            players[i].setCurrentSquare(0);
+            players[i].setMoney(SquareEffect.GoSalary());
             // Ask for name input for each player.
         }
     }
 
-    public void bankruptcy(int id) {
+    public static void bankruptcy(int id) {
         /**
          * This function will done all the things after a player has a
          * negative amount of money.
          * Set all of his/her properties to unowned.
          */
         for(int i = 0; i < board.length; i++){
-            if(board[i].Landlord == id) board[i].Landlord = -1;
+            if(board[i].getOwner() == id) board[i].setId(-1);
         }
     }
 
-    public int[] rollingDice() {
+    public static int[] rollingDice() {
         /**
          * This function will randomly generate 2 number in a specific range.
          */
@@ -76,7 +84,7 @@ public class Monopoly{
         return r;
     }
 
-    public void PlayerMakeAMove(int move) {
+    public static void PlayerMakeAMove(int move) {
         /**
          * This function will help player to make a move.
          */
@@ -91,11 +99,23 @@ public class Monopoly{
         // Finally, Check player money. If less than 0, declare bankruptcies.
     }
 
-    public void SquarePurchase(int squareId) {
-
+    public static void SquarePurchase(int squareId) {
+        int landPrice = board[squareId].getPrice();
+        int balance = players[CurrentPlayer].getMoney();
+        if(balance >= landPrice){
+            // confirm message, return if fail to confirm.
+            players[CurrentPlayer].setMoney(balance-landPrice);
+            board[squareId].setOwner(CurrentPlayer);
+            // successful message
+        }else{
+            // fail to pay message
+        }
     }
 
-    public void SquarePayRent(int squareId) {
-        
+    public static void SquarePayRent(int squareId) {
+        int landRent = board[squareId].getRent();
+        int balance = players[CurrentPlayer].getMoney();
+        players[CurrentPlayer].setMoney(balance-landRent);
+        // money remaining message
     }
 }
