@@ -1,7 +1,5 @@
 public class Square{
     int Id;
-    int PriceTag;
-    int Rent;
     int Landlord;
 
     public void setOwner(int id) {
