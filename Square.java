@@ -32,6 +32,13 @@ public class Square{
         return Id;
     }
 
+    public String getName() {
+        /**
+         * This function will find the name of its square and return it.
+         */
+        return SquareEffect.SquareName(Id);
+    }
+
     public int getPrice() {
         /**
          * This function will find the Price of its square and return it.

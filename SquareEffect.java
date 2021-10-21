@@ -5,7 +5,7 @@ public class SquareEffect {
 
      static int[]Price = {800, 700, 600, 400, 500, 400, 700, 400, 500, 400, 400, 600};
      static int[]Rent = {90, 65, 60, 10, 40, 15, 75, 20, 25, 10, 25, 25};
-
+     static String[]Name = {"Central", "Wan Chai", "Stanley", "Shek O", "Mong Kok", "Tsing Yi", "Shatin", "Tuen Mun", "Tai Po", "Sai Kung", "Yuen Long", "Tai O"};
      public static void EffectCenter(int squareId) {
          /**
           * This function is to redirect the sqaure to its belonging effect
@@ -69,13 +69,20 @@ public class SquareEffect {
          /**
           * This function return the price of its square.
           */
-         return Price[id-1];
+         return Price[id];
      }
 
      public static int SquareRent(int id) {
          /**
           * This function return the rent of its square.
           */
-         return Rent[id-1];
+         return Rent[id];
      }
+
+    public static String SquareName(int id) {
+        /**
+          * This function return the name of its square.
+          */
+        return Name[id];
+    }
 }
