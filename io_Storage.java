@@ -1,4 +1,12 @@
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 public class io_Storage{
+    /**
+     * more details are as follows:
+     * url: https://docs.oracle.com/javase/6/docs/api/java/util/Properties.html
+     */
     public String fileLocation;
 
     public void setFileLocation(String fileLocation) {
@@ -9,11 +17,11 @@ public class io_Storage{
         return fileLocation;
     }
 
-    public void saveFile(map<String, object>){
+    public void loadFile(InputStream inStream) throws IOException{
         
     }
 
-    public map<String, object> loadFile(int file){
+    public void saveFile(OutputStream out, String comments) {
 
     }
 }
