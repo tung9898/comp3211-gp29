@@ -1,7 +1,7 @@
 public class GameStatus{
     static int TotalNumberOfPlayers;
     static int CurrentNumberOfPlayers;
-    static int rounds;
+    static int rounds = 0;
 
     public static void setTotalNumberOfPlayers(int totalNumberOfPlayers) {
         /*
@@ -28,7 +28,7 @@ public class GameStatus{
          * If only 1 player left in the board, winner will be that remaining player.
          */
         CurrentNumberOfPlayers = currentNumberOfPlayers;
-        CheckWinner();
+        if(CurrentNumberOfPlayers == 1) CheckWinner();
     }
 
     public static int getCurrentNumberOfPlayers() {

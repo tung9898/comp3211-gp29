@@ -3,7 +3,8 @@ public class Player{
     int Id;
     int Money;
     int CurrentSquare;
-    int CurrentStatus;
+    int DaysInJail = 0;
+    boolean bankruptcy = false;
 
     public void setMoney(int money){
         /**
@@ -34,21 +35,18 @@ public class Player{
         return CurrentSquare;
     }
 
-    public void setCurrentStatus(int currentStatus) {
+    public void setDaysInJail(int daysInJail) {
         /**
-         * This funtion set the player status, the status are as follows:
-         * -1 : bankruptcy
-         *  0 : no effect
-         * >0 : days of in jail.
+         * This funtion set the player in jail days.
          */
-        CurrentStatus = currentStatus;
+        DaysInJail = daysInJail;
     }
 
-    public int getCurrentStatus() {
+    public int getDaysInJail() {
         /**
-         * This function will return the current status of the player
+         * This function will return days of in jail of the player.
          */
-        return CurrentStatus;
+        return DaysInJail;
     }
 
     public void setId(int id) {

@@ -3,6 +3,7 @@ public class Square{
     int PriceTag;
     int Rent;
     int Landlord;
+    boolean[] playerInSquare = new boolean[6];
 
     public void setOwner(int id) {
         /**
@@ -55,5 +56,11 @@ public class Square{
          * Go to jail will be consider as no effect.
          */
         return 0;
+    }
+
+    public void InitplayerInSquare() {
+        for(int i = 0; i < playerInSquare.length;i++) {
+            playerInSquare[i] = false;
+        }
     }
 }
