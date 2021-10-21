@@ -1,9 +1,9 @@
 public class GameStatus{
-    int TotalNumberOfPlayers;
-    int CurrentNumberOfPlayers;
-    int rounds;
+    static int TotalNumberOfPlayers;
+    static int CurrentNumberOfPlayers;
+    static int rounds;
 
-    public void setTotalNumberOfPlayers(int totalNumberOfPlayers) {
+    public static void setTotalNumberOfPlayers(int totalNumberOfPlayers) {
         /*
          * This function can only run before the first round start.
          * By using this function, the number of total players will be changed;
@@ -13,7 +13,7 @@ public class GameStatus{
         if(rounds == 0) TotalNumberOfPlayers = totalNumberOfPlayers;
     }
 
-    public int getTotalNumberOfPlayers() {
+    public static int getTotalNumberOfPlayers() {
         /* 
          * This function return the number of total player,
          * including the player is already bankruptcy.
@@ -21,7 +21,7 @@ public class GameStatus{
         return TotalNumberOfPlayers;
     }
 
-    public void setCurrentNumberOfPlayers(int currentNumberOfPlayers) {
+    public static void setCurrentNumberOfPlayers(int currentNumberOfPlayers) {
         /*
          * This function is to set the current number of players,
          * if a player went bankruptcy, this function will be call.
@@ -31,14 +31,14 @@ public class GameStatus{
         CheckWinner();
     }
 
-    public int getCurrentNumberOfPlayers() {
+    public static int getCurrentNumberOfPlayers() {
         /* 
          * This function return the number of current player.
          */
         return CurrentNumberOfPlayers;
     }
 
-    public void RoundEnd() {
+    public static void RoundEnd() {
         /*
          * This function will be called when all player taking their turns once.
          * This function checks the rounds if it is more than 100.
@@ -47,7 +47,7 @@ public class GameStatus{
         if(rounds > 100) CheckWinner();
     }
 
-    public void CheckWinner(){
+    public static void CheckWinner(){
         /*
          * This function will be called if there is only 1 player left
          * or after 100 rounds. 
