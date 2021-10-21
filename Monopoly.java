@@ -9,7 +9,6 @@ public class Monopoly{
     static Player[] players;
     static int CurrentPlayer;
     public static void main(String[] args) {
-        
         /**
          * This funcion is the main function of Monopoly.
          */
@@ -114,8 +113,10 @@ public class Monopoly{
 
     public static void SquarePayRent(int squareId) {
         int landRent = board[squareId].getRent();
+        int owner = board[squareId].getOwner();
         int balance = players[CurrentPlayer].getMoney();
         players[CurrentPlayer].setMoney(balance-landRent);
+        players[owner].setMoney(players[owner].getMoney()+landRent); // todo, need to fix if the renter don't have money.
         // money remaining message
     }
 }
