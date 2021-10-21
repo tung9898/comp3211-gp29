@@ -3,10 +3,10 @@ public class SquareEffect {
      * This function is mainly return value or data of the game back to other function.
      */
 
-     int[]Price = {800, 700, 600, 400, 500, 400, 700, 400, 500, 400, 400, 600};
-     int[]Rent = {90, 65, 60, 10, 40, 15, 75, 20, 25, 10, 25, 25};
+    static int[]Price = {800, 700, 600, 400, 500, 400, 700, 400, 500, 400, 400, 600};
+    static int[]Rent = {90, 65, 60, 10, 40, 15, 75, 20, 25, 10, 25, 25};
 
-     public void EffectCenter(int squareId) {
+     public static void EffectCenter(int squareId) {
         /**
          * This function is to redirect the sqaure to its belonging effect
          */
@@ -31,7 +31,7 @@ public class SquareEffect {
         }    
      }
 
-     public int GoSalary() {
+     public static int GoSalary() {
          /**
           * This function is give a player salary if he/she pass though the GO square.
           * return the salary to set the money.
@@ -39,7 +39,7 @@ public class SquareEffect {
         return 1500;
      }
 
-     public int ChanceSalary() {
+     public static int ChanceSalary() {
          /**
           * This function randomly pick a integer in a specific range.
           return the value the player win or lose to set the money.
@@ -48,7 +48,7 @@ public class SquareEffect {
         return r * 10;
      }
 
-     public int PayTax() {
+     public static int PayTax() {
         /*This function will take the player 10% of his/her money for tax.
          * x = x / 10 * 9;
          * x = x - x % 10;
@@ -57,21 +57,21 @@ public class SquareEffect {
         return 0;
      }
 
-     public int NoEffect() {
+     public static int NoEffect() {
          /**
           * No effect square, this function do nothing, just the its name.
           */
          return 0;
      }
 
-     public int SquarePrice(int id) {
+     public static int SquarePrice(int id) {
          /**
           * This function return the price of its square.
           */
         return Price[id-1];
      }
 
-     public int SquareRent(int id) {
+     public static int SquareRent(int id) {
          /**
           * This function return the rent of its square.
           */
