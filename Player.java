@@ -3,7 +3,7 @@ public class Player{
     int Id;
     int Money;
     int CurrentSquare;
-    int DaysInJail = 0;
+    int DaysInJail = -1;
     boolean bankruptcy = false;
 
     public void setMoney(int money){

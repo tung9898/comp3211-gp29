@@ -3,7 +3,6 @@ public class Square{
     int PriceTag;
     int Rent;
     int Landlord;
-    boolean[] playerInSquare = new boolean[6];
 
     public void setOwner(int id) {
         /**
@@ -39,14 +38,14 @@ public class Square{
         /**
          * This function will find the Price of its square and return it.
          */
-        return 0;
+        return SquareEffect.SquarePrice(Id);
     }
 
     public int getRent() {
         /**
          * This function will find the Rent of its square and return it.
          */
-        return 0;
+        return SquareEffect.SquareRent(Id);
     }
 
     public int getEffect() {
@@ -56,11 +55,5 @@ public class Square{
          * Go to jail will be consider as no effect.
          */
         return 0;
-    }
-
-    public void InitplayerInSquare() {
-        for(int i = 0; i < playerInSquare.length;i++) {
-            playerInSquare[i] = false;
-        }
     }
 }
