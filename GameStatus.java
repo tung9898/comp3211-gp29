@@ -1,3 +1,6 @@
+import java.util.List;
+import java.util.ArrayList;
+
 public class GameStatus{
     static int TotalNumberOfPlayers;
     static int CurrentNumberOfPlayers;
@@ -55,5 +58,17 @@ public class GameStatus{
          * Tie (multiple winners) is possible.
          */
         // print out winner and stop the game (maybe ask for restart)
+        int max = -1;
+        List<Integer> Winner = new ArrayList<Integer>();
+        for(int i = 0; i < Monopoly.players.length; i++){
+            if(Monopoly.players[i].Money > max){
+                max = Monopoly.players[i].Money;
+                Winner.clear();
+                Winner.add(Monopoly.players[i].Id);
+            }else if(Monopoly.players[i].Money == max){
+                Winner.add(Monopoly.players[i].Id);
+            }
+        }
+        // Winner List is contain player with the most amount of money.
     }
 }
