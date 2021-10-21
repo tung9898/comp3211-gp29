@@ -1,33 +1,33 @@
 public class SquareEffect {
-    /**
-     * This function is mainly return value or data of the game back to other function.
-     */
+     /**
+      * This function is mainly return value or data of the game back to other function.
+      */
 
-    static int[]Price = {800, 700, 600, 400, 500, 400, 700, 400, 500, 400, 400, 600};
-    static int[]Rent = {90, 65, 60, 10, 40, 15, 75, 20, 25, 10, 25, 25};
+     static int[]Price = {800, 700, 600, 400, 500, 400, 700, 400, 500, 400, 400, 600};
+     static int[]Rent = {90, 65, 60, 10, 40, 15, 75, 20, 25, 10, 25, 25};
 
      public static void EffectCenter(int squareId) {
-        /**
-         * This function is to redirect the sqaure to its belonging effect
-         */
-        switch(squareId+1){    
-            case 1:    
-                GoSalary();
-            break;
-
-            case 9:
-            case 13:
-            case 19:
-                ChanceSalary();
-            break;
-
-            case 4:
-                PayTax();
-            break;
-
-            default:     
-                NoEffect();
-            break;
+         /**
+          * This function is to redirect the sqaure to its belonging effect
+          */
+         switch(squareId+1){    
+             case 1:    
+                 GoSalary();
+             break;
+ 
+             case 9:
+             case 13:
+             case 19:
+                 ChanceSalary();
+             break;
+ 
+             case 4:
+                 PayTax();
+             break;
+ 
+             default:     
+                 NoEffect();
+             break;
         }    
      }
 
@@ -42,19 +42,20 @@ public class SquareEffect {
      public static int ChanceSalary() {
          /**
           * This function randomly pick a integer in a specific range.
-          return the value the player win or lose to set the money.
+          * return the value the player win or lose to set the money.
           */
-        int r = 0; // random integer number from 20 to -30
+        int r = Monopoly.rand.nextInt(50)-30; // random integer number from 20 to -30
         return r * 10;
      }
 
      public static int PayTax() {
-        /*This function will take the player 10% of his/her money for tax.
-         * x = x / 10 * 9;
-         * x = x - x % 10;
-         * setMoney(x)
-         * */
-        return 0;
+         /*
+          * This function will take the player 10% of his/her money for tax.
+          * */
+         int x = Monopoly.players[Monopoly.CurrentPlayer].Money;
+         x = x / 10 * 9;
+         x = x - x % 10;
+         return x;
      }
 
      public static int NoEffect() {
@@ -68,13 +69,13 @@ public class SquareEffect {
          /**
           * This function return the price of its square.
           */
-        return Price[id-1];
+         return Price[id-1];
      }
 
      public static int SquareRent(int id) {
          /**
           * This function return the rent of its square.
           */
-        return Rent[id-1];
+         return Rent[id-1];
      }
 }
