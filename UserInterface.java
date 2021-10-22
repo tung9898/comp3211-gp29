@@ -67,66 +67,79 @@ public class UserInterface{
         String msg = "Player " + pid;
         int pos = Monopoly.players[pid].CurrentSquare;
         msg += ", your position is in board " + pos + nl;
-        if(SquareEffect.SquareName(pid) != "-1"){
-            msg += "Square Name: " + SquareEffect.SquareName(pid) + nl;
-            msg += "Square Price: " + SquareEffect.SquarePrice(pid) + nl;
-            msg += "Square Rent: " + SquareEffect.SquareRent(pid) + nl;
+        if(SquareEffect.SquareName(pos) != "-1"){
+            msg += "Square Name: " + SquareEffect.SquareName(pos) + nl;
+            msg += "Square Price: " + SquareEffect.SquarePrice(pos) + nl;
+            msg += "Square Rent: " + SquareEffect.SquareRent(pos) + nl;
         }
         return msg;
     }
 
     public String PrintInJailDaysMessage(int pid){
-        return "";
+        String msg = "";
+        if(Monopoly.players[pid].DaysInJail > -1){
+            msg = "Player " + (pid+1) + ", you are in jail for " + Monopoly.players[pid].DaysInJail + " days." + nl;
+        }else{
+            msg = "Player " + (pid+1) + ", you are not in jail." + nl;
+        }
+        return msg;
     }
 
-    public String PrintSquarePurchaseMessage(int pid){
-        return "";
+    public String PrintSquarePurchaseMessage(int sid){
+        if(Monopoly.board[sid].getPrice() > -1)
+            return Monopoly.board[sid].getName() + tab + Monopoly.board[sid].getPrice() + nl + "Press enter to make the deal.";
+        return "This property is belong to the government, you cannot purchase this land.";
     }
 
-    public String PrintSquarePurchaseConfirmMessage(int pid){
-        return "";
+    public String PrintSquarePurchaseConfirmMessage(int sid){
+        return "Are you sure you want to buy " +  Monopoly.board[sid].getName() + " with " + Monopoly.board[sid].getPrice() + " HKD?";
     }
 
-    public String PrintSquarePurchaseSuccessfulMessage(int pid){
-        return "";
+    public String PrintSquareOwnerChangedMessage(int sid){
+        if(Monopoly.board[sid].getOwner() != -1){
+            return Monopoly.board[sid].getName() + " is belongs to player " + Monopoly.board[sid].getOwner() + " now";
+        }
+        return Monopoly.board[sid].getName() + " is belongs to the government now";
     }
 
-    public String PrintSquarePurchaseFailedMessage(int pid){
-        return "";
+    public String PrintSquarePurchaseFailedMessage(int sid){
+        return "Sorry, you don't have enough money to purchase " +  Monopoly.board[sid].getName() + nl;
     }
 
-    public String PrintSquarePayRentMessage(int pid){
-        return "";
+    public String PrintSquarePayRentMessage(int sid){
+        return "Oh NO! This property is belongs to player " + Monopoly.board[sid].getOwner() + ", you need to pay him/her " + Monopoly.board[sid].getRent() + " HKD";
     }
 
     public String PrintBankruptcyWarningMessage(int pid){
-        return "";
+        return "Your money is not under 0, make your choice wisely.";
     }
 
     public String PrintBankruptcyMessage(int pid, int[] pprop){
-        return "";
+        String msg = "Player " + (pid+1) + "is forced to declare bankruptcy, all your property will be return to government, including: " + nl;
+        for(int i = 0; i < pprop.length; i++){
+            msg += Monopoly.board[i].getName() + tab;
+        }
+        return msg+nl;
     }
 
     // Square Effect
     public String PrintPassGOMessage(){
-        return "";
+        return "Passing Go, gain " + SquareEffect.GoSalary() + " HKD";
     }
 
-    public String PrintChanceMessage(){
-        return "";
+    public String PrintChancepositiveMessage(int m){
+        return "Congratulations!! you won " + m + " HKD!!" + nl;
     }
 
-    public String PrintPayTaxMessage(){
-        return "";
+    public String PrintChancenegativeMessage(int m){
+        return "Bad luck! you need to pay the bank " + m + " HKD." + nl;
+    }
+
+    public String PrintPayTaxMessage(int pid){
+        return "Income Tax: " + (Monopoly.players[pid].getMoney() - SquareEffect.TaxCalculate(pid)) + nl;
     }
 
     public String PrintNoEffectMessage(int sid){
-        return "";
+        return "This square has no effect" + nl;
     }
-
-    public String PrintSquareInfoMessage(int sid){
-        return "";
-    }
-
-    
 }
