@@ -15,7 +15,6 @@ public class Monopoly{
 
 
     public static void main(String[] args) {
-        
         /**
          * This funcion is the main function of Monopoly.
          */
@@ -126,9 +125,11 @@ public class Monopoly{
     public static void SquarePayRent(int squareId) {
         // get the integer of that square rent and the amount of money that player have.
         int landRent = board[squareId].getRent();
+        int owner = board[squareId].getOwner();
         int balance = players[CurrentPlayer].getMoney();
         // directly pay the rent for the player.
         players[CurrentPlayer].setMoney(balance-landRent);
+        players[owner].setMoney(players[owner].getMoney()+landRent); // todo, need to fix if the renter don't have money.
         // money remaining message
     }
 }
