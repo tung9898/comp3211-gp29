@@ -1,3 +1,7 @@
+package comp3211.Model;
+
+import comp3211.Monopoly;
+import comp3211.Controller.ActionController;
 public class SquareEffect {
      /**
       * This function is mainly return value or data of the game back to other function.
@@ -40,19 +44,22 @@ public class SquareEffect {
           * This function randomly pick a integer in a specific range.
           * return the value the player win or lose to set the money.
           */
-         int upperbound = 200;
-         int lowerbound = -300;
-         upperbound /= 10;
-         lowerbound /= 10;
-         int r = Monopoly.rand.nextInt(Math.abs(upperbound+lowerbound))+lowerbound; // random integer number from 20 to -30
-         return r * 10;
+        int upperbound = 200;
+        int lowerbound = -300;
+        upperbound /= 10;
+        lowerbound /= 10;
+
+        ActionController actionController = new ActionController();
+        int r = actionController.getRandomInteger().nextInt(Math.abs(upperbound+lowerbound))+lowerbound; // random integer number from 20 to -30
+         
+        return r * 10;
      }
 
      public static int PayTax() {
          /*
           * This function will take the player 10% of his/her money for tax.
           * */
-         return TaxCalculate(Monopoly.CurrentPlayer);
+          return TaxCalculate(Monopoly.CurrentPlayer);
      }
 
      public static int TaxCalculate(int id) {
@@ -62,7 +69,6 @@ public class SquareEffect {
         x = x - x % 10;
         return x;
      }
-
      public static int NoEffect() {
          /**
           * No effect square, this function do nothing, just the its name.
