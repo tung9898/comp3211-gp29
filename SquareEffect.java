@@ -52,11 +52,15 @@ public class SquareEffect {
          /*
           * This function will take the player 10% of his/her money for tax.
           * */
-         int percent = 10;
-         int x = Monopoly.players[Monopoly.CurrentPlayer].Money;
-         x = x / (100 - percent);
-         x = x - x % 10;
-         return x;
+         return TaxCalculate(Monopoly.CurrentPlayer);
+     }
+
+     public static int TaxCalculate(int id) {
+        int percent = 10;
+        int x = Monopoly.players[id].Money;
+        x = x / (100 - percent);
+        x = x - x % 10;
+        return x;
      }
 
      public static int NoEffect() {
