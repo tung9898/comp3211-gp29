@@ -87,7 +87,7 @@ public class Monopoly{
          */
         int[] r = new int[numberOfDice];
         for(int i = 0; i < numberOfDice; i++){
-            r[i] = rand.nextInt(numberOfSide);
+            r[i] = rand.nextInt(numberOfSide)+1;
         }
         return r;
     }
