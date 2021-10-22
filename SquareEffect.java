@@ -2,10 +2,13 @@ public class SquareEffect {
      /**
       * This function is mainly return value or data of the game back to other function.
       */
-
+    
+      // data for each Properties that marked by a colored stripe
+     static int[]Pos = {2, 3, 5, 7, 8, 10, 12, 14, 15, 17, 18, 20};
+     static String[]Name = {"Central", "Wan Chai", "Stanley", "Shek O", "Mong Kok", "Tsing Yi", "Shatin", "Tuen Mun", "Tai Po", "Sai Kung", "Yuen Long", "Tai O"};
      static int[]Price = {800, 700, 600, 400, 500, 400, 700, 400, 500, 400, 400, 600};
      static int[]Rent = {90, 65, 60, 10, 40, 15, 75, 20, 25, 10, 25, 25};
-     static String[]Name = {"Central", "Wan Chai", "Stanley", "Shek O", "Mong Kok", "Tsing Yi", "Shatin", "Tuen Mun", "Tai Po", "Sai Kung", "Yuen Long", "Tai O"};
+    
      public static void EffectCenter(int squareId) {
          /**
           * This function is to redirect the sqaure to its belonging effect
@@ -69,20 +72,27 @@ public class SquareEffect {
          /**
           * This function return the price of its square.
           */
-         return Price[id];
+         return Price[IdtoPos(id)];
      }
 
      public static int SquareRent(int id) {
          /**
           * This function return the rent of its square.
           */
-         return Rent[id];
+         return Rent[IdtoPos(id)];
      }
 
     public static String SquareName(int id) {
         /**
           * This function return the name of its square.
           */
-        return Name[id];
+        return Name[IdtoPos(id)];
+    }
+
+    public static int IdtoPos(int id){
+        for(int i = 0; i < Pos.length; i++){
+            if(id+1 == Pos[i]) return i;
+        }
+        return -1;
     }
 }

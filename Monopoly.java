@@ -8,16 +8,22 @@ public class Monopoly{
     static Square[] board = new Square[20];
     static Player[] players;
     static int CurrentPlayer;
+    static int numberOfDice = 2;
+    static int numberOfSide = 4;
+    static int MaximumNumberOfPlayer = 6;
+    static int MinimumNumberOfPlayer = 2;
+
+
     public static void main(String[] args) {
         
         /**
          * This funcion is the main function of Monopoly.
          */
         // init board using list, make a list of square, from 0 to 19
-        // request a number from 2 to 6, use for the number of player.
+        // request a number from a range, use for the number of player.
         // Ask for number of players input.
-        int x = 4;
-        if(2 <= x && x <= 6) InitSqaure(x);
+        int numberOfPlayer = 4;
+        if(MinimumNumberOfPlayer <= numberOfPlayer && numberOfPlayer <= MaximumNumberOfPlayer) InitSqaure(numberOfPlayer);
         // start the game
         boolean keepTheGameRun = true;
         while(keepTheGameRun) {
@@ -72,15 +78,18 @@ public class Monopoly{
         for(int i = 0; i < board.length; i++){
             if(board[i].getOwner() == id) board[i].setId(-1);
         }
+        players[id].bankruptcy = true;
+        GameStatus.setCurrentNumberOfPlayers(GameStatus.getCurrentNumberOfPlayers()-1);
     }
 
     public static int[] rollingDice() {
         /**
-         * This function will randomly generate 2 number in a specific range.
+         * This function is simulating a rolling dice.
          */
-        int[] r = new int[2];
-        r[0] = rand.nextInt(4);
-        r[1] = rand.nextInt(4);
+        int[] r = new int[numberOfDice];
+        for(int i = 0; i < numberOfDice; i++){
+            r[i] = rand.nextInt(numberOfSide);
+        }
         return r;
     }
 
@@ -100,8 +109,10 @@ public class Monopoly{
     }
 
     public static void SquarePurchase(int squareId) {
+        // get the integer of that square price and the amount of money that player have.
         int landPrice = board[squareId].getPrice();
         int balance = players[CurrentPlayer].getMoney();
+        // check if the player has enough money to make this deal.
         if(balance >= landPrice){
             // confirm message, return if fail to confirm.
             players[CurrentPlayer].setMoney(balance-landPrice);
@@ -113,8 +124,10 @@ public class Monopoly{
     }
 
     public static void SquarePayRent(int squareId) {
+        // get the integer of that square rent and the amount of money that player have.
         int landRent = board[squareId].getRent();
         int balance = players[CurrentPlayer].getMoney();
+        // directly pay the rent for the player.
         players[CurrentPlayer].setMoney(balance-landRent);
         // money remaining message
     }
