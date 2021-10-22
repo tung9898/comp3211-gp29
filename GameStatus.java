@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class GameStatus{
     static int TotalNumberOfPlayers;
     static int CurrentNumberOfPlayers;
-    static int rounds = 0;
+    static int rounds = 1;
 
     public static void setTotalNumberOfPlayers(int totalNumberOfPlayers) {
         /*

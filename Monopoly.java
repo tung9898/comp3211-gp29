@@ -129,7 +129,7 @@ public class Monopoly{
         int balance = players[CurrentPlayer].getMoney();
         // directly pay the rent for the player.
         players[CurrentPlayer].setMoney(balance-landRent);
-        players[owner].setMoney(players[owner].getMoney()+landRent); // todo, need to fix if the renter don't have money.
+        players[owner].setMoney(players[owner].getMoney()+landRent);
         // money remaining message
     }
 }

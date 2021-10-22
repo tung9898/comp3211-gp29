@@ -9,28 +9,21 @@ public class SquareEffect {
      static int[]Price = {800, 700, 600, 400, 500, 400, 700, 400, 500, 400, 400, 600};
      static int[]Rent = {90, 65, 60, 10, 40, 15, 75, 20, 25, 10, 25, 25};
     
-     public static void EffectCenter(int squareId) {
+     public static int EffectCenter(int squareId) {
          /**
           * This function is to redirect the sqaure to its belonging effect
           */
          switch(squareId+1){    
              case 1:    
-                 GoSalary();
-             break;
- 
+                 return GoSalary();
              case 9:
              case 13:
              case 19:
-                 ChanceSalary();
-             break;
- 
+                 return ChanceSalary();
              case 4:
-                 PayTax();
-             break;
- 
+                 return PayTax();
              default:     
-                 NoEffect();
-             break;
+                 return NoEffect();
         }    
      }
 
@@ -72,6 +65,7 @@ public class SquareEffect {
          /**
           * This function return the price of its square.
           */
+          if(id==-1) return -1;
          return Price[IdtoPos(id)];
      }
 
@@ -79,6 +73,7 @@ public class SquareEffect {
          /**
           * This function return the rent of its square.
           */
+          if(id==-1) return -1;
          return Rent[IdtoPos(id)];
      }
 
@@ -86,6 +81,7 @@ public class SquareEffect {
         /**
           * This function return the name of its square.
           */
+          if(id==-1) return "-1";
         return Name[IdtoPos(id)];
     }
 

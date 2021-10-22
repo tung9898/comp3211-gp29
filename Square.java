@@ -27,7 +27,6 @@ public class Square{
     public int getId() {
         /**
          * get the square id
-         * (should be useless)
          */
         return Id;
     }
