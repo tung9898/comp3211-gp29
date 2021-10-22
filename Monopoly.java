@@ -56,9 +56,9 @@ public class Monopoly{
         GameStatus.setTotalNumberOfPlayers(numberOfPlayer);
         GameStatus.setCurrentNumberOfPlayers(numberOfPlayer);
         players = new Player[numberOfPlayer];
-        for(int i = 0; i < numberOfPlayer; i++) {
+        for(int i = 0; i < board.length; i++) {
             board[i].setId(i);
-            board[i].setOwner(i);
+            board[i].setOwner(-1);
         }
         for(int i = 0; i < numberOfPlayer; i++) {
             players[i].setId(i);
