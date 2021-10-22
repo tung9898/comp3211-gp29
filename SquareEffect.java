@@ -40,16 +40,21 @@ public class SquareEffect {
           * This function randomly pick a integer in a specific range.
           * return the value the player win or lose to set the money.
           */
-        int r = Monopoly.rand.nextInt(50)-30; // random integer number from 20 to -30
-        return r * 10;
+         int upperbound = 200;
+         int lowerbound = -300;
+         upperbound /= 10;
+         lowerbound /= 10;
+         int r = Monopoly.rand.nextInt(Math.abs(upperbound+lowerbound))+lowerbound; // random integer number from 20 to -30
+         return r * 10;
      }
 
      public static int PayTax() {
          /*
           * This function will take the player 10% of his/her money for tax.
           * */
+         int percent = 10;
          int x = Monopoly.players[Monopoly.CurrentPlayer].Money;
-         x = x / 10 * 9;
+         x = x / (100 - percent);
          x = x - x % 10;
          return x;
      }
