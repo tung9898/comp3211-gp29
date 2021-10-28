@@ -1,4 +1,4 @@
-package comp3211.Model;
+package src.main.Model;
 
 public class Player{
     protected String Name;
@@ -7,6 +7,26 @@ public class Player{
     protected int CurrentSquare;
     protected int DaysInJail = -1;
     protected boolean Bankruptcy = false;
+
+    public Player(int id){
+        setId(id);
+        setMoney(0);
+        setCurrentSquare(0);
+        setName("Player " + (id+1));
+    }
+    
+    public Player(String _name, int _id){
+        this.Name = _name;
+        this.Id = _id;
+    }
+
+    public Player(String _name, int _id, int _money, int _currentSquare, int _daysInJail, boolean _bankruptcy){
+        this.Name = _name;
+        this.Id = _id;
+        this.CurrentSquare = _currentSquare;
+        this.DaysInJail = _daysInJail;
+        this.Bankruptcy = _bankruptcy;
+    }
 
     public void setName(String name) {
         /**
@@ -91,6 +111,11 @@ public class Player{
          * This function will return the bankruptcy status of the player.
          */
         return Bankruptcy;
+    }
+
+    @Override
+    public String toString() {
+        return "player [id=" + Id + ", name=" + Name + "]";
     }
 
 }

@@ -1,9 +1,14 @@
-package comp3211.Model;
+package src.main.Model;
 
 public class Square{
     protected int Id;
     protected int Landlord;
 
+    public Square(int id){
+        setId(id);
+        setOwner(-1);
+    }
+    
     public void setId(int id) {
         /**
          * set the square id
@@ -14,6 +19,7 @@ public class Square{
     public int getId() {
         /**
          * get the square id
+         * (should be useless)
          */
         return Id;
     }
@@ -32,13 +38,6 @@ public class Square{
          */
         return Landlord;
     }
-    
-    public String getName() {
-        /**
-         * This function will find the name of its square and return it.
-         */
-        return SquareEffect.SquareName(Id);
-    }
 
     public int getPrice() {
         /**
@@ -54,6 +53,7 @@ public class Square{
         return SquareEffect.SquareRent(Id);
     }
 
+    //***not yet tested
     public int getEffect() {
         /**
          * This function will return a integer, for Go, Change, Income tax.
@@ -61,5 +61,12 @@ public class Square{
          * Go to jail will be consider as no effect.
          */
         return 0;
+    }
+
+    public static String getName(int id) {
+        /**
+          * This function return the name of its square.
+          */
+        return SquareEffect.SquareName(id);
     }
 }

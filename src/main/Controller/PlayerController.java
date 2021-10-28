@@ -1,5 +1,5 @@
-package comp3211.Controller;
-import comp3211.Model.Player;
+package src.main.Controller;
+import src.main.Model.Player;
 
 public class PlayerController {
     private Player model;
@@ -11,7 +11,7 @@ public class PlayerController {
     }
 
     public void createPlayer(){
-
+        
     }
 
     public void removePlater(){

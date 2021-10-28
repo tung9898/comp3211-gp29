@@ -1,4 +1,4 @@
-package comp3211.Model;
+package src.main.Model;
 
 public class IoStorage{
     /**

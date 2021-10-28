@@ -1,9 +1,14 @@
-package comp3211.Model;
+package src.main.Model;
 
 public class GameStatus{
     protected int TotalNumberOfPlayers;
     protected int CurrentNumberOfPlayers;
-    protected int rounds = 1;
+    protected int rounds = 0;
+
+    public GameStatus(int totalNumberOfPlayers, int currentNumberOfPlayers){
+        setTotalNumberOfPlayers(totalNumberOfPlayers);
+        setCurrentNumberOfPlayers(currentNumberOfPlayers);
+    }
 
     public void setTotalNumberOfPlayers(int totalNumberOfPlayers) {
         TotalNumberOfPlayers = totalNumberOfPlayers;

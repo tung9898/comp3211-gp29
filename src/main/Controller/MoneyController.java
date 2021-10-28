@@ -1,6 +1,6 @@
-package comp3211.Controller;
+package src.main.Controller;
 
-import comp3211.Model.Player;
+import src.main.Model.Player;
 
 public class MoneyController {
     private Player model;

@@ -1,11 +1,15 @@
-package comp3211.Controller;
+package src.main.Controller;
 
 import java.util.Random;
 
 public class ActionController {
     static Random rand = new Random();
+
+    public static int getRandom(int min, int max){
+        return rand.nextInt(max - min + 1) + min;
+    }
     
-    public int[] rollingDice() {
+    public static int[] rollingDice() {
         /**
          * This function will randomly generate 2 number in a specific range.
          */
@@ -14,10 +18,5 @@ public class ActionController {
         r[1] = rand.nextInt(4);
         return r;
     }
-
-    public Random getRandomInteger() {
-        Random rand = new Random();
-        return rand;
-    }
-
+ 
 }

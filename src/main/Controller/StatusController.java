@@ -1,20 +1,20 @@
-package comp3211.Controller;
+package src.main.Controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import comp3211.Monopoly;
-import comp3211.Model.GameStatus;
+import src.main.Model.GameStatus;
+import src.main.Model.Player;
+import src.main.Service.PlayerService;
 
 public class StatusController {
-    private GameStatus model;
+    private static GameStatus model;
     //private GameStatusView view;
 
-    public StatusController(){}
     public StatusController(GameStatus model){
         this.model = model;
     }
     
-    public int getTotalNumberOfPlayers() {
+    public static int getTotalNumberOfPlayers() {
         /* 
          * This function return the number of total player,
          * including the player is already bankruptcy.
@@ -22,7 +22,7 @@ public class StatusController {
         return model.getCurrentNumberOfPlayers();
     }
 
-    public void setTotalNumberOfPlayers(int totalNumberOfPlayers) {
+    public static void setTotalNumberOfPlayers(int totalNumberOfPlayers) {
         /*
          * This function can only run before the first round start.
          * By using this function, the number of total players will be changed;
@@ -32,14 +32,14 @@ public class StatusController {
         if(model.getRounds() == 0) model.setTotalNumberOfPlayers(totalNumberOfPlayers);
     }
 
-    public int getCurrentNumberOfPlayers() {
+    public static int getCurrentNumberOfPlayers() {
         /* 
          * This function return the number of current player.
          */
         return model.getCurrentNumberOfPlayers();
     }
 
-    public void setCurrentNumberOfPlayers(int currentNumberOfPlayers) {
+    public static void setCurrentNumberOfPlayers(int currentNumberOfPlayers) {
         /*
          * This function is to set the current number of players,
          * if a player went bankruptcy, this function will be call.
@@ -49,15 +49,15 @@ public class StatusController {
         if(model.getCurrentNumberOfPlayers() == 1) CheckWinner();
     }
 
-    public void setRound(int rounds){
+    public static void setRound(int rounds){
         model.setRound(rounds);
     }
 
-    public int getRounds(){
+    public static int getRounds(){
         return model.getRounds();
     }
 
-    public void RoundEnd() {
+    public static void RoundEnd() {
         /*
          * This function will be called when all player taking their turns once.
          * This function checks the rounds if it is more than 100.
@@ -67,7 +67,7 @@ public class StatusController {
         if(model.getRounds() > 100) CheckWinner();
     }
 
-    public void CheckWinner(){
+    public static void CheckWinner(){
         /*
          * This function will be called if there is only 1 player left
          * or after 100 rounds. 
@@ -76,20 +76,21 @@ public class StatusController {
          */
         // print out winner and stop the game (maybe ask for restart)
         List<Integer> Winner = new ArrayList<Integer>();
+        Player[] players = PlayerService.getPlayers();
         if(model.getCurrentNumberOfPlayers() == 1){
-            for(int i = 0; i < Monopoly.players.length; i++) {
-                if(!Monopoly.players[i].getBankruptcy()) Winner.add(Monopoly.players[i].getId());
+            for(int i = 0; i < players.length; i++) {
+                if(!players[i].getBankruptcy()) Winner.add(players[i].getId());
             }
         }else{
             int max = -1;
             // Winner List is contain player with the most amount of money.
-            for(int i = 0; i < Monopoly.players.length; i++){
-                if(Monopoly.players[i].getMoney() > max){
-                    max = Monopoly.players[i].getMoney();
+            for(int i = 0; i < players.length; i++){
+                if(players[i].getMoney() > max){
+                    max = players[i].getMoney();
                     Winner.clear();
-                    Winner.add(Monopoly.players[i].getId());
-                }else if(Monopoly.players[i].getMoney() == max){
-                    Winner.add(Monopoly.players[i].getId());
+                    Winner.add(players[i].getId());
+                }else if(players[i].getMoney() == max){
+                    Winner.add(players[i].getId());
                 }
             }
         }
