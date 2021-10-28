@@ -91,7 +91,7 @@ public class test {
         filenames = f.list();
 
         // Does any files exist in data folder?
-        if(!(filenames.length > 0)){
+        if(!(filenames.length > 0 && Arrays.stream(filenames).anyMatch(str -> str.contains(".json")))){
             System.out.println("No files");
             return;
         }
