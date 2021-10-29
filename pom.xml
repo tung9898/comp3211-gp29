@@ -25,7 +25,7 @@
     </dependencies>
  
     <build>
-        <sourceDirectory>MVC/src/main</sourceDirectory>
+        <sourceDirectory>src/main</sourceDirectory>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>

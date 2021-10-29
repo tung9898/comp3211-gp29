@@ -1,4 +1,4 @@
-package src.main.Controller;
+package Controller;
 
 import java.util.Random;
 

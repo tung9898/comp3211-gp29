@@ -1,5 +1,5 @@
-package src.main.Service;
-import src.main.Model.Square;
+package Service;
+import Model.Square;
 
 public class BoardService {
 
@@ -21,7 +21,7 @@ public class BoardService {
         board[number].setOwner(owner);
     }
 
-    public static int getBoardName(int number){
+    public static String getBoardName(int number){
         return board[number].getName();
     }
 

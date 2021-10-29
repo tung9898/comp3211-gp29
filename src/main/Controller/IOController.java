@@ -1,9 +1,15 @@
-/* package src.main.Controller;
+package Controller;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
+import java.util.Map;
 
-import src.main.Model.IoStorage;
+import Model.IoStorage;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -35,7 +41,7 @@ public class IOController {
         }
         
         // Create file
-        ioStorage io = new ioStorage();
+        IoStorage io = new IoStorage();
         io.setFileLocation("data\\"+fileName+".json");
         File theDir = new File("data");
         if (!theDir.exists()){
@@ -52,7 +58,7 @@ public class IOController {
     }
     
     public static JSONArray loadFile(String fileLocation){
-        ioStorage io = new ioStorage();
+        IoStorage io = new IoStorage();
         io.setFileLocation(fileLocation);
     
         JSONParser jsonParser = new JSONParser();
@@ -70,4 +76,3 @@ public class IOController {
         return obj;
     }
 }
- */

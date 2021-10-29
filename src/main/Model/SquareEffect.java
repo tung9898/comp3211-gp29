@@ -1,8 +1,8 @@
-package src.main.Model;
+package Model;
 
-import src.main.Controller.ActionController;
+import Controller.ActionController;
 
-import src.main.Service.PlayerService;
+import Service.PlayerService;
 
 public class SquareEffect extends Square {
 

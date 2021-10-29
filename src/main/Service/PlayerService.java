@@ -1,5 +1,5 @@
-package src.main.Service;
-import src.main.Model.Player;
+package Service;
+import Model.Player;
 
 public class PlayerService {
 

@@ -1,9 +1,9 @@
-package src.main.View;
+package View;
 
 import java.util.List;
-import src.main.Model.*;
-import src.main.Controller.*;
-import src.main.Service.*;
+import Model.*;
+import Controller.*;
+import Service.*;
 
 public class UserInterface {
     String nl = "\n";

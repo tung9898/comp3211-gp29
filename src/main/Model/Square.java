@@ -1,4 +1,4 @@
-package src.main.Model;
+package Model;
 
 public class Square{
     protected int Id;
@@ -63,10 +63,10 @@ public class Square{
         return 0;
     }
 
-    public static String getName(int id) {
+    public String getName() {
         /**
           * This function return the name of its square.
           */
-        return SquareEffect.SquareName(id);
+        return SquareEffect.SquareName(Id);
     }
 }

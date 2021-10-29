@@ -1,5 +1,5 @@
-package src.main.Controller;
-import src.main.Model.Player;
+package Controller;
+import Model.Player;
 
 public class PlayerController {
     private Player model;

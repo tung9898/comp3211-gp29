@@ -1,12 +1,19 @@
-package src.main;
-
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
-import src.main.Controller.*;
-import src.main.Model.*;
-import src.main.View.*;
-import src.main.Service.*;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import Controller.*;
+import Model.*;
+import View.*;
+import Service.*;
 
 public class Monopoly{
     /**
@@ -70,6 +77,7 @@ public class Monopoly{
                 break;
             case 2:
                 //
+                loadFileUI();
                 break;
             default:
                 break;
@@ -160,5 +168,55 @@ public class Monopoly{
         PlayerService.setPlayersMoney(currentPlayer, balance-landRent);
         PlayerService.setPlayersMoney(owner, PlayerService.getPlayerMoney(owner) + landRent); // todo, need to fix if the renter don't have money.
         // money remaining message
+    }
+
+    public static void loadFileUI(){
+        String[] filenames;
+        File f = new File("data");
+        //System.out.println("Working Directory = " + System.getProperty("user.dir"));
+        // Does data folder exist?
+        if(!f.exists()){
+            System.out.println("No files 1");
+            return;
+        }
+
+        filenames = f.list();
+
+        // Does any files exist in data folder?
+        if(!(filenames.length > 0 && Arrays.stream(filenames).anyMatch(str -> str.contains(".json")))){
+            System.out.println("No files");
+            return;
+        }
+
+        // Ask user to select the file
+        Scanner userInput = new Scanner(System.in);
+        int fileNumber = -1;
+        do{
+            // Print files' information
+            System.out.println("Here are the files:");
+            for(int i = 0; i < filenames.length; i++){
+                System.out.printf("[%1$s] %2$s %n", i, filenames[i]);
+            }
+            System.out.print("Input your choice (number only):");
+
+            // Validate the input is or not a number
+            while(!(userInput.hasNextInt())){
+                System.out.print("Input your choice (number only):");
+                userInput.next();
+            }
+            fileNumber = userInput.nextInt();
+       }while(!(fileNumber >= 0 && 
+                fileNumber < filenames.length && 
+                filenames[fileNumber].contains(".json")));
+
+        // Load the data from file
+        JSONArray playersArray = IOController.loadFile(filenames[fileNumber]);
+        playersArray.forEach( pla -> parsePlayerObject( (JSONObject) pla ) );
+    }
+
+    public static void parsePlayerObject(JSONObject player){
+        JSONObject playerObject = (JSONObject) player.get("player");
+        System.out.println("name: "+playerObject.get("name"));
+        System.out.println("id: "+playerObject.get("id"));
     }
 }

@@ -1,6 +1,6 @@
-package src.main.Controller;
+package Controller;
 
-import src.main.Model.Player;
+import Model.Player;
 
 public class MoneyController {
     private Player model;

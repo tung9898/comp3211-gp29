@@ -1,4 +1,4 @@
-package src.main.Model;
+package Model;
 
 public class IoStorage{
     /**

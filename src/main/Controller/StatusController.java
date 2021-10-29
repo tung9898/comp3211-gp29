@@ -1,10 +1,10 @@
-package src.main.Controller;
+package Controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import src.main.Model.GameStatus;
-import src.main.Model.Player;
-import src.main.Service.PlayerService;
+import Model.GameStatus;
+import Model.Player;
+import Service.PlayerService;
 
 public class StatusController {
     private static GameStatus model;
