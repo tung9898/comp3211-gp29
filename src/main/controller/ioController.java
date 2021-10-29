@@ -37,7 +37,7 @@ public class ioController {
         
         // Create file
         ioStorage io = new ioStorage();
-        io.setFileLocation("data\\"+fileName+".json");
+        io.setFileLocation("data/"+fileName+".json");
         File theDir = new File("data");
         if (!theDir.exists()){
             theDir.mkdirs();
@@ -58,7 +58,7 @@ public class ioController {
     
         JSONParser jsonParser = new JSONParser();
         JSONArray obj = null;
-        try (FileReader reader = new FileReader("data\\"+fileLocation)){
+        try (FileReader reader = new FileReader("data/"+fileLocation)){
             obj = (JSONArray)jsonParser.parse(reader);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
