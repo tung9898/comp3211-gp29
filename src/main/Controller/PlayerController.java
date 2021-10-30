@@ -2,6 +2,10 @@ package Controller;
 import Model.Player;
 
 public class PlayerController {
+    /** 
+      *  This controller mainly for actions relates to player
+     */
+
     private Player model;
     //private PlayerView view;
 

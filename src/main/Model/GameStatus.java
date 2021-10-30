@@ -3,7 +3,7 @@ package Model;
 public class GameStatus{
     protected int TotalNumberOfPlayers;
     protected int CurrentNumberOfPlayers;
-    protected int rounds = 0;
+    protected int rounds = 1;
 
     public GameStatus(int totalNumberOfPlayers, int currentNumberOfPlayers){
         setTotalNumberOfPlayers(totalNumberOfPlayers);
@@ -33,11 +33,17 @@ public class GameStatus{
         return CurrentNumberOfPlayers;
     }
 
-    public void setRound(int rounds){
+    public void setRounds(int rounds){
+        /* 
+         * This function will set the game round.
+         */
         this.rounds = rounds;
     }
 
     public int getRounds(){
+        /* 
+         * This function return the game round.
+         */
         return rounds;
     }
 }

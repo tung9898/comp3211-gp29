@@ -19,7 +19,6 @@ public class Monopoly{
     /**
      * Declare the borad, using a list of object.
      */
-    //static Random rand = new Random();
     
     static int currentPlayer;
     static int numberOfDice = 2;
@@ -35,14 +34,14 @@ public class Monopoly{
          * This funcion is the main function of Monopoly.
          */
         // init board using list, make a list of square, from 0 to 19
-        System.out.println(UserInterface.PrintWelcomeMessage());
+        System.out.println(UserInterface.gsv.printWelcome());
         // Ask for start game or load game
         int action = -1;
         Scanner userInput = new Scanner(System.in);
         while(!(action == 1 || action == 2)){
-            System.out.print(UserInterface.PrintActionInputMessage());
+            System.out.print(UserInterface.uimv.printBeginActionInput());
             while(!(userInput.hasNextInt())){
-                System.out.print(UserInterface.PrintActionInputMessage());
+                System.out.print(UserInterface.uimv.printBeginActionInput());
                 userInput.next();
             }
             action = userInput.nextInt();
@@ -54,14 +53,14 @@ public class Monopoly{
                 int numberOfPlayer;
                 Scanner myObj = new Scanner(System.in);
                 while(true) {
-                    System.out.print(UserInterface.PrintNumberOfPlayerInputMessage(MinimumNumberOfPlayer,MaximumNumberOfPlayer));
+                    System.out.print(UserInterface.uimv.printNumberOfPlayerInput(MinimumNumberOfPlayer, MaximumNumberOfPlayer));
                     numberOfPlayer = myObj.nextInt();
                     if (MinimumNumberOfPlayer <= numberOfPlayer && numberOfPlayer <= MaximumNumberOfPlayer){
                         InitSqaure(numberOfPlayer);
                         break;
                     }
                     else{
-                        System.out.println("The game only accommodates "+ MinimumNumberOfPlayer +" to " + MaximumNumberOfPlayer +" players. Enter again.");
+                        System.out.println(UserInterface.sysev.printNumberOfPlayerInputError(MinimumNumberOfPlayer, MaximumNumberOfPlayer));
                     }
                 }
                 // start the game
@@ -87,22 +86,25 @@ public class Monopoly{
     public static void GameStart(){
         int turns = StatusController.getCurrentNumberOfPlayers();
         while(true){
-            System.out.println(UserInterface.PrintRoundStartedMessage());
+            System.out.println(UserInterface.sysv.printRoundStarted());
             for(int i = 0; i < turns; i++){
-                System.out.println(UserInterface.PrintTurnStartedMessage(i+1));
+                System.out.println(UserInterface.sysv.printTurnStarted(i+1));
+                int currentPos[] = new int[20];
+                currentPos[PlayerService.getPlayerCurrentSquare(i)] = 1;
+                System.out.println(UserInterface.gsv.printPlayerPositionInMP(currentPos));
                 if(PlayerService.getPlayerBankruptcy(i)) continue;
                 PlayerService.setCurrentPlayer(i); 
                 if(PlayerService.getDaysInJail(i) > 0) {
                     // Check the player in jail days, if it is not -1, thats mean the player is in jail.
                 }
-                System.out.println(UserInterface.PrintRequestRollDiceMessage());
+                System.out.println(UserInterface.uimv.printRequestRollDice());
                 int[] dice = ActionController.rollingDice();
-                System.out.println(UserInterface.PrintRollDiceResultMessage(dice));
+                System.out.println(UserInterface.sysv.printRollDiceResult(dice));
                 PlayerMakeAMove(dice[0] + dice[1]);
                 // turns--;
-                System.out.println(UserInterface.PrintTurnEndedMessage());
+                System.out.println(UserInterface.sysv.printTurnEnded());
             }
-            System.out.println(UserInterface.PrintRoundEndedMessage());
+            System.out.println(UserInterface.sysv.printRoundEnded());
             StatusController.RoundEnd();
         }
     }
@@ -110,6 +112,7 @@ public class Monopoly{
     public static void InitSqaure(int numberOfPlayer) {
         gameStatusModel = new GameStatus(numberOfPlayer, numberOfPlayer);
         statusController = new StatusController(gameStatusModel);
+
         PlayerService.setPlayers(numberOfPlayer);
         for(int i = 0; i < numberOfPlayer; i++) {
             BoardService.setSquare(i);
@@ -210,7 +213,7 @@ public class Monopoly{
                 filenames[fileNumber].contains(".json")));
 
         // Load the data from file
-        JSONArray playersArray = IOController.loadFile(filenames[fileNumber]);
+        JSONArray playersArray = IoController.loadFile(filenames[fileNumber]);
         playersArray.forEach( pla -> parsePlayerObject( (JSONObject) pla ) );
     }
 

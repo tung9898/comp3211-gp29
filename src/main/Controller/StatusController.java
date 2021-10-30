@@ -7,6 +7,10 @@ import Model.Player;
 import Service.PlayerService;
 
 public class StatusController {
+    /** 
+      *  This controller relates to the game status
+     */
+
     private static GameStatus model;
     //private GameStatusView view;
 
@@ -49,8 +53,8 @@ public class StatusController {
         if(model.getCurrentNumberOfPlayers() == 1) CheckWinner();
     }
 
-    public static void setRound(int rounds){
-        model.setRound(rounds);
+    public static void setRounds(int rounds){
+        model.setRounds(rounds);
     }
 
     public static int getRounds(){
@@ -62,9 +66,8 @@ public class StatusController {
          * This function will be called when all player taking their turns once.
          * This function checks the rounds if it is more than 100.
          */
-        int rounds = model.getRounds();
-        model.setRound(rounds++);
-        if(model.getRounds() > 100) CheckWinner();
+        setRounds(getRounds()+1);
+        if(getRounds() > 100) CheckWinner();
     }
 
     public static void CheckWinner(){

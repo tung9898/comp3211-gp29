@@ -1,5 +1,6 @@
 package Service;
 import Model.Square;
+import Controller.SquareController;
 
 public class BoardService {
 
@@ -22,7 +23,7 @@ public class BoardService {
     }
 
     public static String getBoardName(int number){
-        return board[number].getName();
+        return SquareController.SquareName(number);
     }
 
     public static int getBoardOwner(int number){
@@ -30,11 +31,11 @@ public class BoardService {
     }
 
     public static int getBoardPrice(int number){
-        return board[number].getPrice();
+        return SquareController.SquarePrice(number);
     }
 
     public static int getBoardRent(int number){
-        return board[number].getRent();
+        return SquareController.SquareRent(number);
     }
 
 }

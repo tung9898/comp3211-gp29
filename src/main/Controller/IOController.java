@@ -15,12 +15,14 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.json.simple.parser.JSONParser;
 
-public class IOController {
+public class IoController {
+    /** 
+      *  This controller mainly for operations with system
+     */
     private IoStorage model;
 
-    public IOController(IoStorage model){
+    public IoController(IoStorage model){
         this.model = model;
     }
 

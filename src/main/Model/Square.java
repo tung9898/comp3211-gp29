@@ -1,4 +1,4 @@
-package Model;
+ package Model;
 
 public class Square{
     protected int Id;
@@ -37,36 +37,5 @@ public class Square{
          * This function will return the player id who own this square.
          */
         return Landlord;
-    }
-
-    public int getPrice() {
-        /**
-         * This function will find the Price of its square and return it.
-         */
-        return SquareEffect.SquarePrice(Id);
-    }
-
-    public int getRent() {
-        /**
-         * This function will find the Rent of its square and return it.
-         */
-        return SquareEffect.SquareRent(Id);
-    }
-
-    //***not yet tested
-    public int getEffect() {
-        /**
-         * This function will return a integer, for Go, Change, Income tax.
-         * 0 for other or no effect squares.
-         * Go to jail will be consider as no effect.
-         */
-        return 0;
-    }
-
-    public String getName() {
-        /**
-          * This function return the name of its square.
-          */
-        return SquareEffect.SquareName(Id);
     }
 }
