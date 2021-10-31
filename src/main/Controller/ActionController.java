@@ -134,8 +134,10 @@ public class ActionController {
             System.out.println("Load Successfully~");
         }catch(NullPointerException e){
             System.out.println("Error occur!\n"+e);
+            System.out.println("Load failed!");
         }catch(Exception e){
             System.out.println("Error occur!\n"+e);
+            System.out.println("Load failed!");
         }
     }
     public static void parsePlayerObject(JSONObject player){
