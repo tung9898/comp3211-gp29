@@ -10,6 +10,12 @@ public class GameStatus{
         setCurrentNumberOfPlayers(currentNumberOfPlayers);
     }
 
+    public GameStatus(int totalNumberOfPlayers, int currentNumberOfPlayers, int rounds){
+        setTotalNumberOfPlayers(totalNumberOfPlayers);
+        setCurrentNumberOfPlayers(currentNumberOfPlayers);
+        setRounds(rounds);
+    }
+
     public void setTotalNumberOfPlayers(int totalNumberOfPlayers) {
         TotalNumberOfPlayers = totalNumberOfPlayers;
     }

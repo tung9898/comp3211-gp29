@@ -23,6 +23,7 @@ public class Player{
     public Player(String _name, int _id, int _money, int _currentSquare, int _daysInJail, boolean _bankruptcy){
         this.Name = _name;
         this.Id = _id;
+        this.Money = _money;
         this.CurrentSquare = _currentSquare;
         this.DaysInJail = _daysInJail;
         this.Bankruptcy = _bankruptcy;

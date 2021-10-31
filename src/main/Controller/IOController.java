@@ -26,22 +26,37 @@ public class IoController {
         this.model = model;
     }
 
-    public static void saveFile(List<Map<String, Object>> playersList, String fileName){
+    public static void saveFile(List<Map<String, Object>> playersList, Map<String, Object> gameStatusMap, String fileName){
+        JSONObject gameStatusDetail = new JSONObject();
+        JSONObject gameStatusObject = new JSONObject();
+        JSONArray gameStatusArray = new JSONArray();
+        gameStatusDetail.put("TotalNumberOfPlayers", gameStatusMap.get("TotalNumberOfPlayers"));
+        gameStatusDetail.put("CurrentNumberOfPlayers", gameStatusMap.get("CurrentNumberOfPlayers"));
+        gameStatusDetail.put("Rounds", gameStatusMap.get("Rounds"));
+
         JSONObject playerDetail = new JSONObject();
         JSONObject playerObject = new JSONObject();
-        JSONArray playerList = new JSONArray();
-        if(playersList.size() != 0){
+        JSONArray playersArray = new JSONArray();
+
+        //if(playersList.size() != 0){
             for(int i = 0; i < playersList.size(); i++){
                 playerDetail = new JSONObject();
                 playerObject = new JSONObject();
                 // First get for arraylist, second get for map
-                playerDetail.put("name", playersList.get(i).get("name"));
-                playerDetail.put("id", playersList.get(i).get("id"));
-                playerObject.put("player",playerDetail);
-                playerList.add(playerObject);
+                playerDetail.put("Name", playersList.get(i).get("Name"));
+                playerDetail.put("Id", playersList.get(i).get("Id"));
+                playerDetail.put("Money", playersList.get(i).get("Money"));
+                playerDetail.put("CurrentSquare", playersList.get(i).get("CurrentSquare"));
+                playerDetail.put("DaysInJail", playersList.get(i).get("DaysInJail"));
+                playerDetail.put("Bankruptcy", playersList.get(i).get("Bankruptcy"));
+                playerObject.put("Player",playerDetail);
+                playersArray.add(playerObject);
             }
-        }
+        //}
         
+        gameStatusDetail.put("Players", playersArray);
+        gameStatusObject.put("GameStatus", gameStatusDetail);
+
         // Create file
         IoStorage io = new IoStorage();
         io.setFileLocation("data\\"+fileName+".json");
@@ -52,21 +67,21 @@ public class IoController {
 
         // Write file
         try(FileWriter file = new FileWriter(io.getFileLocation())){
-            file.write(playerList.toJSONString());
+            file.write(gameStatusObject.toJSONString());
             file.flush();
         }catch(IOException e){
             e.printStackTrace();
         }
     }
     
-    public static JSONArray loadFile(String fileLocation){
+    public static JSONObject loadFile(String fileLocation){
         IoStorage io = new IoStorage();
         io.setFileLocation(fileLocation);
     
         JSONParser jsonParser = new JSONParser();
-        JSONArray obj = null;
+        JSONObject obj = null;
         try (FileReader reader = new FileReader("data\\"+fileLocation)){
-            obj = (JSONArray)jsonParser.parse(reader);
+            obj = (JSONObject)jsonParser.parse(reader);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
