@@ -1,9 +1,10 @@
-package java.Test;
+package Test;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.Model.*;
+import Model.*;
 
 public class MonopolyTest {
     Player player1 = new Player(0);
@@ -14,8 +15,9 @@ public class MonopolyTest {
     Square GO_TO_JAIL = new Square(15);
 
     @Test
+    @DisplayName("Test player model")
     void testPlayer(){
-        //Case 1: java.Test the getter and setter methods in Player class
+        //Case 1: Test the getter and setter methods in Player class
         //Player id should be ranged from 0 to (numberOfPlayers-1)
         assertEquals(0,player1.getId());
         assertEquals(0,player1.getMoney());
@@ -35,17 +37,23 @@ public class MonopolyTest {
         player1.setBankruptcy(true);
         assertTrue(player1.getBankruptcy());
 
-        //Case 2: java.Test toString method
+        //Case 2: Test toString method
         assertEquals("player [id=1, name=Amy]",player1.toString());
     }
 
     @Test
+    @DisplayName("Test game status model")
     void testGameStatus(){
+        GameStatus gs = new GameStatus(5, 5, 20);
+        assertEquals(5, gs.getTotalNumberOfPlayers());
+        assertEquals(5, gs.getCurrentNumberOfPlayers());
+        assertEquals(20, gs.getRounds());
     }
 
     @Test
+    @DisplayName("Test square model")
     void testSquare(){
-        //Case 1: java.Test the getter and setter methods in Square class
+        //Case 1: Test the getter and setter methods in Square class
         //Square id should be ranged from 0 to 19. Unowned or squares' id should be -1.
         assertEquals(0,GO.getId());
         assertEquals(-1,GO.getOwner());
@@ -53,7 +61,8 @@ public class MonopolyTest {
         assertEquals(-1,CENTRAL.getOwner());
         CENTRAL.setOwner(2);
         assertEquals(2,CENTRAL.getOwner());
-        /*assertEquals("Central",CENTRAL.getName());
+        /*
+        assertEquals("Central",CENTRAL.getName());
         assertEquals(800,CENTRAL.getPrice());
         assertEquals(90,CENTRAL.getRent());
         assertEquals("GO",GO.getName());
@@ -66,24 +75,14 @@ public class MonopolyTest {
         assertEquals(0,GO.getRent());
         assertEquals(0,INCOME_TAX.getRent());
         assertEquals(0,CHANCE.getRent());
-        assertEquals(0,GO_TO_JAIL.getRent());*/
-
-        //***not yet tested getEffect()
+        assertEquals(0,GO_TO_JAIL.getRent());
+         */
     }
 
     @Test
-    void testSquareEffect(){
-        assertEquals(1500,SquareEffect.GoSalary());
-
-        //Case 1: java.Test if the random value is generated within -300 to 200 in java.Monopoly class
-        int result = SquareEffect.ChanceSalary();
-        assertTrue(-300 <= result && result <= 200);
-
-        //***not yet tested PayTax()
-    }
-
-    @Test
+    @DisplayName("Test Io Storage model")
     void testIoStorage(){
-
+        IoStorage ioStorage = new IoStorage("location");
+        assertEquals("location", ioStorage.getFileLocation());
     }
 }

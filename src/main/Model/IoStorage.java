@@ -7,6 +7,14 @@ public class IoStorage{
      */
     protected String fileLocation;
 
+    public IoStorage(){
+
+    }
+
+    public IoStorage(String _fileLocation){
+        this.fileLocation = _fileLocation;
+    }
+
     public void setFileLocation(String fileLocation) {
         /**
          * This function will set the file location.
