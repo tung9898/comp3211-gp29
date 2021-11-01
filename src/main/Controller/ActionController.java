@@ -69,6 +69,10 @@ public class ActionController {
         // Ask user to input file name
         Scanner userInput = new Scanner(System.in);
         System.out.print("Input your file name:");
+        while (!userInput.hasNext("[^\\/:*?\"<>|]")) {
+            System.out.print("Input your file name (no \\/:*?\"<>|):");
+            userInput.next();
+        }
         String fileName = userInput.next();
 
         // Save file
