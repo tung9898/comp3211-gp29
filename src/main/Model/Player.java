@@ -113,10 +113,4 @@ public class Player{
          */
         return Bankruptcy;
     }
-
-    @Override
-    public String toString() {
-        return "player [id=" + Id + ", name=" + Name + "]";
-    }
-
 }
