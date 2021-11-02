@@ -15,15 +15,21 @@ public class PlayerController {
     }
 
     public void createPlayer(){
-        
+        /**
+         * This function will create a player
+         */
     }
 
     public void removePlater(){
-
+        /**
+         * This function will remove a player
+         */
     }
 
     public void retirePlayer(){
-        
+        /**
+         * This function will retire a player
+         */
     }
 
     public void addMoney(int income){
@@ -45,10 +51,14 @@ public class PlayerController {
     }
 
     public void payTax(){
-        //
+        /**
+         * This function will control pay tax
+         */
     }
 
     public void receiveTax(){
-        //
+        /**
+         * This function will control receive tax
+         */
     }
 }
