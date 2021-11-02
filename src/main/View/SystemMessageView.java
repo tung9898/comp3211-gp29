@@ -110,4 +110,14 @@ public class SystemMessageView extends UserInterface{
         }
         return msg;
     }
+
+    /* public String printPlayerJsonData(String name, int id, int money, int currentSquare, int daysInJail, boolean bankruptcy){
+        return 
+            "\nName: " + name +
+            "\nId: " + name + 
+            "\nMoney: " + money + 
+            "\nCurrentSquare: " + currentSquare +
+            "\nDaysInJail: " + daysInJail +
+            "\nBankruptcy: " + bankruptcy;
+    } */
 }

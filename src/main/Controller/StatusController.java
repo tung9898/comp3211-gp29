@@ -11,7 +11,7 @@ public class StatusController {
       *  This controller relates to the game status
      */
 
-    private static GameStatus model;
+    protected static GameStatus model;
     //private GameStatusView view;
 
     public StatusController(GameStatus model){

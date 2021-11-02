@@ -6,7 +6,7 @@ public class PlayerController {
       *  This controller mainly for actions relates to player
      */
 
-    private Player model;
+    protected Player model;
     //private PlayerView view;
 
     public PlayerController(Player model/* , PlayerView view */){

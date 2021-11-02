@@ -18,7 +18,7 @@ public class IoController {
     /** 
       *  This controller mainly for operations with system
      */
-    private IoStorage model;
+    protected IoStorage model;
 
     public IoController(IoStorage model){
         this.model = model;

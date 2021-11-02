@@ -16,13 +16,14 @@ import Model.GameStatus;
 import Model.Player;
 import Service.GameStatusService;
 import Service.PlayerService;
+import View.UserInterface;
 
 public class ActionController {
     /** 
       *  This controller mainly for player's action
      */
 
-    static Random rand = new Random();
+    protected static Random rand = new Random();
 
     public static int getRandom(int number){
         return rand.nextInt(number);
@@ -71,9 +72,9 @@ public class ActionController {
 
         // Ask user to input file name
         Scanner userInput = new Scanner(System.in);
-        System.out.print("Input your file name:");
+        System.out.print(UserInterface.uimv.printFileNameInput());
         while (!userInput.hasNext("[^\\/:*?\"<>|]")) {
-            System.out.print("Input your file name (no \\/:*?\"<>|):");
+            System.out.print(UserInterface.sysev.printFileNameInputError());
             userInput.next();
         }
         String fileName = userInput.next();
@@ -89,7 +90,7 @@ public class ActionController {
         //System.out.println("Working Directory = " + System.getProperty("user.dir"));
         // Does data folder exist?
         if(!f.exists()){
-            System.out.println("No files 1");
+            System.out.println(UserInterface.sysev.printNoDataFolderExistError());
             return;
         }
 
@@ -97,7 +98,7 @@ public class ActionController {
 
         // Does any files exist in data folder?
         if(!(filenames.length > 0 && Arrays.stream(filenames).anyMatch(str -> str.contains(".json")))){
-            System.out.println("No files");
+            System.out.println(UserInterface.sysev.printNoDataFilesExistError());
             return;
         }
 
@@ -106,15 +107,15 @@ public class ActionController {
         int fileNumber = -1;
         do{
             // Print files' information
-            System.out.println("Here are the files:");
+            System.out.println(UserInterface.amv.printFileExistMessage());
             for(int i = 0; i < filenames.length; i++){
                 System.out.printf("[%1$s] %2$s %n", i, filenames[i]);
             }
-            System.out.print("Input your choice (number only):");
+            System.out.print(UserInterface.uimv.printFileChoiceInput());
 
             // Validate the input is or not a number
             while(!(userInput.hasNextInt())){
-                System.out.print("Input your choice (number only):");
+                System.out.print(UserInterface.uimv.printFileChoiceInput());
                 userInput.next();
             }
             fileNumber = userInput.nextInt();
@@ -138,13 +139,11 @@ public class ActionController {
             PlayerService.players = new Player[GameStatusService.gameStatus.getTotalNumberOfPlayers()];
             JSONArray playersArray = (JSONArray) gameStatusObject.get("Players");
             playersArray.forEach( pla -> parsePlayerObject( (JSONObject) pla ) );
-            System.out.println("Load Successfully~");
+            System.out.println(UserInterface.amv.printLoadFileSuccessMessage());
         }catch(NullPointerException e){
-            System.out.println("Error occur!\n"+e);
-            System.out.println("Load failed!");
+            System.out.println(UserInterface.sysev.printLoadFileError(e));
         }catch(Exception e){
-            System.out.println("Error occur!\n"+e);
-            System.out.println("Load failed!");
+            System.out.println(UserInterface.sysev.printLoadFileError(e));
         }
     }
     public static void parsePlayerObject(JSONObject player){

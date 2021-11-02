@@ -11,7 +11,9 @@ public class AlertMessageView extends UserInterface{
         SquarePurchaseConfirm, 
         SquarePurchaseFailed, 
         BankruptcyWarning,
-        SquarePayRent
+        SquarePayRent,
+        LoadFileSuccess,
+        FileExistMessage
     };
 
     public String printSquarePurchaseConfirm(int sid){
@@ -26,7 +28,16 @@ public class AlertMessageView extends UserInterface{
         return "Your money is not under 0, make your choice wisely."; 
     }
 
-    public String PrintSquarePayRentMessage(int sid){
+    public String printSquarePayRentMessage(int sid){
         return "Oh NO! This property is belongs to player " + BoardService.getBoardOwner(sid) + ", you need to pay him/her " + BoardService.getBoardRent(sid) + " HKD";
     }
+
+    public String printLoadFileSuccessMessage(){
+        return "Load Successfully~";
+    }
+
+    public String printFileExistMessage(){
+        return "Here are the files:";
+    }
+    
 }

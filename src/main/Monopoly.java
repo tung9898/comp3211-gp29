@@ -31,8 +31,9 @@ public class Monopoly{
 
     public static void main(String[] args) {
         /**
-         * This funcion is the main function of Monopoly.
+         * This function is the main function of Monopoly.  
          */
+
         // init board using list, make a list of square, from 0 to 19
         System.out.println(UserInterface.gsv.printWelcome());
         // Ask for start game or load game
@@ -88,6 +89,9 @@ public class Monopoly{
     }
 
     public static void GameStart(){
+        /**
+         * This function is to run each game round. 
+         */
         int turns = StatusController.getCurrentNumberOfPlayers();
         while(true){
             System.out.println(UserInterface.sysv.printRoundStarted());
@@ -114,6 +118,9 @@ public class Monopoly{
     }
 
     public static void InitSqaure(int numberOfPlayer) {
+        /**
+         * This function is to set some important data when the game starts. 
+         */
         gameStatusModel = new GameStatus(numberOfPlayer, numberOfPlayer);
         statusController = new StatusController(gameStatusModel);
 
@@ -154,6 +161,9 @@ public class Monopoly{
     }
 
     public static void SquarePurchase(int squareId) {
+        /**
+         * This function is to handle the player’s purchase of property. 
+         */
         int landPrice = BoardService.getBoardPrice(squareId);
         currentPlayer = PlayerService.getCurrentPlayer();
         int balance = PlayerService.getPlayerMoney(currentPlayer);
@@ -168,6 +178,9 @@ public class Monopoly{
     }
 
     public static void SquarePayRent(int squareId) {
+        /**
+         * This function is to handle the player’s payment of rent and the owner’s receipt of rent.
+         */
         int landRent = BoardService.getBoardRent(squareId);
         int owner = BoardService.getBoardOwner(squareId);
         currentPlayer = PlayerService.getCurrentPlayer();

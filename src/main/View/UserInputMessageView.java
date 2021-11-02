@@ -12,7 +12,9 @@ public class UserInputMessageView extends UserInterface{
         MenuInput, 
         NumberOfPlayerInput, 
         RequestRollDice, 
-        SquarePurchase
+        SquarePurchase,
+        FileNameInput,
+        FileChoiceInput
     };
 
     public String printBeginActionInput(){
@@ -40,5 +42,13 @@ public class UserInputMessageView extends UserInterface{
         if(BoardService.getBoardPrice(sid) > -1)
             return BoardService.getBoardName(sid) + tab + BoardService.getBoardPrice(sid) + nl + "Press ENTER to make the deal.";
         return "This property belongs to the government, you cannot purchase this land.";
+    }
+
+    public String printFileNameInput(){
+        return "Input your file name:";
+    }
+
+    public String printFileChoiceInput(){
+        return "Input your choice (number only):";
     }
 }

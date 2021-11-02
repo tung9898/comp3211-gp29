@@ -25,7 +25,6 @@ public class MonopolyTest {
         /////////////////////////////////////////////////////////////////////////////
         /**
          * Test Case 1
-         * Objective: 
          * - Test the getter and setter methods in Player class
          * - Player id should be ranged from 0 to (numberOfPlayers-1)
          * 
@@ -66,7 +65,6 @@ public class MonopolyTest {
         /////////////////////////////////////////////////////////////////////////////
         /**
          * Test Case 2
-         * Objective: 
          * - Test the getter and setter methods in GameStatus class
          * 
         */
@@ -88,7 +86,6 @@ public class MonopolyTest {
         /////////////////////////////////////////////////////////////////////////////
         /**
          * Test Case 3
-         * Objective: 
          * - Test the getter and setter methods in Square class
          * - Square id should be ranged from 0 to 19. Unowned or squares' id should be -1.
          * 
@@ -142,7 +139,6 @@ public class MonopolyTest {
         /////////////////////////////////////////////////////////////////////////////
         /**
          * Test Case 4
-         * Objective: 
          * - Test the getter and setter methods in Square class
          * - Square id should be ranged from 0 to 19. Unowned or squares' id should be -1.
          * 
