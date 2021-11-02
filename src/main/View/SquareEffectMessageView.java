@@ -4,7 +4,10 @@ import Controller.SquareController;
 import Service.PlayerService;
 
 public class SquareEffectMessageView extends UserInterface{
-    
+    /* 
+     * This class will print the view of the square effect.
+    */
+
     public enum SquareEffectMessage {
         PassGO, 
         Chancepositive, 

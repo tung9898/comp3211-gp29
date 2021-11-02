@@ -3,7 +3,10 @@ package View;
 import Service.BoardService;
 
 public class UserInputMessageView extends UserInterface{
-    
+    /* 
+     * This class will print the alert message asking player to input.
+    */
+
     public enum UserInputMessage {
         BeginActionInput, 
         MenuInput, 

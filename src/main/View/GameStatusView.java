@@ -4,6 +4,9 @@ import Controller.SquareController;
 import Service.PlayerService;
 
 public class GameStatusView extends UserInterface{
+    /* 
+     * This class will print the view of the game status.
+    */
 
     public enum GameStatus {
         Welcome, 

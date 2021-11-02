@@ -7,6 +7,9 @@ import Service.BoardService;
 import Service.PlayerService;
 
 public class SystemMessageView extends UserInterface{
+    /* 
+     * This class will print the message of system.
+    */
 
     public enum SystemMessage {
         TurnStarted, 

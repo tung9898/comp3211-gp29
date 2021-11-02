@@ -1,6 +1,9 @@
 package View;
 
 public class SystemErrorMessageView extends UserInterface {
+    /* 
+     * This class will print the error message of system.
+    */
 
     public enum SystemErrorMessage {
         BeginActionInputError,

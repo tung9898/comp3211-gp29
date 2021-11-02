@@ -36,6 +36,9 @@ public class ActionController {
         /**
          * This function will randomly generate 2 number in a specific range.
          */
+        int numberOfDice = 2;
+        int numberOfSide = 4;
+
         int[] r = new int[2];
         r[0] = rand.nextInt(4)+1;
         r[1] = rand.nextInt(4)+1;

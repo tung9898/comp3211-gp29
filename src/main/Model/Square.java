@@ -2,7 +2,7 @@
 
 public class Square{
     protected int Id;
-    protected int Landlord;
+    protected int Owner;
 
     public Square(int id){
         setId(id);
@@ -29,13 +29,13 @@ public class Square{
          * This function set the owner of the property to the owner Id.
          * -1 means unowned.
          */
-        Landlord = id;
+        Owner = id;
     }
 
     public int getOwner() {
         /**
          * This function will return the player id who own this square.
          */
-        return Landlord;
+        return Owner;
     }
 }

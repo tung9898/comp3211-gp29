@@ -3,6 +3,9 @@ package View;
 import Service.BoardService;
 
 public class AlertMessageView extends UserInterface{
+    /* 
+     * This class will print the view of alert message.
+    */
     
     public enum AlertMessage {
         SquarePurchaseConfirm, 

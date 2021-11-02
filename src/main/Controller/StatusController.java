@@ -54,10 +54,16 @@ public class StatusController {
     }
 
     public static void setRounds(int rounds){
+        /* 
+         * This function calling the setter of round in GameStatus model.
+         */
         model.setRounds(rounds);
     }
 
     public static int getRounds(){
+        /* 
+         * This function calling the getter of round in GameStatus model.
+         */
         return model.getRounds();
     }
 

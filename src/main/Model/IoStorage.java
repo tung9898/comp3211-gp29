@@ -7,9 +7,7 @@ public class IoStorage{
      */
     protected String fileLocation;
 
-    public IoStorage(){
-
-    }
+    public IoStorage(){}
 
     public IoStorage(String _fileLocation){
         this.fileLocation = _fileLocation;

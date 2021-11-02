@@ -1,12 +1,16 @@
 package Test;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import Model.*;
 
 public class MonopolyTest {
+    /* 
+     * Create some objects for test checking 
+    */
     Player player1 = new Player(0);
     Square GO = new Square(0);
     Square CENTRAL = new Square(1);
@@ -14,16 +18,34 @@ public class MonopolyTest {
     Square CHANCE = new Square(8);
     Square GO_TO_JAIL = new Square(15);
 
+    //@RepeatedTest(value = 1, name = "")
     @Test
     @DisplayName("Test player model")
-    void testPlayer(){
-        //Case 1: Test the getter and setter methods in Player class
-        //Player id should be ranged from 0 to (numberOfPlayers-1)
+    public void testPlayer(){
+        /////////////////////////////////////////////////////////////////////////////
+        /**
+         * Test Case 1
+         * Objective: 
+         * - Test the getter and setter methods in Player class
+         * - Player id should be ranged from 0 to (numberOfPlayers-1)
+         * 
+        */
+        /////////////////////////////////////////////////////////////////////////////
+        /* 
+         * Test case 1.1 
+         * Step 1: test if create object with constructor is true
+         * Expected result: Id = 0, Money = 0, CurrentSquare = 0, Name = "Player 1", DaysInJail = -1
+        */
         assertEquals(0,player1.getId());
         assertEquals(0,player1.getMoney());
         assertEquals(0,player1.getCurrentSquare());
         assertEquals("Player 1",player1.getName());
         assertEquals(-1,player1.getDaysInJail());
+        /* 
+         * Test case 1.2 
+         * Step 2: test if every setter is working
+         * Expected result = Input value
+        */
         player1.setMoney(2000);
         assertEquals(2000,player1.getMoney());
         player1.setCurrentSquare(3);
@@ -36,14 +58,24 @@ public class MonopolyTest {
         assertEquals("Amy",player1.getName());
         player1.setBankruptcy(true);
         assertTrue(player1.getBankruptcy());
-
-        //Case 2: Test toString method
-        //assertEquals("player [id=1, name=Amy]",player1.toString());
     }
 
     @Test
     @DisplayName("Test game status model")
-    void testGameStatus(){
+    public void testGameStatus(){
+        /////////////////////////////////////////////////////////////////////////////
+        /**
+         * Test Case 2
+         * Objective: 
+         * - Test the getter and setter methods in GameStatus class
+         * 
+        */
+        /////////////////////////////////////////////////////////////////////////////
+        /* 
+         * Test case 2.1 
+         * Step 1: test if create object with constructor is true
+         * Expected result: TotalNumberOfPlayers = 5, CurrentNumberOfPlayers = 5, Rounds = 20
+        */
         GameStatus gs = new GameStatus(5, 5, 20);
         assertEquals(5, gs.getTotalNumberOfPlayers());
         assertEquals(5, gs.getCurrentNumberOfPlayers());
@@ -52,15 +84,40 @@ public class MonopolyTest {
 
     @Test
     @DisplayName("Test square model")
-    void testSquare(){
-        //Case 1: Test the getter and setter methods in Square class
-        //Square id should be ranged from 0 to 19. Unowned or squares' id should be -1.
+    public void testSquare(){
+        /////////////////////////////////////////////////////////////////////////////
+        /**
+         * Test Case 3
+         * Objective: 
+         * - Test the getter and setter methods in Square class
+         * - Square id should be ranged from 0 to 19. Unowned or squares' id should be -1.
+         * 
+        */
+        /////////////////////////////////////////////////////////////////////////////
+        /* 
+         * Test case 3.1 
+         * Step 1: test if create object with constructor is true (Square GO)
+         * Expected result: Id = 0, Owner = -1
+        */
         assertEquals(0,GO.getId());
         assertEquals(-1,GO.getOwner());
+
+        /* 
+         * Test case 3.2 
+         * Step 2: test if create object with constructor is true (Square Central)
+         * Expected result: Id = 1, Owner = -1
+        */
         assertEquals(1,CENTRAL.getId());
         assertEquals(-1,CENTRAL.getOwner());
+
+        /* 
+         * Test case 3.3 
+         * Step 3: test setting Owner of (Square Central)
+         * Expected result: Owner = 2
+        */
         CENTRAL.setOwner(2);
         assertEquals(2,CENTRAL.getOwner());
+
         /*
         assertEquals("Central",CENTRAL.getName());
         assertEquals(800,CENTRAL.getPrice());
@@ -81,7 +138,21 @@ public class MonopolyTest {
 
     @Test
     @DisplayName("Test Io Storage model")
-    void testIoStorage(){
+    public void testIoStorage(){
+        /////////////////////////////////////////////////////////////////////////////
+        /**
+         * Test Case 4
+         * Objective: 
+         * - Test the getter and setter methods in Square class
+         * - Square id should be ranged from 0 to 19. Unowned or squares' id should be -1.
+         * 
+        */
+        /////////////////////////////////////////////////////////////////////////////
+        /* 
+         * Test case 4.1 
+         * Step 1: test if create object with constructor is true
+         * Expected result: fileLocation = "location"
+        */
         IoStorage ioStorage = new IoStorage("location");
         assertEquals("location", ioStorage.getFileLocation());
     }

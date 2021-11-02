@@ -21,8 +21,8 @@ public class Monopoly{
      */
     
     static int currentPlayer;
-    static int numberOfDice = 2;
-    static int numberOfSide = 4;
+/*     static int numberOfDice = 2;
+    static int numberOfSide = 4; */
     static int MaximumNumberOfPlayer = 6;
     static int MinimumNumberOfPlayer = 2;
 
