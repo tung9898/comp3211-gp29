@@ -22,12 +22,22 @@ public class ActionController {
       *  This controller mainly for player's action
      */
 
+    static Random rand = new Random();
 
+    public static int getRandom(int number){
+        return rand.nextInt(number);
+    }
+
+    public static int getRandom(int min, int max){
+        return rand.nextInt(max - min + 1) + min;
+    }
+    
     public static int[] rollingDice() {
         /**
          * This function will randomly generate 2 number in a specific range.
          */
-        Random rand = new Random();
+        int numberOfDice = 2;
+        int numberOfSide = 4;
 
         int[] r = new int[2];
         r[0] = rand.nextInt(4)+1;
