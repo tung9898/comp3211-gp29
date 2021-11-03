@@ -40,9 +40,9 @@ public class ActionController {
         int numberOfDice = 2;
         int numberOfSide = 4;
 
-        int[] r = new int[2];
-        r[0] = rand.nextInt(4)+1;
-        r[1] = rand.nextInt(4)+1;
+        int[] r = new int[numberOfDice];
+        r[0] = rand.nextInt(numberOfSide)+1;
+        r[1] = rand.nextInt(numberOfSide)+1;
         return r;
     }
  
