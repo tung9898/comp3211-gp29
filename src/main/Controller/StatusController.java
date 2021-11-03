@@ -73,7 +73,7 @@ public class StatusController {
          * This function checks the rounds if it is more than 100.
          */
 
-        if(getRounds() > 100 ){
+        if(getRounds() > 100){
             return true;
         } else{
             setRounds(getRounds()+1);

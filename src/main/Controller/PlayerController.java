@@ -26,12 +26,6 @@ public class PlayerController {
          */
     }
 
-    public void removePlater(){
-        /**
-         * This function will remove a player
-         */
-    }
-
     public void retirePlayer(){
         /**
          * This function will retire a player
@@ -75,8 +69,7 @@ public class PlayerController {
     public void receiveTax(){
         /**
          * This function will control receive tax
-        
-         */
+        */
     }
 
     public static void CheckWinner(){
@@ -94,42 +87,72 @@ public class PlayerController {
     }
 
     public static Player[] getPlayers(){
+        /**
+         * This function will return the list of the player
+         */
         return players;
     }
 
     public static void setPlayers(int number){
+        /**
+         * This function will create the player list
+         */
         players = new Player[number];
     }
 
     public static void setPlayer(int number){
+        /**
+         * This function will create a player
+         */
         players[number] = new Player(number);
     }
 
     public static void setPlayersMoney(int playerNum, int money){
+        /**
+         * This function will set money of a player
+         */
         players[playerNum].setMoney(money);
     }
 
     public static int getPlayerMoney(int playerNum){
+        /**
+         * This function will get money of a player
+         */
         return players[playerNum].getMoney();
     }
 
     public static void setCurrentPlayer(int number) {
+        /**
+         * This function will set current player number
+         */
         currentPlayer = number;
     }
 
     public static int getCurrentPlayer() {
+        /**
+         * This function will get current player number
+         */
         return currentPlayer;
     }
 
     public static boolean getPlayerBankruptcy(int playerNum) {
+        /**
+         * This function will get bankruptcy status of a player
+         */
         return players[playerNum].getBankruptcy();
     }
 
     public static int getDaysInJail(int playerNum) {
+        /**
+         * This function will get days in jail of a player
+         */
         return players[playerNum].getDaysInJail();
     }
 
     public static int getPlayerCurrentSquare(int playerNum){
+        /**
+         * This function will get current square of a player
+         */
         return players[playerNum].getCurrentSquare();
     }
 }

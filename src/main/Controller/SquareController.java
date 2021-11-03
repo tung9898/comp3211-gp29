@@ -91,7 +91,6 @@ public class SquareController {
         return true;
     }
 
-    //***not yet tested
     public static int getEffect() {
         /**
          * This function will return a integer, for Go, Change, Income tax.
@@ -102,18 +101,30 @@ public class SquareController {
     }
 
     public static Square[] getSquare(){
+        /**
+          * This function return the list of Square
+        */
         return board;
     }
 
     public static void setSquare(int number){
+        /**
+          * This function will create the list of Square
+          */
         board[number] = new Square(number);
     }
 
     public static void setBoardId(int number, int id){
+        /**
+          * This function will set the id of Square
+          */
         board[number].setId(id);
     }
 
     public static void setBoardOwner(int number, int owner){
+        /**
+          * This function will set the owner of Square
+          */
         board[number].setOwner(owner);
     }
 
@@ -122,6 +133,9 @@ public class SquareController {
     } */
 
     public static int getBoardOwner(int number){
+        /**
+          * This function will get the owner of Square
+          */
         return board[number].getOwner();
     }
 
