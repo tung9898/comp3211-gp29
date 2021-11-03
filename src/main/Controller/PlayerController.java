@@ -26,6 +26,12 @@ public class PlayerController {
          */
     }
 
+    public void removePlayer(){
+        /**
+         * This function will remove a player
+         */
+    }
+
     public void retirePlayer(){
         /**
          * This function will retire a player
