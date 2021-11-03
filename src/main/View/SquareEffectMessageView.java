@@ -29,7 +29,7 @@ public class SquareEffectMessageView extends UserInterface{
     }
 
     public String printPayTax(int pid){
-        return "Income Tax: " + (PlayerController.getPlayerMoney(pid) - SquareController.TaxCalculate(pid)) + nl;
+        return "Income Tax: " + (PlayerController.getPlayerMoney(pid) - PlayerController.TaxCalculate(pid)) + nl;
     }
 
     public String printNoEffect(int sid){

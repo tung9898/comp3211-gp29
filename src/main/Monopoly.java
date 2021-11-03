@@ -159,6 +159,24 @@ public class Monopoly{
         // Finally, Check player money. If less than 0, declare bankruptcies.
     }
 
+    public static int EffectCenter(int squareId) {
+        /**
+         * This function is to redirect the sqaure to its belonging effect
+         */
+        switch(squareId+1){    
+            case 1:    
+                return SquareController.GoSalary();
+            case 9:
+            case 13:
+            case 19:
+                return SquareController.ChanceSalary();
+            case 4:
+                return PlayerController.PayTax();
+            default:     
+                return SquareController.NoEffect();
+       }    
+    }
+
     public static void SquarePurchase(int squareId) {
         /**
          * This function is to handle the player’s purchase of property. 

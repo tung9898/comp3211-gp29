@@ -22,24 +22,6 @@ public class SquareController {
         //this.view = view;
     }
 
-     public static int EffectCenter(int squareId) {
-         /**
-          * This function is to redirect the sqaure to its belonging effect
-          */
-         switch(squareId+1){    
-             case 1:    
-                 return GoSalary();
-             case 9:
-             case 13:
-             case 19:
-                 return ChanceSalary();
-             case 4:
-                 return PayTax();
-             default:     
-                 return NoEffect();
-        }    
-     }
-
      public static int GoSalary() {
          /**
           * This function is give a player salary if he/she pass though the GO square.
@@ -62,22 +44,6 @@ public class SquareController {
         
         return r * 10;
      }
-
-    //***not yet tested
-    public static int PayTax() {
-        /*
-         * This function will take the player 10% of his/her money for tax.
-         * */
-        return TaxCalculate(PlayerController.getCurrentPlayer());
-    }
-
-    public static int TaxCalculate(int id) {
-       int percent = 10;
-       int x = PlayerController.getPlayerMoney(id);
-       x = x / (100 - percent);
-       x = x - x % 10;
-       return x;
-    }
 
      public static int NoEffect() {
          /**

@@ -53,15 +53,26 @@ public class PlayerController {
         model.setMoney(money);
     }
 
-    public void payTax(){
-        /**
-         * This function will control pay tax
-         */
+    //***not yet tested
+    public static int PayTax() {
+        /*
+         * This function will take the player 10% of his/her money for tax.
+         * */
+        return TaxCalculate(PlayerController.getCurrentPlayer());
+    }
+
+    public static int TaxCalculate(int id) {
+       int percent = 10;
+       int x = PlayerController.getPlayerMoney(id);
+       x = x / (100 - percent);
+       x = x - x % 10;
+       return x;
     }
 
     public void receiveTax(){
         /**
          * This function will control receive tax
+        
          */
     }
 
