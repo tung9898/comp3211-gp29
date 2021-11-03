@@ -38,7 +38,7 @@ public class Monopoly{
         System.out.println(UserInterface.gsv.printWelcome());
         // Ask for start game or load game
         int action = -1;
-        Scanner userInput = new Scanner(System.in);
+        Scanner userInput = new Scanner(System.in); // need userInput.close(); ?
         // 3 for testing save file function
         while(!(action == 1 || action == 2 || action == 3)){
             System.out.print(UserInterface.uimv.printBeginActionInput());
