@@ -112,7 +112,9 @@ public class Monopoly{
                 System.out.println(UserInterface.sysv.printTurnEnded());
             }
             System.out.println(UserInterface.sysv.printRoundEnded());
-            StatusController.RoundEnd();
+            if(StatusController.RoundEnd() || StatusController.getCurrentNumberOfPlayers() == 1){
+                PlayerController.CheckWinner();
+            }
         }
     }
 

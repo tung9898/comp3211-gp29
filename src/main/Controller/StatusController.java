@@ -11,6 +11,7 @@ public class StatusController {
      */
 
     protected static GameStatus model;
+    
     //private GameStatusView view;
 
     public StatusController(GameStatus model){
@@ -49,7 +50,7 @@ public class StatusController {
          * If only 1 player left in the board, winner will be that remaining player.
          */
         model.setCurrentNumberOfPlayers(currentNumberOfPlayers);
-        if(model.getCurrentNumberOfPlayers() == 1) CheckWinner();
+        //if(model.getCurrentNumberOfPlayers() == 1) CheckWinner();
     }
 
     public static void setRounds(int rounds){
@@ -66,22 +67,27 @@ public class StatusController {
         return model.getRounds();
     }
 
-    public static void RoundEnd() {
+    public static boolean RoundEnd() {
         /*
          * This function will be called when all player taking their turns once.
          * This function checks the rounds if it is more than 100.
          */
-        setRounds(getRounds()+1);
-        if(getRounds() > 100) CheckWinner();
+
+        if(getRounds() > 100 ){
+            return true;
+        } else{
+            setRounds(getRounds()+1);
+            return false;
+        }
     }
 
-    public static void CheckWinner(){
-        /*
+    /* public static void CheckWinner(){
+        
          * This function will be called if there is only 1 player left
          * or after 100 rounds. 
          * This function will check who is the richest player in the game.
          * Tie (multiple winners) is possible.
-         */
+         
         // print out winner and stop the game (maybe ask for restart)
         List<Integer> Winner = new ArrayList<Integer>();
         Player[] players = PlayerController.getPlayers();
@@ -102,5 +108,5 @@ public class StatusController {
                 }
             }
         }
-    }
+    } */
 }

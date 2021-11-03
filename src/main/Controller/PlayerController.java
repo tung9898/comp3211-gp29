@@ -1,4 +1,7 @@
 package Controller;
+import java.util.ArrayList;
+import java.util.List;
+
 import Model.Player;
 
 public class PlayerController {
@@ -74,6 +77,20 @@ public class PlayerController {
          * This function will control receive tax
         
          */
+    }
+
+    public static void CheckWinner(){
+        /*
+         * This function will be called if there is only 1 player left
+         * or after 100 rounds. 
+         * This function will check who is the richest player in the game.
+         * Tie (multiple winners) is possible.
+         */
+        // print out winner and stop the game (maybe ask for restart)
+        List<Integer> Winner = new ArrayList<Integer>();
+        for(int i = 0; i < players.length; i++) {
+            if(!players[i].getBankruptcy()) Winner.add(players[i].getId());
+        }
     }
 
     public static Player[] getPlayers(){
