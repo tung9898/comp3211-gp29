@@ -98,7 +98,7 @@ public class GameStatusView extends UserInterface{
     }
 
     public String printPlayerPosition(){ 
-        int pid = PlayerController.currentPlayer;
+        int pid = PlayerController.getCurrentPlayer();
         String msg = 
             "Player " + pid;
 

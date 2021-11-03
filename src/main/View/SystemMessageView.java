@@ -72,7 +72,7 @@ public class SystemMessageView extends UserInterface{
     }
 
     public String printInJailDays(){ 
-        int pid = PlayerController.currentPlayer;
+        int pid = PlayerController.getCurrentPlayer();
         String msg = "";
         if(PlayerController.getDaysInJail(pid) > -1){
             msg = "Player " + (pid+1) + ", you are in jail for " + PlayerController.getDaysInJail(pid) + " days." + nl;

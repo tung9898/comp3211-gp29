@@ -6,7 +6,7 @@ public class SquareController {
     /**
       * This function is mainly return value or data of the game back to other function.
     */
-    public static Square[] board = new Square[20];
+    protected static Square[] board = new Square[20];
       
     // data for each Properties that marked by a colored stripe
     protected static int[]PropertyPos = {2, 3, 5, 7, 8, 10, 12, 14, 15, 17, 18, 20};

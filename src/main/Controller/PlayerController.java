@@ -6,8 +6,8 @@ public class PlayerController {
       *  This controller mainly for actions relates to player
      */
 
-    public static Player[] players;
-    public static int currentPlayer;
+    protected static Player[] players;
+    protected static int currentPlayer;
 
     protected Player model;
     //private PlayerView view;
