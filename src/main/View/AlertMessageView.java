@@ -1,6 +1,6 @@
 package View;
 
-import Service.BoardService;
+import Controller.SquareController;
 
 public class AlertMessageView extends UserInterface{
     /* 
@@ -17,11 +17,11 @@ public class AlertMessageView extends UserInterface{
     };
 
     public String printSquarePurchaseConfirm(int sid){
-        return "Are you sure you want to buy " +  BoardService.getBoardName(sid) + " with " + BoardService.getBoardPrice(sid) + " HKD?";
+        return "Are you sure you want to buy " +  SquareController.SquareName(sid) + " with " + SquareController.SquarePrice(sid) + " HKD?";
     }
 
     public String printSquarePurchaseFailed(int sid){
-        return "Sorry, you don't have enough money to purchase " +  BoardService.getBoardName(sid) + nl;
+        return "Sorry, you don't have enough money to purchase " +  SquareController.SquareName(sid) + nl;
     }
 
     public String printBankruptcyWarning(){ 
@@ -29,7 +29,7 @@ public class AlertMessageView extends UserInterface{
     }
 
     public String printSquarePayRentMessage(int sid){
-        return "Oh NO! This property is belongs to player " + BoardService.getBoardOwner(sid) + ", you need to pay him/her " + BoardService.getBoardRent(sid) + " HKD";
+        return "Oh NO! This property is belongs to player " + SquareController.getBoardOwner(sid) + ", you need to pay him/her " + SquareController.SquareRent(sid) + " HKD";
     }
 
     public String printLoadFileSuccessMessage(){

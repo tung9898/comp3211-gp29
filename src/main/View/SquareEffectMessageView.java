@@ -1,7 +1,7 @@
 package View;
 
 import Controller.SquareController;
-import Service.PlayerService;
+import Controller.PlayerController;
 
 public class SquareEffectMessageView extends UserInterface{
     /* 
@@ -29,7 +29,7 @@ public class SquareEffectMessageView extends UserInterface{
     }
 
     public String printPayTax(int pid){
-        return "Income Tax: " + (PlayerService.getPlayerMoney(pid) - SquareController.TaxCalculate(pid)) + nl;
+        return "Income Tax: " + (PlayerController.getPlayerMoney(pid) - SquareController.TaxCalculate(pid)) + nl;
     }
 
     public String printNoEffect(int sid){

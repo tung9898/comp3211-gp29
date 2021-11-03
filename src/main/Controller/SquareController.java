@@ -1,19 +1,19 @@
 package Controller;
 
 import Model.Square;
-import Service.PlayerService;
 
 public class SquareController {
     /**
       * This function is mainly return value or data of the game back to other function.
-      */
+    */
+    public static Square[] board = new Square[20];
       
     // data for each Properties that marked by a colored stripe
     protected static int[]PropertyPos = {2, 3, 5, 7, 8, 10, 12, 14, 15, 17, 18, 20};
     protected static String[]Name = {"GO", "Central", "Wan Chai", "INCOME TAX", "Stanley", "JUST VISITING / IN JAIL", "Shek O", "Mong Kok", "CHANCE", "Tsing Yi", "FREE PARKING", "Shatin", "CHANCE", "Tuen Mun", "Tai Po", "GO TO JAIL", "Sai Kung", "Yuen Long", "CHANCE", "Tai O"};
     protected static int[]Price = {-1, 800, 700, -1, 600, -1, 400, 500, -1, 400, -1, 700, -1, 400, 500, -1, 400, 400, -1, 600};
     protected static int[]Rent = {-1, 90, 65, -1, 60, -1, 10, 40, -1, 15, -1, 75, -1, 20, 25, -1, 10, 25, -1, 25};
-
+    
     protected Square model;
     //private SquareView view;
 
@@ -68,12 +68,12 @@ public class SquareController {
         /*
          * This function will take the player 10% of his/her money for tax.
          * */
-        return TaxCalculate(PlayerService.getCurrentPlayer());
+        return TaxCalculate(PlayerController.getCurrentPlayer());
     }
 
     public static int TaxCalculate(int id) {
        int percent = 10;
-       int x = PlayerService.getPlayerMoney(id);
+       int x = PlayerController.getPlayerMoney(id);
        x = x / (100 - percent);
        x = x - x % 10;
        return x;
@@ -126,7 +126,7 @@ public class SquareController {
     }
 
     //***not yet tested
-    public int getEffect() {
+    public static int getEffect() {
         /**
          * This function will return a integer, for Go, Change, Income tax.
          * 0 for other or no effect squares.
@@ -134,5 +134,37 @@ public class SquareController {
          */
         return 0;
     }
+
+    public static Square[] getSquare(){
+        return board;
+    }
+
+    public static void setSquare(int number){
+        board[number] = new Square(number);
+    }
+
+    public static void setBoardId(int number, int id){
+        board[number].setId(id);
+    }
+
+    public static void setBoardOwner(int number, int owner){
+        board[number].setOwner(owner);
+    }
+
+/*     public static String getBoardName(int number){
+        return SquareName(number);
+    } */
+
+    public static int getBoardOwner(int number){
+        return board[number].getOwner();
+    }
+
+    /* public static int getBoardPrice(int number){
+        return SquarePrice(number);
+    }
+
+    public static int getBoardRent(int number){
+        return SquareRent(number);
+    } */
     
 }

@@ -4,7 +4,6 @@ import java.util.List;
 
 import Model.GameStatus;
 import Model.Player;
-import Service.PlayerService;
 
 public class StatusController {
     /** 
@@ -85,7 +84,7 @@ public class StatusController {
          */
         // print out winner and stop the game (maybe ask for restart)
         List<Integer> Winner = new ArrayList<Integer>();
-        Player[] players = PlayerService.getPlayers();
+        Player[] players = PlayerController.getPlayers();
         if(model.getCurrentNumberOfPlayers() == 1){
             for(int i = 0; i < players.length; i++) {
                 if(!players[i].getBankruptcy()) Winner.add(players[i].getId());

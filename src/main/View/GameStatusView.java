@@ -1,7 +1,7 @@
 package View;
 
 import Controller.SquareController;
-import Service.PlayerService;
+import Controller.PlayerController;
 
 public class GameStatusView extends UserInterface{
     /* 
@@ -98,11 +98,11 @@ public class GameStatusView extends UserInterface{
     }
 
     public String printPlayerPosition(){ 
-        int pid = PlayerService.currentPlayer;
+        int pid = PlayerController.currentPlayer;
         String msg = 
             "Player " + pid;
 
-        int pos = PlayerService.getPlayerCurrentSquare(pid);
+        int pos = PlayerController.getPlayerCurrentSquare(pid);
         msg += ", your position is in board " + pos + nl;
 
         int currentPos[] = new int[20];

@@ -3,8 +3,8 @@ package View;
 import java.util.List;
 
 import Controller.StatusController;
-import Service.BoardService;
-import Service.PlayerService;
+import Controller.PlayerController;
+import Controller.SquareController;
 
 public class SystemMessageView extends UserInterface{
     /* 
@@ -72,10 +72,10 @@ public class SystemMessageView extends UserInterface{
     }
 
     public String printInJailDays(){ 
-        int pid = PlayerService.currentPlayer;
+        int pid = PlayerController.currentPlayer;
         String msg = "";
-        if(PlayerService.getDaysInJail(pid) > -1){
-            msg = "Player " + (pid+1) + ", you are in jail for " + PlayerService.getDaysInJail(pid) + " days." + nl;
+        if(PlayerController.getDaysInJail(pid) > -1){
+            msg = "Player " + (pid+1) + ", you are in jail for " + PlayerController.getDaysInJail(pid) + " days." + nl;
         }else{
             msg = "Player " + (pid+1) + ", you are not in jail." + nl;
         }
@@ -83,16 +83,16 @@ public class SystemMessageView extends UserInterface{
     }
 
     public String printSquareOwnerChanged(int sid){
-        if(BoardService.getBoardOwner(sid) != -1){
-            return BoardService.getBoardName(sid) + " is belongs to player " + BoardService.getBoardOwner(sid) + " now";
+        if(SquareController.getBoardOwner(sid) != -1){
+            return SquareController.SquareName(sid) + " is belongs to player " + SquareController.getBoardOwner(sid) + " now";
         }
-        return BoardService.getBoardName(sid) + " is belongs to the government now";
+        return SquareController.SquareName(sid) + " is belongs to the government now";
     }
 
     public String PrintBankruptcyMessage(int pid, int[] pprop){
         String msg = "Player " + (pid+1) + "is forced to declare bankruptcy, all your property will be return to government, including: " + nl;
         for(int i = 0; i < pprop.length; i++){
-            msg += BoardService.getBoardName(i) + tab;
+            msg += SquareController.SquareName(i) + tab;
         }
         return msg+nl;
     }

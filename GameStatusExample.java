@@ -1,4 +1,4 @@
-package Service;
+/* package Service;
 
 import Model.GameStatus;
 import Model.Player;
@@ -22,3 +22,4 @@ public class GameStatusService {
     // service start
     public static GameStatus gameStatus;
 }
+ */

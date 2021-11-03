@@ -1,6 +1,6 @@
 package View;
 
-import Service.BoardService;
+import Controller.SquareController;
 
 public class UserInputMessageView extends UserInterface{
     /* 
@@ -39,8 +39,8 @@ public class UserInputMessageView extends UserInterface{
     }
 
     public String printSquarePurchase(int sid){
-        if(BoardService.getBoardPrice(sid) > -1)
-            return BoardService.getBoardName(sid) + tab + BoardService.getBoardPrice(sid) + nl + "Press ENTER to make the deal.";
+        if(SquareController.SquarePrice(sid) > -1)
+            return SquareController.SquareName(sid) + tab + SquareController.SquarePrice(sid) + nl + "Press ENTER to make the deal.";
         return "This property belongs to the government, you cannot purchase this land.";
     }
 

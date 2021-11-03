@@ -14,8 +14,6 @@ import org.json.simple.JSONObject;
 
 import Model.GameStatus;
 import Model.Player;
-import Service.GameStatusService;
-import Service.PlayerService;
 import View.UserInterface;
 
 public class ActionController {
@@ -127,16 +125,17 @@ public class ActionController {
         JSONObject loadObject = IoController.loadFile(filenames[fileNumber]);
         try{
             JSONObject gameStatusObject = (JSONObject) loadObject.get("GameStatus");
-            GameStatusService.gameStatus = new GameStatus( ((Long) gameStatusObject.get("TotalNumberOfPlayers")).intValue(), 
+            GameStatus gameStatus = new GameStatus( ((Long) gameStatusObject.get("TotalNumberOfPlayers")).intValue(), 
                                                            ((Long) gameStatusObject.get("CurrentNumberOfPlayers")).intValue(),
                                                            ((Long) gameStatusObject.get("Rounds")).intValue());
+            
 
             // Can delete the printlns
-            System.out.println("TotalNumberOfPlayers: "+GameStatusService.gameStatus.getTotalNumberOfPlayers());
-            System.out.println("CurrentNumberOfPlayers: "+GameStatusService.gameStatus.getCurrentNumberOfPlayers());
-            System.out.println("Rounds: "+GameStatusService.gameStatus.getRounds());
+            System.out.println("TotalNumberOfPlayers: "+ gameStatus.getTotalNumberOfPlayers());
+            System.out.println("CurrentNumberOfPlayers: "+ gameStatus.getCurrentNumberOfPlayers());
+            System.out.println("Rounds: "+ gameStatus.getRounds());
 
-            PlayerService.players = new Player[GameStatusService.gameStatus.getTotalNumberOfPlayers()];
+            PlayerController.players = new Player[gameStatus.getTotalNumberOfPlayers()];
             JSONArray playersArray = (JSONArray) gameStatusObject.get("Players");
             playersArray.forEach( pla -> parsePlayerObject( (JSONObject) pla ) );
             System.out.println(UserInterface.amv.printLoadFileSuccessMessage());
@@ -148,7 +147,7 @@ public class ActionController {
     }
     public static void parsePlayerObject(JSONObject player){
             JSONObject playerObject = (JSONObject) player.get("Player");
-            PlayerService.players[((Long) playerObject.get("Id")).intValue()] = new Player( String.valueOf(playerObject.get("Name")), 
+            PlayerController.players[((Long) playerObject.get("Id")).intValue()] = new Player( String.valueOf(playerObject.get("Name")), 
                                                                                             ((Long) playerObject.get("Id")).intValue(), 
                                                                                             ((Long) playerObject.get("Money")).intValue(), 
                                                                                             ((Long) playerObject.get("CurrentSquare")).intValue(), 
@@ -156,11 +155,11 @@ public class ActionController {
                                                                                             (Boolean) playerObject.get("Bankruptcy"));
             
             // Can delete the printlns
-            System.out.println("Name: "+PlayerService.players[((Long) playerObject.get("Id")).intValue()].getName());
-            System.out.println("Id: "+PlayerService.players[((Long) playerObject.get("Id")).intValue()].getId());
-            System.out.println("Money: "+PlayerService.players[((Long) playerObject.get("Id")).intValue()].getMoney());
-            System.out.println("CurrentSquare: "+PlayerService.players[((Long) playerObject.get("Id")).intValue()].getCurrentSquare());
-            System.out.println("DaysInJail: "+PlayerService.players[((Long) playerObject.get("Id")).intValue()].getDaysInJail());
-            System.out.println("Bankruptcy: "+PlayerService.players[((Long) playerObject.get("Id")).intValue()].getBankruptcy());
+            System.out.println("Name: "+PlayerController.players[((Long) playerObject.get("Id")).intValue()].getName());
+            System.out.println("Id: "+PlayerController.players[((Long) playerObject.get("Id")).intValue()].getId());
+            System.out.println("Money: "+PlayerController.players[((Long) playerObject.get("Id")).intValue()].getMoney());
+            System.out.println("CurrentSquare: "+PlayerController.players[((Long) playerObject.get("Id")).intValue()].getCurrentSquare());
+            System.out.println("DaysInJail: "+PlayerController.players[((Long) playerObject.get("Id")).intValue()].getDaysInJail());
+            System.out.println("Bankruptcy: "+PlayerController.players[((Long) playerObject.get("Id")).intValue()].getBankruptcy());
     }
 }

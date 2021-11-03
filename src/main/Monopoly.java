@@ -13,7 +13,6 @@ import org.json.simple.JSONObject;
 import Controller.*;
 import Model.*;
 import View.*;
-import Service.*;
 
 public class Monopoly{
     /**
@@ -81,7 +80,7 @@ public class Monopoly{
                 ActionController.loadFile();
                 break;
             case 3:
-                ActionController.saveFile(GameStatusService.getPlayers(), GameStatusService.gs);
+                ActionController.saveFile(PlayerController.getPlayers(), gameStatusModel);
                 break;
             default:
                 break;
@@ -98,11 +97,11 @@ public class Monopoly{
             for(int i = 0; i < turns; i++){
                 System.out.println(UserInterface.sysv.printTurnStarted(i+1));
                 int currentPos[] = new int[20];
-                currentPos[PlayerService.getPlayerCurrentSquare(i)] = 1;
+                currentPos[PlayerController.getPlayerCurrentSquare(i)] = 1;
                 System.out.println(UserInterface.gsv.printPlayerPositionInMP(currentPos));
-                if(PlayerService.getPlayerBankruptcy(i)) continue;
-                PlayerService.setCurrentPlayer(i); 
-                if(PlayerService.getDaysInJail(i) > 0) {
+                if(PlayerController.getPlayerBankruptcy(i)) continue;
+                PlayerController.setCurrentPlayer(i); 
+                if(PlayerController.getDaysInJail(i) > 0) {
                     // Check the player in jail days, if it is not -1, thats mean the player is in jail.
                 }
                 System.out.println(UserInterface.uimv.printRequestRollDice());
@@ -124,12 +123,12 @@ public class Monopoly{
         gameStatusModel = new GameStatus(numberOfPlayer, numberOfPlayer);
         statusController = new StatusController(gameStatusModel);
 
-        PlayerService.setPlayers(numberOfPlayer);
+        PlayerController.setPlayers(numberOfPlayer);
         for(int i = 0; i < numberOfPlayer; i++) {
-            BoardService.setSquare(i);
+            SquareController.setSquare(i);
         }
         for(int i = 0; i < numberOfPlayer; i++) {
-            PlayerService.setPlayer(i);
+            PlayerController.setPlayer(i);
             // Ask for name input for each player.
         }
     }
@@ -140,8 +139,8 @@ public class Monopoly{
          * negative amount of money.
          * Set all of his/her properties to unowned.
          */
-        for(int i = 0; i < BoardService.getSquare().length; i++){
-            if(BoardService.getBoardOwner(i) == id) BoardService.setBoardId(i, -1);
+        for(int i = 0; i < SquareController.getSquare().length; i++){
+            if(SquareController.getBoardOwner(i) == id) SquareController.setBoardId(i, -1);
         }
     }
 
@@ -164,13 +163,13 @@ public class Monopoly{
         /**
          * This function is to handle the player’s purchase of property. 
          */
-        int landPrice = BoardService.getBoardPrice(squareId);
-        currentPlayer = PlayerService.getCurrentPlayer();
-        int balance = PlayerService.getPlayerMoney(currentPlayer);
+        int landPrice = SquareController.SquarePrice(squareId);
+        currentPlayer = PlayerController.getCurrentPlayer();
+        int balance = PlayerController.getPlayerMoney(currentPlayer);
         if(balance >= landPrice){
             // confirm message, return if fail to confirm.
-            PlayerService.setPlayersMoney(currentPlayer, balance-landPrice);
-            BoardService.setBoardOwner(squareId, currentPlayer);
+            PlayerController.setPlayersMoney(currentPlayer, balance-landPrice);
+            SquareController.setBoardOwner(squareId, currentPlayer);
             // successful message
         }else{
             // fail to pay message
@@ -181,12 +180,12 @@ public class Monopoly{
         /**
          * This function is to handle the player’s payment of rent and the owner’s receipt of rent.
          */
-        int landRent = BoardService.getBoardRent(squareId);
-        int owner = BoardService.getBoardOwner(squareId);
-        currentPlayer = PlayerService.getCurrentPlayer();
-        int balance = PlayerService.getPlayerMoney(currentPlayer);
-        PlayerService.setPlayersMoney(currentPlayer, balance-landRent);
-        PlayerService.setPlayersMoney(owner, PlayerService.getPlayerMoney(owner) + landRent); // todo, need to fix if the renter don't have money.
+        int landRent = SquareController.SquareRent(squareId);
+        int owner = SquareController.getBoardOwner(squareId);
+        currentPlayer = PlayerController.getCurrentPlayer();
+        int balance = PlayerController.getPlayerMoney(currentPlayer);
+        PlayerController.setPlayersMoney(currentPlayer, balance-landRent);
+        PlayerController.setPlayersMoney(owner, PlayerController.getPlayerMoney(owner) + landRent); // todo, need to fix if the renter don't have money.
         // money remaining message
     }
 }
