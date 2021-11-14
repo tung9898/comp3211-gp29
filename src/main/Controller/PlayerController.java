@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.*;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -278,5 +279,29 @@ public class PlayerController extends Controller{
          * This function will get current square of a player
          */
         return players[playerNum].getCurrentSquare();
+    }
+
+    public static int[][] leaderboard() {
+        int numberOfPlayer = players.length;
+        int[][] lb = new int[numberOfPlayer][3]; // 0 = Player Id, 1 = Player Balance
+        for(int i = 0; i < numberOfPlayer; i++){
+            lb[i][0] = 0;
+            lb[i][1] = i;
+            lb[i][2] = getPlayerMoney(i);
+        }
+
+        Arrays.sort(lb, new Comparator<int[]>() {
+            @Override
+            public int compare(final int[] entry1, final int[] entry2) {
+                return entry1[2] < entry2[2] ? 1 : -1;
+            }
+        });
+
+        lb[0][0] = 1;
+        for(int i = 1, rank = 1; i < numberOfPlayer; i++){
+            lb[i][0] = lb[i][2] == lb[i-1][2] ? rank : rank + 1;
+            rank += 1;
+        }
+        return lb;
     }
 }
