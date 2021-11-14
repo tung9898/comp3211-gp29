@@ -16,7 +16,7 @@ import Model.GameStatus;
 import Model.Player;
 import View.UserInterface;
 
-public class ActionController {
+public class Controller {
     /** 
       *  This controller mainly for player's action
      */

@@ -127,7 +127,7 @@ public class Monopoly{
                     // Check the player in jail days, if it is not -1, thats mean the player is in jail.
                 }
                 System.out.println(UserInterface.printRequestRollDice());
-                int[] dice = ActionController.rollingDice();
+                int[] dice = Controller.rollingDice();
                 System.out.println(UserInterface.sysv.printRollDiceResult(dice));
                 PlayerMakeAMove(dice[0] + dice[1]);
                 // turns--;

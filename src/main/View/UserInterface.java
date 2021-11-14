@@ -1,7 +1,5 @@
 package View;
 
-import Controller.GameStatusController;
-
 public class UserInterface {
     static String nl = "\n";
     static String tab = "\t";

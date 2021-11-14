@@ -69,7 +69,7 @@ public class SquareController {
         upperbound /= 10;
         lowerbound /= 10;
         //int r = Monopoly.rand.nextInt(50)-30; // random integer number from 20 to -30
-        int r = ActionController.getRandom(Math.abs(upperbound+lowerbound))+lowerbound;
+        int r = Controller.getRandom(Math.abs(upperbound+lowerbound))+lowerbound;
         
         return r * 10;
      }
