@@ -1,7 +1,7 @@
 package View;
 
 import Controller.SquareController;
-import Controller.StatusController;
+import Controller.GameStatusController;
 import Controller.PlayerController;
 
 public class GameStatusView extends UserInterface{
@@ -17,7 +17,7 @@ public class GameStatusView extends UserInterface{
     public String printRoundStarted(){ 
         return 
         "\n\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n" +
-        "+++++                   Round " + StatusController.getRounds() + " Start                             +++++\n" +
+        "+++++                   Round " + GameStatusController.getRounds() + " Start                             +++++\n" +
         "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n"; 
     }
 

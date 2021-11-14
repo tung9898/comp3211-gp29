@@ -1,6 +1,6 @@
 package View;
 
-import Controller.StatusController;
+import Controller.GameStatusController;
 
 public class UserInterface {
     static String nl = "\n";
@@ -10,7 +10,7 @@ public class UserInterface {
     static String to = "-";
 
     public static GameStatusView gsv = new GameStatusView();
-    public static GameStatusView sysv = new GameStatusView();
+    public static SquareView sysv = new SquareView();
     public static IOStorageView iosv = new IOStorageView();
     public static PlayerView pv = new PlayerView();
 
