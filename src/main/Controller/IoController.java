@@ -24,6 +24,20 @@ public class IoController {
         this.model = model;
     }
 
+    public void setFileLocation(String fileLocation) {
+        /**
+         * This function will call model IoStorage to set the file location.
+         */
+        model.setFileLocation(fileLocation);
+    }
+
+    public String getFileLocation() {
+        /**
+         * This function will call IoStorage to return the file location.
+         */
+        return model.getFileLocation();
+    }
+
     public static void saveFile(List<Map<String, Object>> playersList, Map<String, Object> gameStatusMap, String fileName){
         JSONObject gameStatusDetail = new JSONObject();
         JSONObject gameStatusObject = new JSONObject();

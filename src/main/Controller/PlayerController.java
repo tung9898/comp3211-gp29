@@ -20,21 +20,93 @@ public class PlayerController {
         //this.view = view;
     }
 
-    public void createPlayer(){
+    public void setName(String name) {
         /**
-         * This function will create a player
+         * This function call player model to set the player name.
          */
+        model.setName(name);
     }
 
-    public void removePlayer(){
+    public String getName() {
+        /**
+         * This function will call player model to return the name of the player
+         */
+        return model.getName();
+    }
+
+    public void setId(int id) {
+        /**
+         * This function will call player model to set the player ID.
+         */
+        model.setId(id);
+    }
+
+    public int getId() {
+        /**
+         * This function will call player model to return the ID of the player
+         */
+        return model.getId();
+    }
+
+    public void setMoney(int money){
+        /**
+         * This function will call player model to set the player's money.
+        */
+        model.setMoney(money);
+    }
+
+    public int getMoney() {
+        /**
+         * This function will call player model to return the player's money.
+         */
+        return model.getMoney();
+    }
+
+    public void setCurrentSquare(int currentSquare) {
+        /**
+         * This function will call the player model to set the player location where he/she current on.
+         */
+        model.setCurrentSquare(currentSquare);
+    }
+
+    public int getCurrentSquare() {
+        /**
+         * This function will call player model to return the location where the player is current on.
+         */
+        return model.getCurrentSquare();
+    }
+
+    public void setDaysInJail(int daysInJail) {
+        /**
+         * This funtion will call player model to set the player in jail days.
+         */
+        model.setDaysInJail(daysInJail);
+    }
+
+    public int getDaysInJail() {
+        /**
+         * This function will call player model to return days of in jail of the player.
+         */
+        return model.getDaysInJail();
+    }
+
+    public void setBankruptcy(boolean bankruptcy){
+        /**
+         * This funtion will call player model to set the bankruptcy status of the player.
+         */
+        model.setBankruptcy(bankruptcy);
+    }
+
+    public boolean getBankruptcy(){
+        /**
+         * This function will call player model to return the bankruptcy status of the player.
+         */
+        return model.getBankruptcy();
+    }
+
+    public void playerLeave(){
         /**
          * This function will remove a player
-         */
-    }
-
-    public void retirePlayer(){
-        /**
-         * This function will retire a player
          */
     }
 
@@ -56,7 +128,6 @@ public class PlayerController {
         model.setMoney(money);
     }
 
-    //***not yet tested
     public static int PayTax() {
         /*
          * This function will take the player 10% of his/her money for tax.

@@ -22,6 +22,35 @@ public class SquareController {
         //this.view = view;
     }
 
+    public void setId(int id) {
+        /**
+         * call the model square to set the square id
+         */
+        model.setId(id);
+    }
+
+    public int getId() {
+        /**
+         * call the model square to get the square id
+         */
+        return model.getId();
+    }
+
+    public void setOwner(int id) {
+        /**
+         * This function will call model square to set the owner of the property to the owner Id.
+         * -1 means unowned.
+         */
+        model.setOwner(id);
+    }
+
+    public int getOwner() {
+        /**
+         * This function will call model square to return the player id who own this square.
+         */
+        return model.getOwner();
+    }
+
      public static int GoSalary() {
          /**
           * This function is give a player salary if he/she pass though the GO square.

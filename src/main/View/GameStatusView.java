@@ -1,12 +1,36 @@
 package View;
 
 import Controller.SquareController;
+import Controller.StatusController;
 import Controller.PlayerController;
 
 public class GameStatusView extends UserInterface{
     /* 
      * This class will print the view of the game status.
     */
+
+    /* protected int TotalNumberOfPlayers;
+    protected int CurrentNumberOfPlayers;
+    protected int Rounds = 1; */
+
+    
+    public String printRoundStarted(){ 
+        return 
+        "\n\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n" +
+        "+++++                   Round " + StatusController.getRounds() + " Start                             +++++\n" +
+        "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n"; 
+    }
+
+    public String printRoundEnded(){ 
+        return 
+        "\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n" +
+        "+++++                         Round End                             +++++\n" +
+        "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n\n";
+    }
+
+    public String printRoundOver100(){ 
+        return "Game Over, round is over 100.";
+    }
 
     public String printWelcome(){
         return

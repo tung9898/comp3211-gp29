@@ -34,24 +34,6 @@ public class UserInterface {
         return nl + "------------------------------‖ Turn end ‖------------------------------" + nl; 
     }
 
-    public static String printRoundStarted(){ 
-        return 
-        "\n\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n" +
-        "+++++                   Round " + StatusController.getRounds() + " Start                             +++++\n" +
-        "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n"; 
-    }
-
-    public static String printRoundEnded(){ 
-        return 
-        "\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n" +
-        "+++++                         Round End                             +++++\n" +
-        "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n\n";
-    }
-
-    public static String printRoundOver100(){ 
-        return "Game Over, round is over 100.";
-    }
-
     public static String printDice(int i){
         switch(i){
             case 1: return "１";
