@@ -1,9 +1,5 @@
 package Model;
 
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
 public class Player{
     protected String Name;
     protected int Id;
@@ -22,8 +18,6 @@ public class Player{
     public Player(String _name, int _id){
         this.Name = _name;
         this.Id = _id;
-        this.Money = 1500;
-        this.CurrentSquare = 0;
     }
 
     public Player(String _name, int _id, int _money, int _currentSquare, int _daysInJail, boolean _bankruptcy){
@@ -106,11 +100,11 @@ public class Player{
         return DaysInJail;
     }
 
-    public void setBankruptcy(boolean bankruptcy){
+    public void setBankruptcy(){
         /**
          * This funtion set the bankruptcy status of the player.
          */
-        Bankruptcy = bankruptcy;
+        Bankruptcy = true;
     }
 
     public boolean getBankruptcy(){
@@ -118,9 +112,5 @@ public class Player{
          * This function will return the bankruptcy status of the player.
          */
         return Bankruptcy;
-    }
-
-    public Map<Integer,String> listToMap(List<Player> players){
-        return players.stream().collect(Collectors.toMap(Player::getId, Player::getName));
     }
 }

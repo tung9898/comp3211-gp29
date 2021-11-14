@@ -55,7 +55,7 @@ public class MonopolyTest {
         assertEquals(1,player1.getId());
         player1.setName("Amy");
         assertEquals("Amy",player1.getName());
-        player1.setBankruptcy(true);
+        player1.setBankruptcy();
         assertTrue(player1.getBankruptcy());
     }
 

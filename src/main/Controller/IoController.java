@@ -4,19 +4,17 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import Model.IoStorage;
-import View.UserInterface;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class IoController extends Controller{
+public class IoController {
     /** 
       *  This controller mainly for operations with system
      */
@@ -24,20 +22,6 @@ public class IoController extends Controller{
 
     public IoController(IoStorage model){
         this.model = model;
-    }
-
-    public void setFileLocation(String fileLocation) {
-        /**
-         * This function will call model IoStorage to set the file location.
-         */
-        model.setFileLocation(fileLocation);
-    }
-
-    public String getFileLocation() {
-        /**
-         * This function will call IoStorage to return the file location.
-         */
-        return model.getFileLocation();
     }
 
     public static void saveFile(List<Map<String, Object>> playersList, Map<String, Object> gameStatusMap, String fileName){
@@ -94,7 +78,7 @@ public class IoController extends Controller{
     
         JSONParser jsonParser = new JSONParser();
         JSONObject obj = null;
-        try (FileReader reader = new FileReader("data/"+fileLocation)){
+        try (FileReader reader = new FileReader("data\\"+fileLocation)){
             obj = (JSONObject)jsonParser.parse(reader);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -105,25 +89,5 @@ public class IoController extends Controller{
         }
 
         return obj;
-    }
-
-    public static String[] getFilesList(){
-        String[] filenames;
-        File f = new File("data");
-        //System.out.println("Working Directory = " + System.getProperty("user.dir"));
-        // Does data folder exist?
-        if(!f.exists()){
-            System.out.println(UserInterface.iosv.printNoDataFolderExistError());
-            return null;
-        }
-
-        filenames = f.list();
-
-        // Does any files exist in data folder?
-        if(!(filenames.length > 0 && Arrays.stream(filenames).anyMatch(str -> str.contains(".json")))){
-            System.out.println(UserInterface.iosv.printNoDataFilesExistError());
-            return null;
-        }
-        return filenames;
     }
 }

@@ -1,31 +1,21 @@
 package View;
 
 import Controller.SquareController;
-import Controller.GameStatusController;
 import Controller.PlayerController;
 
 public class GameStatusView extends UserInterface{
     /* 
      * This class will print the view of the game status.
     */
-    
-    public String printRoundStarted(){ 
-        return 
-        "\n\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n" +
-        "+++++                   Round " + GameStatusController.getRounds() + " Start                             +++++\n" +
-        "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n"; 
-    }
 
-    public String printRoundEnded(){ 
-        return 
-        "\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n" +
-        "+++++                         Round End                             +++++\n" +
-        "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n\n";
-    }
-
-    public String printRoundOver100(){ 
-        return "Game Over, round is over 100.";
-    }
+    public enum GameStatus {
+        Welcome, 
+        MonopolyBoard, 
+        AllPlayerStatus, 
+        printPlayerPosition,
+        PlayerPositionInMP,
+        Menu
+    };
 
     public String printWelcome(){
         return
@@ -83,10 +73,10 @@ public class GameStatusView extends UserInterface{
         "  │  "+(currentPos[15] == 0?"16":" *")+"  ║  \n" +
         "\t\t\t ║──────┼──────┴──────┴──────┴──────┼──────╢  \n" +
         "\t\t\t ║  "+(currentPos[9] == 0?"10":" *")+
-        "  │                           │  "+(currentPos[16] == 0?"10":" *")+"  ║  \n" +
+        "  │                           │  "+(currentPos[16] == 0?"17":" *")+"  ║  \n" +
         "\t\t\t ║──────┤                           ├──────║  \n" +
         "\t\t\t ║  "+(currentPos[8] == 0?"09":" *")+
-        "  │                           │  "+(currentPos[17] == 0?"09":" *")+"  ║  \n" +
+        "  │                           │  "+(currentPos[17] == 0?"18":" *")+"  ║  \n" +
         "\t\t\t ║──────┤          MONOPOLY         ├──────║  \n" +
         "\t\t\t ║  "+(currentPos[7] == 0?"08":" *")+
         "  │                           │  "+(currentPos[18] == 0?"19":" *")+"  ║  \n" +
