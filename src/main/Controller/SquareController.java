@@ -22,6 +22,13 @@ public class SquareController extends Controller{
         //this.view = view;
     }
 
+    public static void initBoard(){
+        int squareNumber = 20;
+        for(int i = 0; i < squareNumber; i++){
+            board[i] = new Square(i, -1, Name[i], Price[i], Rent[i]);
+        }
+    }
+
     public void setId(int id) {
         /**
          * call the model square to set the square id

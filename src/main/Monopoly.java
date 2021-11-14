@@ -82,20 +82,20 @@ public class Monopoly{
                     
                     
                     PlayerController.setPlayers((JSONArray) gameStatusObject.get("Players"), GameStatusController.getTotalNumberOfPlayers());
-                    System.out.println(UserInterface.iosv.printLoadFileSuccessMessage());
+                    System.out.println("Load successfully~");
                 }catch(NullPointerException e){
-                    System.out.println(UserInterface.iosv.printLoadFileError(e));
+                    System.out.println("Error occur!\n" + e + "\n Load failed!");
                 }catch(Exception e){
-                    System.out.println(UserInterface.iosv.printLoadFileError(e));
+                    System.out.println("Error occur!\n" + e + "\n Load failed!");
                 }
                 break;
             case 3:
                 // Save file
                 // Ask user to input file name
                 userInput = new Scanner(System.in);
-                System.out.print(UserInterface.iosv.printFileNameInput());
+                System.out.print("Input your file name:");
                 while (!userInput.hasNext("[^\\/:*?\"<>|]")) {
-                    System.out.print(UserInterface.iosv.printFileNameInputError());
+                    System.out.print("Input your file name (no \\/:*?\"<>|):");
                     userInput.next();
                 }
                 String saveFileName = userInput.next();
@@ -148,9 +148,7 @@ public class Monopoly{
         statusController = new GameStatusController(gameStatusModel);
 
         PlayerController.setPlayers(numberOfPlayer);
-        for(int i = 0; i < numberOfPlayer; i++) {
-            SquareController.setSquare(i);
-        }
+        SquareController.initBoard();
         for(int i = 0; i < numberOfPlayer; i++) {
             PlayerController.setPlayer(i);
             // Ask for name input for each player.

@@ -22,6 +22,8 @@ public class Player{
     public Player(String _name, int _id){
         this.Name = _name;
         this.Id = _id;
+        this.Money = 1500;
+        this.CurrentSquare = 0;
     }
 
     public Player(String _name, int _id, int _money, int _currentSquare, int _daysInJail, boolean _bankruptcy){
