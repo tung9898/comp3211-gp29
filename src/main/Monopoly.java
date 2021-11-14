@@ -40,9 +40,9 @@ public class Monopoly{
         Scanner userInput = new Scanner(System.in); // need userInput.close(); ?
         // 3 for testing save file function
         while(!(action == 1 || action == 2 || action == 3)){
-            System.out.print(UserInterface.uimv.printBeginActionInput());
+            System.out.print(UserInterface.printBeginActionInput());
             while(!(userInput.hasNextInt())){
-                System.out.print(UserInterface.uimv.printBeginActionInput());
+                System.out.print(UserInterface.printBeginActionInput());
                 userInput.next();
             }
             action = userInput.nextInt();
@@ -54,14 +54,14 @@ public class Monopoly{
                 int numberOfPlayer;
                 Scanner myObj = new Scanner(System.in);
                 while(true) {
-                    System.out.print(UserInterface.uimv.printNumberOfPlayerInput(MinimumNumberOfPlayer, MaximumNumberOfPlayer));
+                    System.out.print(UserInterface.pv.printNumberOfPlayerInput(MinimumNumberOfPlayer, MaximumNumberOfPlayer));
                     numberOfPlayer = myObj.nextInt();
                     if (MinimumNumberOfPlayer <= numberOfPlayer && numberOfPlayer <= MaximumNumberOfPlayer){
                         InitSqaure(numberOfPlayer);
                         break;
                     }
                     else{
-                        System.out.println(UserInterface.sysev.printNumberOfPlayerInputError(MinimumNumberOfPlayer, MaximumNumberOfPlayer));
+                        System.out.println(UserInterface.pv.printNumberOfPlayerInputError(MinimumNumberOfPlayer, MaximumNumberOfPlayer));
                     }
                 }
                 // start the game
@@ -104,7 +104,7 @@ public class Monopoly{
                 if(PlayerController.getDaysInJail(i) > 0) {
                     // Check the player in jail days, if it is not -1, thats mean the player is in jail.
                 }
-                System.out.println(UserInterface.uimv.printRequestRollDice());
+                System.out.println(UserInterface.printRequestRollDice());
                 int[] dice = ActionController.rollingDice();
                 System.out.println(UserInterface.sysv.printRollDiceResult(dice));
                 PlayerMakeAMove(dice[0] + dice[1]);

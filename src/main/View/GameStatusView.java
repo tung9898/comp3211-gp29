@@ -8,15 +8,6 @@ public class GameStatusView extends UserInterface{
      * This class will print the view of the game status.
     */
 
-    public enum GameStatus {
-        Welcome, 
-        MonopolyBoard, 
-        AllPlayerStatus, 
-        printPlayerPosition,
-        PlayerPositionInMP,
-        Menu
-    };
-
     public String printWelcome(){
         return
         tab + tab + tab + "╔═══════════════════════════════════════╗" + nl +
