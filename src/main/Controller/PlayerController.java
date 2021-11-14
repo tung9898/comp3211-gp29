@@ -1,6 +1,11 @@
 package Controller;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import Model.Player;
 
@@ -162,6 +167,48 @@ public class PlayerController {
             if(!players[i].getBankruptcy()) Winner.add(players[i].getId());
         }
     }
+
+    public static Map<String, Object> getPlayerMap(Player player){
+        Map<String,Object> playerMap = new HashMap<String, Object>();
+        playerMap.put("Name",player.getName());
+        playerMap.put("Id",player.getId());
+        playerMap.put("Money", player.getMoney());
+        playerMap.put("CurrentSquare", player.getCurrentSquare());
+        playerMap.put("DaysInJail", player.getDaysInJail());
+        playerMap.put("Bankruptcy", player.getBankruptcy());
+        return playerMap;
+    }
+
+    public static List<Map<String, Object>> getPlayersList(){
+        List<Map<String, Object>> playersList = new ArrayList<Map<String, Object>>();
+        for(int i = 0; i < players.length; i++){
+            playersList.add(getPlayerMap(players[i]));
+        }
+        return playersList;
+    }
+
+    public static void setPlayers(JSONArray _players, int playerLength){
+        players = new Player[playerLength];
+        _players.forEach( player -> parsePlayerObject( (JSONObject) player ) );
+    }
+
+    public static void parsePlayerObject(JSONObject player){
+        JSONObject playerObject = (JSONObject) player.get("Player");
+        players[((Long) playerObject.get("Id")).intValue()] = new Player( String.valueOf(playerObject.get("Name")), 
+                                                                                        ((Long) playerObject.get("Id")).intValue(), 
+                                                                                        ((Long) playerObject.get("Money")).intValue(), 
+                                                                                        ((Long) playerObject.get("CurrentSquare")).intValue(), 
+                                                                                        ((Long) playerObject.get("DaysInJail")).intValue(),
+                                                                                        (Boolean) playerObject.get("Bankruptcy"));
+        
+        // Can delete the printlns
+        System.out.println("Name: "+players[((Long) playerObject.get("Id")).intValue()].getName());
+        System.out.println("Id: "+players[((Long) playerObject.get("Id")).intValue()].getId());
+        System.out.println("Money: "+players[((Long) playerObject.get("Id")).intValue()].getMoney());
+        System.out.println("CurrentSquare: "+players[((Long) playerObject.get("Id")).intValue()].getCurrentSquare());
+        System.out.println("DaysInJail: "+players[((Long) playerObject.get("Id")).intValue()].getDaysInJail());
+        System.out.println("Bankruptcy: "+players[((Long) playerObject.get("Id")).intValue()].getBankruptcy());
+}
 
     public static Player[] getPlayers(){
         /**

@@ -1,10 +1,3 @@
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
 import java.util.Scanner;
 
 import org.json.simple.JSONArray;
@@ -26,7 +19,7 @@ public class Monopoly{
     static int MinimumNumberOfPlayer = 2;
 
     static GameStatus gameStatusModel;
-    static StatusController statusController;
+    static GameStatusController statusController;
 
     public static void main(String[] args) {
         /**
@@ -76,11 +69,40 @@ public class Monopoly{
                 // end
                 break;
             case 2:
-                //
-                ActionController.loadFile();
+                // Load file
+                String loadFileName = askForLoadFileName(IoController.getFilesList());
+                // Load the data from file
+                JSONObject loadObject = IoController.loadFile(loadFileName);
+                try{
+                    JSONObject gameStatusObject = (JSONObject) loadObject.get("GameStatus");
+                    
+                    GameStatusController.setGameStatus( ((Long) gameStatusObject.get("TotalNumberOfPlayers")).intValue(), 
+                                                                ((Long) gameStatusObject.get("CurrentNumberOfPlayers")).intValue(),
+                                                                ((Long) gameStatusObject.get("Rounds")).intValue());
+                    
+                    
+                    PlayerController.setPlayers((JSONArray) gameStatusObject.get("Players"), GameStatusController.getTotalNumberOfPlayers());
+                    System.out.println(UserInterface.iosv.printLoadFileSuccessMessage());
+                }catch(NullPointerException e){
+                    System.out.println(UserInterface.iosv.printLoadFileError(e));
+                }catch(Exception e){
+                    System.out.println(UserInterface.iosv.printLoadFileError(e));
+                }
                 break;
             case 3:
-                ActionController.saveFile(PlayerController.getPlayers(), gameStatusModel);
+                // Save file
+                // Ask user to input file name
+                userInput = new Scanner(System.in);
+                System.out.print(UserInterface.iosv.printFileNameInput());
+                while (!userInput.hasNext("[^\\/:*?\"<>|]")) {
+                    System.out.print(UserInterface.iosv.printFileNameInputError());
+                    userInput.next();
+                }
+                String saveFileName = userInput.next();
+
+                // Save file
+                IoController.saveFile(PlayerController.getPlayersList(), GameStatusController.getGameStatusMap(), saveFileName);
+                // ActionController.saveFile(PlayerController.getPlayers(), gameStatusModel);
                 break;
             default:
                 break;
@@ -91,9 +113,9 @@ public class Monopoly{
         /**
          * This function is to run each game round. 
          */
-        int turns = StatusController.getCurrentNumberOfPlayers();
+        int turns = GameStatusController.getCurrentNumberOfPlayers();
         while(true){
-            System.out.println(UserInterface.sysv.printRoundStarted());
+            System.out.println(UserInterface.gsv.printRoundStarted());
             for(int i = 0; i < turns; i++){
                 System.out.println(UserInterface.sysv.printTurnStarted(i+1));
                 int currentPos[] = new int[20];
@@ -111,8 +133,8 @@ public class Monopoly{
                 // turns--;
                 System.out.println(UserInterface.sysv.printTurnEnded());
             }
-            System.out.println(UserInterface.sysv.printRoundEnded());
-            if(StatusController.RoundEnd() || StatusController.getCurrentNumberOfPlayers() == 1){
+            System.out.println(UserInterface.gsv.printRoundEnded());
+            if(GameStatusController.RoundEnd() || GameStatusController.getCurrentNumberOfPlayers() == 1){
                 PlayerController.CheckWinner();
             }
         }
@@ -123,7 +145,7 @@ public class Monopoly{
          * This function is to set some important data when the game starts. 
          */
         gameStatusModel = new GameStatus(numberOfPlayer, numberOfPlayer);
-        statusController = new StatusController(gameStatusModel);
+        statusController = new GameStatusController(gameStatusModel);
 
         PlayerController.setPlayers(numberOfPlayer);
         for(int i = 0; i < numberOfPlayer; i++) {
@@ -207,5 +229,29 @@ public class Monopoly{
         PlayerController.setPlayersMoney(currentPlayer, balance-landRent);
         PlayerController.setPlayersMoney(owner, PlayerController.getPlayerMoney(owner) + landRent); // todo, need to fix if the renter don't have money.
         // money remaining message
+    }
+
+    public static String askForLoadFileName(String[] filenames){
+        // Ask user to select the file
+        Scanner userInput = new Scanner(System.in);
+        int fileNumber = -1;
+        do{
+            // Print files' information
+            System.out.println(UserInterface.iosv.printFileExistMessage());
+            for(int i = 0; i < filenames.length; i++){
+                System.out.printf("[%1$s] %2$s %n", i, filenames[i]);
+            }
+            System.out.print(UserInterface.iosv.printFileChoiceInput());
+
+            // Validate the input is or not a number
+            while(!(userInput.hasNextInt())){
+                System.out.print(UserInterface.iosv.printFileChoiceInput());
+                userInput.next();
+            }
+            fileNumber = userInput.nextInt();
+       }while(!(fileNumber >= 0 && 
+                fileNumber < filenames.length && 
+                filenames[fileNumber].contains(".json")));
+        return filenames[fileNumber];
     }
 }
