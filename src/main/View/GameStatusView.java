@@ -8,11 +8,6 @@ public class GameStatusView extends UserInterface{
     /* 
      * This class will print the view of the game status.
     */
-
-    /* protected int TotalNumberOfPlayers;
-    protected int CurrentNumberOfPlayers;
-    protected int Rounds = 1; */
-
     
     public String printRoundStarted(){ 
         return 

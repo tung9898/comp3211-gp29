@@ -1,5 +1,9 @@
 package Model;
 
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 public class Player{
     protected String Name;
     protected int Id;
@@ -112,5 +116,9 @@ public class Player{
          * This function will return the bankruptcy status of the player.
          */
         return Bankruptcy;
+    }
+
+    public Map<Integer,String> listToMap(List<Player> players){
+        return players.stream().collect(Collectors.toMap(Player::getId, Player::getName));
     }
 }

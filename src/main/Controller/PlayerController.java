@@ -9,7 +9,7 @@ import org.json.simple.JSONObject;
 
 import Model.Player;
 
-public class PlayerController {
+public class PlayerController extends Controller{
     /** 
       *  This controller mainly for actions relates to player
      */

@@ -16,7 +16,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class IoController {
+public class IoController extends Controller{
     /** 
       *  This controller mainly for operations with system
      */

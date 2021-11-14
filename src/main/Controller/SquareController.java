@@ -2,7 +2,7 @@ package Controller;
 
 import Model.Square;
 
-public class SquareController {
+public class SquareController extends Controller{
     /**
       * This function is mainly return value or data of the game back to other function.
     */
@@ -69,7 +69,7 @@ public class SquareController {
         upperbound /= 10;
         lowerbound /= 10;
         //int r = Monopoly.rand.nextInt(50)-30; // random integer number from 20 to -30
-        int r = Controller.getRandom(Math.abs(upperbound+lowerbound))+lowerbound;
+        int r = getRandom(Math.abs(upperbound+lowerbound))+lowerbound;
         
         return r * 10;
      }

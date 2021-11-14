@@ -6,7 +6,7 @@ import java.util.Map;
 
 import Model.GameStatus;
 
-public class GameStatusController {
+public class GameStatusController extends Controller{
     /** 
       *  This controller relates to the game status
      */
