@@ -46,7 +46,6 @@ public class GameStatusView extends UserInterface{
         " INSTRUCTION" + nl +
         "   Description: " + nl +
         "     This is a Monopoly Board Game. Please Enjoy it ~" + nl + nl +
-        "   Details: " + nl +
         "====================================================" + nl;
     }
 

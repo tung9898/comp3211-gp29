@@ -58,7 +58,7 @@ public class SquareController extends Controller{
         return model.getOwner();
     }
 
-     public static int GoSalary() {
+     public int GoSalary() {
          /**
           * This function is give a player salary if he/she pass though the GO square.
           * return the salary to set the money.
@@ -66,7 +66,7 @@ public class SquareController extends Controller{
         return 1500;
      }
 
-     public static int ChanceSalary() {
+     public int ChanceSalary() {
          /**
           * This function randomly pick a integer in a specific range.
           * return the value the player win or lose to set the money.
@@ -81,14 +81,14 @@ public class SquareController extends Controller{
         return r * 10;
      }
 
-     public static int NoEffect() {
+     public int NoEffect() {
          /**
           * No effect square, this function do nothing, just the its name.
           */
          return 0;
      }
 
-     public static int SquarePrice(int id) {
+     public int SquarePrice(int id) {
          /**
           * This function return the price of its square.
           */
@@ -100,7 +100,7 @@ public class SquareController extends Controller{
         return -1;
      }
 
-     public static int SquareRent(int id) {
+     public int SquareRent(int id) {
          /**
           * This function return the rent of its square.
           */
@@ -112,7 +112,7 @@ public class SquareController extends Controller{
         return -1;
      }
 
-    public static String SquareName(int id) {
+    public String SquareName(int id) {
         /**
           * This function return the name of its square.
           */
@@ -121,13 +121,13 @@ public class SquareController extends Controller{
         return Name[id];
     }
 
-    public static boolean isGovernmentProperty(int id) {
+    public boolean isGovernmentProperty(int id) {
         for(int i = 0; i < PropertyPos.length; i++)
             if(id+1 == PropertyPos[i]) return false;
         return true;
     }
 
-    public static int getEffect() {
+    public int getEffect() {
         /**
          * This function will return a integer, for Go, Change, Income tax.
          * 0 for other or no effect squares.
@@ -136,28 +136,28 @@ public class SquareController extends Controller{
         return 0;
     }
 
-    public static Square[] getSquare(){
+    public Square[] getSquare(){
         /**
           * This function return the list of Square
         */
         return board;
     }
 
-    public static void setSquare(int number){
+    public void setSquare(int number){
         /**
           * This function will create the list of Square
           */
         board[number] = new Square(number);
     }
 
-    public static void setBoardId(int number, int id){
+    public void setBoardId(int number, int id){
         /**
           * This function will set the id of Square
           */
         board[number].setId(id);
     }
 
-    public static void setBoardOwner(int number, int owner){
+    public void setBoardOwner(int number, int owner){
         /**
           * This function will set the owner of Square
           */
@@ -168,7 +168,7 @@ public class SquareController extends Controller{
         return SquareName(number);
     } */
 
-    public static int getBoardOwner(int number){
+    public int getBoardOwner(int number){
         /**
           * This function will get the owner of Square
           */

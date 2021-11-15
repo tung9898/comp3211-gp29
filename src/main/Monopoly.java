@@ -19,6 +19,7 @@ public class Monopoly{
     static int MinimumNumberOfPlayer = 2;
 
     static GameStatus gameStatusModel;
+    static GameStatusView gameStatusView;
     static GameStatusController statusController;
 
     public static void main(String[] args) {
@@ -109,13 +110,13 @@ public class Monopoly{
         }
     }
 
-    public static void GameStart(){
+    public void GameStart(){
         /**
          * This function is to run each game round. 
          */
         int turns = GameStatusController.getCurrentNumberOfPlayers();
         while(true){
-            System.out.println(UserInterface.gsv.printRoundStarted());
+            statusController.printRoundStarted();
             for(int i = 0; i < turns; i++){
                 System.out.println(UserInterface.sysv.printTurnStarted(i+1));
                 int currentPos[] = new int[20];
@@ -140,12 +141,12 @@ public class Monopoly{
         }
     }
 
-    public static void InitSqaure(int numberOfPlayer) {
+    public void InitSqaure(int numberOfPlayer) {
         /**
          * This function is to set some important data when the game starts. 
          */
         gameStatusModel = new GameStatus(numberOfPlayer, numberOfPlayer);
-        statusController = new GameStatusController(gameStatusModel);
+        statusController = new GameStatusController(gameStatusModel, gameStatusView);
 
         PlayerController.setPlayers(numberOfPlayer);
         SquareController.initBoard();
@@ -155,7 +156,7 @@ public class Monopoly{
         }
     }
 
-    public static void bankruptcy(int id) {
+    public void bankruptcy(int id) {
         /**
          * This function will done all the things after a player has a
          * negative amount of money.
@@ -166,7 +167,7 @@ public class Monopoly{
         }
     }
 
-    public static void PlayerMakeAMove(int move) {
+    public void PlayerMakeAMove(int move) {
         /**
          * This function will help player to make a move.
          */
@@ -181,7 +182,7 @@ public class Monopoly{
         // Finally, Check player money. If less than 0, declare bankruptcies.
     }
 
-    public static int EffectCenter(int squareId) {
+    public int EffectCenter(int squareId) {
         /**
          * This function is to redirect the sqaure to its belonging effect
          */
@@ -199,7 +200,7 @@ public class Monopoly{
        }    
     }
 
-    public static void SquarePurchase(int squareId) {
+    public void SquarePurchase(int squareId) {
         /**
          * This function is to handle the player’s purchase of property. 
          */
@@ -216,7 +217,7 @@ public class Monopoly{
         }
     }
 
-    public static void SquarePayRent(int squareId) {
+    public void SquarePayRent(int squareId) {
         /**
          * This function is to handle the player’s payment of rent and the owner’s receipt of rent.
          */
@@ -229,7 +230,7 @@ public class Monopoly{
         // money remaining message
     }
 
-    public static String askForLoadFileName(String[] filenames){
+    public String askForLoadFileName(String[] filenames){
         // Ask user to select the file
         Scanner userInput = new Scanner(System.in);
         int fileNumber = -1;

@@ -1,10 +1,9 @@
 package Controller;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import Model.GameStatus;
+import View.GameStatusView;
 
 public class GameStatusController extends Controller{
     /** 
@@ -12,11 +11,11 @@ public class GameStatusController extends Controller{
      */
 
     protected static GameStatus model;
-    
-    //private GameStatusView view;
+    protected static GameStatusView view;
 
-    public GameStatusController(GameStatus model){
+    public GameStatusController(GameStatus model, GameStatusView view){
         this.model = model;
+        this.view = view;
     }
 
 
@@ -120,6 +119,10 @@ public class GameStatusController extends Controller{
             }
         }
     } */
+
+    public void printRoundStarted(){
+        System.out.println(view.printRoundStarted());
+    }
 
     public static Map<String, Object> getGameStatusMap(){
         Map<String,Object> gameStatusMap = new HashMap<String, Object>();

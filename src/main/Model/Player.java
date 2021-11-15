@@ -119,8 +119,4 @@ public class Player{
          */
         return Bankruptcy;
     }
-
-    public Map<Integer,String> listToMap(List<Player> players){
-        return players.stream().collect(Collectors.toMap(Player::getId, Player::getName));
-    }
 }

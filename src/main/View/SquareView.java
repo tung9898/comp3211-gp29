@@ -4,7 +4,7 @@ import Controller.SquareController;
 
 public class SquareView extends UserInterface{
     
-    public String printPassGO(){ 
+    public String printPassGO(int Salary){ 
         return "Passing Go, gain " + SquareController.GoSalary() + " HKD"; 
     }
 
