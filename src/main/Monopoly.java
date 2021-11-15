@@ -22,6 +22,8 @@ public class Monopoly{
     static GameStatusView gameStatusView;
     static GameStatusController statusController;
 
+    static SquareController squareController = new SquareController();
+
     public static void main(String[] args) {
         /**
          * This function is the main function of Monopoly.  
@@ -110,7 +112,7 @@ public class Monopoly{
         }
     }
 
-    public void GameStart(){
+    public static void GameStart(){
         /**
          * This function is to run each game round. 
          */
@@ -141,7 +143,7 @@ public class Monopoly{
         }
     }
 
-    public void InitSqaure(int numberOfPlayer) {
+    public static void InitSqaure(int numberOfPlayer) {
         /**
          * This function is to set some important data when the game starts. 
          */
@@ -162,12 +164,12 @@ public class Monopoly{
          * negative amount of money.
          * Set all of his/her properties to unowned.
          */
-        for(int i = 0; i < SquareController.getSquare().length; i++){
-            if(SquareController.getBoardOwner(i) == id) SquareController.setBoardId(i, -1);
+        for(int i = 0; i < squareController.getSquare().length; i++){
+            if(squareController.getBoardOwner(i) == id) squareController.setBoardId(i, -1);
         }
     }
 
-    public void PlayerMakeAMove(int move) {
+    public static void PlayerMakeAMove(int move) {
         /**
          * This function will help player to make a move.
          */
@@ -188,15 +190,15 @@ public class Monopoly{
          */
         switch(squareId+1){    
             case 1:    
-                return SquareController.GoSalary();
+                return squareController.GoSalary();
             case 9:
             case 13:
             case 19:
-                return SquareController.ChanceSalary();
+                return squareController.ChanceSalary();
             case 4:
                 return PlayerController.PayTax();
             default:     
-                return SquareController.NoEffect();
+                return squareController.NoEffect();
        }    
     }
 
@@ -204,13 +206,13 @@ public class Monopoly{
         /**
          * This function is to handle the player’s purchase of property. 
          */
-        int landPrice = SquareController.SquarePrice(squareId);
+        int landPrice = squareController.SquarePrice(squareId);
         currentPlayer = PlayerController.getCurrentPlayer();
         int balance = PlayerController.getPlayerMoney(currentPlayer);
         if(balance >= landPrice){
             // confirm message, return if fail to confirm.
             PlayerController.setPlayersMoney(currentPlayer, balance-landPrice);
-            SquareController.setBoardOwner(squareId, currentPlayer);
+            squareController.setBoardOwner(squareId, currentPlayer);
             // successful message
         }else{
             // fail to pay message
@@ -221,8 +223,8 @@ public class Monopoly{
         /**
          * This function is to handle the player’s payment of rent and the owner’s receipt of rent.
          */
-        int landRent = SquareController.SquareRent(squareId);
-        int owner = SquareController.getBoardOwner(squareId);
+        int landRent = squareController.SquareRent(squareId);
+        int owner = squareController.getBoardOwner(squareId);
         currentPlayer = PlayerController.getCurrentPlayer();
         int balance = PlayerController.getPlayerMoney(currentPlayer);
         PlayerController.setPlayersMoney(currentPlayer, balance-landRent);
@@ -230,7 +232,7 @@ public class Monopoly{
         // money remaining message
     }
 
-    public String askForLoadFileName(String[] filenames){
+    public static String askForLoadFileName(String[] filenames){
         // Ask user to select the file
         Scanner userInput = new Scanner(System.in);
         int fileNumber = -1;

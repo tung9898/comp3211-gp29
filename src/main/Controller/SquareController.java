@@ -17,6 +17,7 @@ public class SquareController extends Controller{
     protected Square model;
     //private SquareView view;
 
+    public SquareController(){}
     public SquareController(Square model/* , SquareView view */){
         this.model = model;
         //this.view = view;

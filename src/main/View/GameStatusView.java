@@ -106,7 +106,8 @@ public class GameStatusView extends UserInterface{
         return "";
     }
 
-    public String printPlayerPosition(){ 
+    public String printPlayerPosition(String name, int price, int rent){ 
+        //SquareController.SquareName(pos)
         int pid = PlayerController.getCurrentPlayer();
         String msg = 
             "Player " + pid;
@@ -118,10 +119,10 @@ public class GameStatusView extends UserInterface{
         currentPos[pos] = 1;
         msg += printPlayerPositionInMP(currentPos);
 
-        if(SquareController.SquareName(pos) != "-1"){
-            msg += "Square Name: " + SquareController.SquareName(pos) + nl;
-            msg += "Square Price: " + SquareController.SquarePrice(pos) + nl;
-            msg += "Square Rent: " + SquareController.SquareRent(pos) + nl;
+        if(name != "-1"){
+            msg += "Square Name: " + name + nl;
+            msg += "Square Price: " + price + nl;
+            msg += "Square Rent: " + rent + nl;
         }
         return msg;
     }
