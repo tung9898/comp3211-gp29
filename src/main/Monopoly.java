@@ -64,6 +64,9 @@ public class Monopoly{
                 boolean keepTheGameRun = true;
                 while(keepTheGameRun) {
                     GameStart();
+                    if(GameStart()==false){
+                        break;
+                    }
                     // ask for input if player want to continue;
                         // break if necessary
                     // ask for input if player want to change to number of player;
@@ -112,7 +115,7 @@ public class Monopoly{
         }
     }
 
-    public static void GameStart(){
+    public static boolean GameStart(){
         /**
          * This function is to run each game round. 
          */
@@ -120,25 +123,46 @@ public class Monopoly{
         while(true){
             statusController.printRoundStarted();
             for(int i = 0; i < turns; i++){
+                PlayerController.setCurrentPlayer(i);
+                if(PlayerController.getPlayerBankruptcy(i)) {
+                    continue;
+                }
                 System.out.println(UserInterface.sysv.printTurnStarted(i+1));
                 int currentPos[] = new int[20];
                 currentPos[PlayerController.getPlayerCurrentSquare(i)] = 1;
                 System.out.println(UserInterface.gsv.printPlayerPositionInMP(currentPos));
-                if(PlayerController.getPlayerBankruptcy(i)) continue;
-                PlayerController.setCurrentPlayer(i); 
-                if(PlayerController.getDaysInJail(i) > 0) {
+                if(PlayerController.getDaysInJail(i) > -1) {
                     // Check the player in jail days, if it is not -1, thats mean the player is in jail.
+                    HandleInJail(PlayerController.getDaysInJail(i));
                 }
-                System.out.println(UserInterface.printRequestRollDice());
-                int[] dice = Controller.rollingDice();
-                System.out.println(UserInterface.sysv.printRollDiceResult(dice));
-                PlayerMakeAMove(dice[0] + dice[1]);
-                // turns--;
-                System.out.println(UserInterface.sysv.printTurnEnded());
+                else{
+                    System.out.println("Make the choice: 1 to roll the dice, 2 to save & exit the game");
+                    Scanner myObj = new Scanner(System.in);
+                    int choice = myObj.nextInt();
+                    if (choice==1){
+                        int[] dice = Controller.rollingDice();
+                        System.out.println(UserInterface.sysv.printRollDiceResult(dice));
+                        PlayerMakeAMove(dice[0] + dice[1]);
+                        // turns--;
+                        System.out.println(UserInterface.sysv.printTurnEnded());
+                    }
+                    if (choice==2){
+                        return false;
+                    }
+                }
             }
             System.out.println(UserInterface.gsv.printRoundEnded());
             if(GameStatusController.RoundEnd() || GameStatusController.getCurrentNumberOfPlayers() == 1){
                 PlayerController.CheckWinner();
+                System.out.println("Make the choice: 1 to play a new game, 2 to exit the game");
+                Scanner myObj = new Scanner(System.in);
+                int choice = myObj.nextInt();
+                if (choice==1){
+                    //new game
+                }
+                if (choice==2){
+                    return false;
+                }
             }
         }
     }
@@ -154,16 +178,18 @@ public class Monopoly{
         SquareController.initBoard();
         for(int i = 0; i < numberOfPlayer; i++) {
             PlayerController.setPlayer(i);
+            PlayerController.setPlayersMoney(i,1500);
             // Ask for name input for each player.
         }
     }
 
-    public void bankruptcy(int id) {
+    public static void bankruptcy(int id) {
         /**
          * This function will done all the things after a player has a
          * negative amount of money.
          * Set all of his/her properties to unowned.
          */
+        PlayerController.setPlayerBankruptcy(id);
         for(int i = 0; i < squareController.getSquare().length; i++){
             if(squareController.getBoardOwner(i) == id) squareController.setBoardId(i, -1);
         }
@@ -182,32 +208,166 @@ public class Monopoly{
         // newpos sqaure effect
 
         // Finally, Check player money. If less than 0, declare bankruptcies.
+        int currentPlayer = PlayerController.getCurrentPlayer();
+        int oldPos = PlayerController.getPlayerCurrentSquare(currentPlayer);
+        int newPos = oldPos + move;
+        int salary = squareController.GoSalary();
+        if (newPos>19){
+            newPos -= 20;
+            System.out.println("Passes through GO. You get $"+salary+" salary.");
+            PlayerController.setPlayersMoney(currentPlayer, PlayerController.getPlayerMoney(currentPlayer)+salary);
+        }
+        PlayerController.setPlayerCurrentSquare(currentPlayer, newPos);
+
+        EffectCenter(PlayerController.getPlayerCurrentSquare(currentPlayer),currentPlayer);
+
+        if (PlayerController.getPlayerMoney(currentPlayer)<0){
+            bankruptcy(currentPlayer);
+        }
     }
 
-    public int EffectCenter(int squareId) {
+    public static void HandleInJail(int inJailDays) {
         /**
-         * This function is to redirect the sqaure to its belonging effect
+         * This function will
          */
-        switch(squareId+1){    
-            case 1:    
-                return squareController.GoSalary();
+        int choice;
+        int[] dice;
+        Scanner myObj = new Scanner(System.in);
+        int currentPlayer = PlayerController.getCurrentPlayer();
+
+        System.out.println("You're in jail and cannot make a move.");
+        System.out.println("Number of turns in jail: "+(inJailDays+1));
+        if (inJailDays==0){
+            while(true){
+                System.out.println("Enter 1 to roll the dice:");
+                choice = myObj.nextInt();
+                if (choice==1){
+                    dice = Controller.rollingDice();
+                    System.out.println(UserInterface.sysv.printRollDiceResult(dice));
+                    if (dice[0]==dice[1]){
+                        System.out.println("You succeed to get out of the jail. Congratulation!");
+                        PlayerController.setPlayerDaysInJail(currentPlayer,-1);
+                        PlayerMakeAMove(dice[0]+dice[1]);
+                        break;
+                    }
+                    else{
+                        System.out.println("You failed to get out of the jail. Try again in the next round.");
+                        PlayerController.setPlayerDaysInJail(currentPlayer,inJailDays+1);
+                        break;
+                    }
+                }
+                else{
+                    System.out.println("You can only enter 1 to continue.");
+                }
+            }
+        }
+        else{
+            while(true){
+                System.out.println("Enter 1 to roll the dice, 2 to pay a fine of HKD 150:");
+                choice = myObj.nextInt();
+                dice = Controller.rollingDice();
+                if (choice==1){
+                    System.out.println(UserInterface.sysv.printRollDiceResult(dice));
+                    if (dice[0]==dice[1]){
+                        System.out.println("You succeed to get out of the jail. Congratulation!");
+                        PlayerController.setPlayerDaysInJail(currentPlayer,-1);
+                        PlayerMakeAMove(dice[0]+dice[1]);
+                        break;
+                    }
+                    else{
+                        if (inJailDays==2){
+                            System.out.println("You failed to get out of the jail. You must pay a fine of HKD 150 to leave.");
+                            System.out.println("Fine paid. You can get out of the jail now.");
+                            PlayerController.setPlayersMoney(currentPlayer, PlayerController.getPlayerMoney(currentPlayer)-150);
+                            PlayerController.setPlayerDaysInJail(currentPlayer,-1);
+                            PlayerMakeAMove(dice[0]+dice[1]);
+                            break;
+                        }
+                        else{
+                            System.out.println("You failed to get out of the jail. Try again in the next round.");
+                            PlayerController.setPlayerDaysInJail(currentPlayer,inJailDays+1);
+                            break;
+                        }
+                    }
+                }
+                if (choice==2){
+                    System.out.println("Fine paid. You can get out of the jail now.");
+                    PlayerController.setPlayersMoney(currentPlayer, PlayerController.getPlayerMoney(currentPlayer)-150);
+                    PlayerController.setPlayerDaysInJail(currentPlayer,-1);
+                    System.out.println(UserInterface.sysv.printRollDiceResult(dice));
+                    PlayerMakeAMove(dice[0]+dice[1]);
+                    break;
+                }
+                else{
+                    System.out.println("You can only enter 1 or 2 to continue.");
+                }
+            }
+        }
+    }
+
+    public static void EffectCenter(int squareId, int currentPlayer) {
+        /**
+         * This function is to redirect the square to its belonging effect
+         */
+        if (squareId!=0){
+            System.out.print((squareId+1)+":");
+        }
+        switch(squareId+1){
             case 9:
             case 13:
             case 19:
-                return squareController.ChanceSalary();
+                int chance = squareController.ChanceSalary();
+                if (chance <0){
+                    System.out.println(squareController.SquareName(squareId)+": You lose $"+ Math.abs(chance));
+                }
+                else{
+                    System.out.println(squareController.SquareName(squareId)+": You gain $"+chance);
+                }
+                PlayerController.setPlayersMoney(currentPlayer, PlayerController.getPlayerMoney(currentPlayer)+chance);
+                System.out.println("You have $"+PlayerController.getPlayerMoney(currentPlayer));
+                break;
             case 4:
-                return PlayerController.PayTax();
-            default:     
-                return squareController.NoEffect();
-       }    
+                int tax = PlayerController.PayTax();
+                System.out.println(squareController.SquareName(squareId)+": You have to pay $"+tax+" tax.");
+                PlayerController.setPlayersMoney(currentPlayer, PlayerController.getPlayerMoney(currentPlayer)-tax);
+                System.out.println("You have $"+PlayerController.getPlayerMoney(currentPlayer));
+                break;
+            case 1:
+                break;
+            case 6:
+            case 11:
+                System.out.println(squareController.SquareName(squareId)+": No effect.");
+                break;
+            case 16:
+                System.out.println(squareController.SquareName(squareId)+": You have to go to jail.");
+                PlayerController.setPlayerDaysInJail(currentPlayer,0);
+                PlayerController.setPlayerCurrentSquare(currentPlayer, 5);
+                break;
+            default:
+                String name = squareController.SquareName(squareId);
+                if (squareController.getBoardOwner(squareId)==-1){
+                    SquarePurchase(squareId);
+                }
+                else{
+                    int owner = squareController.getBoardOwner(squareId);
+                    if (currentPlayer!=owner){
+                        SquarePayRent(squareId);
+                    }
+                    else{
+                        System.out.println(name+" is owned by you. No effect.");
+                    }
+                }
+                break;
+       }
     }
 
-    public void SquarePurchase(int squareId) {
+    public static void SquarePurchase(int squareId) {
         /**
          * This function is to handle the player’s purchase of property. 
          */
+        String name = squareController.SquareName(squareId);
         int landPrice = squareController.SquarePrice(squareId);
-        currentPlayer = PlayerController.getCurrentPlayer();
+        int currentPlayer = PlayerController.getCurrentPlayer();
         int balance = PlayerController.getPlayerMoney(currentPlayer);
         if(balance >= landPrice){
             // confirm message, return if fail to confirm.
@@ -216,20 +376,52 @@ public class Monopoly{
             // successful message
         }else{
             // fail to pay message
+            System.out.println(name+" is unowned.");
+            System.out.println("Price of "+name+" is $"+landPrice);
+            System.out.println("You have $"+balance);
+            Scanner myObj = new Scanner(System.in);
+            int choice;
+            while(true){
+                System.out.println("Would you like to buy the property? Enter 1 to buy, 2 to do nothing:");
+                choice = myObj.nextInt();
+                if(choice==1){
+                    if(balance >= landPrice){
+                        PlayerController.setPlayersMoney(currentPlayer, balance-landPrice);
+                        squareController.setBoardOwner(squareId, currentPlayer);
+                        System.out.println("You have bought "+name+". Remaining amount of money: $"+PlayerController.getPlayerMoney(currentPlayer));
+                        break;
+                    }
+                    else{
+                        System.out.println("You only have $"+PlayerController.getPlayerMoney(currentPlayer)+". You do not have enough money to buy "+name+".");
+                        break;
+                    }
+                }
+                if(choice==2){
+                    System.out.println("You chose not to buy "+name+". No effect.");
+                    break;
+                }
+                else{
+                    System.out.println("You can only enter 1 or 2 to continue.");
+                }
+            }
         }
     }
 
-    public void SquarePayRent(int squareId) {
+    public static void SquarePayRent(int squareId) {
         /**
          * This function is to handle the player’s payment of rent and the owner’s receipt of rent.
          */
+        String name = squareController.SquareName(squareId);
         int landRent = squareController.SquareRent(squareId);
+        int currentPlayer = PlayerController.getCurrentPlayer();
         int owner = squareController.getBoardOwner(squareId);
-        currentPlayer = PlayerController.getCurrentPlayer();
-        int balance = PlayerController.getPlayerMoney(currentPlayer);
-        PlayerController.setPlayersMoney(currentPlayer, balance-landRent);
-        PlayerController.setPlayersMoney(owner, PlayerController.getPlayerMoney(owner) + landRent); // todo, need to fix if the renter don't have money.
-        // money remaining message
+
+        System.out.println(name+" is owned by player "+(owner+1));
+        System.out.println("You have to pay the rent of "+name+" of $"+landRent+" to player "+(owner+1));
+        PlayerController.setPlayersMoney(currentPlayer, PlayerController.getPlayerMoney(currentPlayer)-landRent);
+        PlayerController.setPlayersMoney(owner, PlayerController.getPlayerMoney(owner)+landRent);
+        System.out.println("You have $"+PlayerController.getPlayerMoney(currentPlayer)+" now.");
+        System.out.println("Player "+(owner+1)+" have $"+PlayerController.getPlayerMoney(owner)+" now.");
     }
 
     public static String askForLoadFileName(String[] filenames){

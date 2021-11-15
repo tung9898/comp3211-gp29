@@ -89,6 +89,7 @@ public class PlayerController extends Controller{
         model.setDaysInJail(daysInJail);
     }
 
+
     public int getDaysInJail() {
         /**
          * This function will call player model to return days of in jail of the player.
@@ -267,6 +268,14 @@ public class PlayerController extends Controller{
         return players[playerNum].getBankruptcy();
     }
 
+
+    public static void setPlayerCurrentSquare(int playerNum, int position) {
+        /**
+         * This function will set current square of a player
+         */
+        players[playerNum].setCurrentSquare(position);
+    }
+
     public static int getDaysInJail(int playerNum) {
         /**
          * This function will get days in jail of a player
@@ -279,6 +288,20 @@ public class PlayerController extends Controller{
          * This function will get current square of a player
          */
         return players[playerNum].getCurrentSquare();
+    }
+
+    public static void setPlayerDaysInJail(int playerNum, int days) {
+        /**
+         * This function will set current square of a player
+         */
+        players[playerNum].setDaysInJail(days);
+    }
+
+    public static void setPlayerBankruptcy(int playerNum) {
+        /**
+         * This function will set current square of a player
+         */
+        players[playerNum].setBankruptcy(true);
     }
 
     public static int[][] leaderboard() {
