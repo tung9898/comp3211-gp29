@@ -55,6 +55,7 @@ public class Monopoly{
                 System.out.println(UserInterface.printBeginActionInputError());
             }
         }
+        
         switch (action) {
             case 1:
                 // request a number from a range, use for the number of player.
@@ -66,7 +67,7 @@ public class Monopoly{
                     try{
                         numberOfPlayer = myObj.nextInt();
                         if (MinimumNumberOfPlayer <= numberOfPlayer && numberOfPlayer <= MaximumNumberOfPlayer){
-                            InitSquare(numberOfPlayer);
+                            InitGame(numberOfPlayer);
                             break;
                         }
                         else{
@@ -196,7 +197,7 @@ public class Monopoly{
         }
     }
 
-    public static void InitSquare(int numberOfPlayer) {
+    public static void InitGame(int numberOfPlayer) {
         /*
           This function is to set some important data when the game starts.
          */

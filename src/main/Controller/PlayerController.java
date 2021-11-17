@@ -226,6 +226,10 @@ public class PlayerController extends Controller{
           This function will create a player
          */
         players[number] = new Player(number);
+        Scanner userInput = new Scanner(System.in);
+        System.out.print("Please input player "+ (int)(number + 1) +"'s name: ");
+        players[number].setName(userInput.nextLine());
+        //System.out.println(players[number].getName());
     }
 
     public void setPlayersMoney(int playerNum, int money){
