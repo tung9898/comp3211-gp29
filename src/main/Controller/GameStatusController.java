@@ -20,12 +20,7 @@ public class GameStatusController extends Controller{
 
 
     public static void setGameStatus(int _TotalNumberOfPlayers, int _CurrentNumberOfPlayers, int _Rounds){
-        model = new GameStatus(_TotalNumberOfPlayers, _CurrentNumberOfPlayers, _Rounds);
-    // Can delete the printlns
-                    System.out.println("TotalNumberOfPlayers: "+ model.getTotalNumberOfPlayers());
-                    System.out.println("CurrentNumberOfPlayers: "+ model.getCurrentNumberOfPlayers());
-                    System.out.println("Rounds: "+ model.getRounds());
-                    
+        model = new GameStatus(_TotalNumberOfPlayers, _CurrentNumberOfPlayers, _Rounds);                
     }
     
     public static int getTotalNumberOfPlayers() {
@@ -120,8 +115,8 @@ public class GameStatusController extends Controller{
         }
     } */
 
-    public static void printRoundStarted(){
-        System.out.println(view.printRoundStarted());
+    public void printRoundStarted(){
+        System.out.println(view.printRoundStarted(model.getRounds()));
     }
 
     public static Map<String, Object> getGameStatusMap(){

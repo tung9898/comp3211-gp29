@@ -6,6 +6,8 @@ import Controller.PlayerController;
 
 public class PlayerView extends UserInterface{
 
+    
+
     public String printBankruptcyWarning(){ 
         return "Your money is not under 0, make your choice wisely."; 
     }
@@ -61,6 +63,62 @@ public class PlayerView extends UserInterface{
         return msg; */
         String msg = "------------------------------------------" + nl + "How many players ? ";
         msg += "(" + min + " to " + max + ") : ";
+        return msg;
+    }
+
+    public String printPlayerPositionInMP(int currentPos[]){ 
+        return
+        "\t\t\t ╔══════╤══════╤══════╤══════╤══════╤══════╗ \n" +
+        "\t\t\t ║  "+(currentPos[10] == 0?"11":" *")+
+        "  │  "+(currentPos[11] == 0?"12":" *")+
+        "  │  "+(currentPos[12] == 0?"13":" *")+
+        "  │  "+(currentPos[13] == 0?"14":" *")+
+        "  │  "+(currentPos[14] == 0?"15":" *")+
+        "  │  "+(currentPos[15] == 0?"16":" *")+"  ║  \n" +
+        "\t\t\t ║──────┼──────┴──────┴──────┴──────┼──────╢  \n" +
+        "\t\t\t ║  "+(currentPos[9] == 0?"10":" *")+
+        "  │                           │  "+(currentPos[16] == 0?"10":" *")+"  ║  \n" +
+        "\t\t\t ║──────┤                           ├──────║  \n" +
+        "\t\t\t ║  "+(currentPos[8] == 0?"09":" *")+
+        "  │                           │  "+(currentPos[17] == 0?"09":" *")+"  ║  \n" +
+        "\t\t\t ║──────┤          MONOPOLY         ├──────║  \n" +
+        "\t\t\t ║  "+(currentPos[7] == 0?"08":" *")+
+        "  │                           │  "+(currentPos[18] == 0?"19":" *")+"  ║  \n" +
+        "\t\t\t ║──────┤                           ├──────║  \n" +
+        "\t\t\t ║  "+(currentPos[6] == 0?"07":" *")+
+        "  │                           │  "+(currentPos[19] == 0?"20":" *")+"  ║  \n" +
+        "\t\t\t ║──────┼──────┬──────┬──────┬──────┼──────║  \n" +
+        "\t\t\t ║  "+(currentPos[5] == 0?"06":" *")+
+        "  │  "+(currentPos[4] == 0?"05":" *")+
+        "  │  "+(currentPos[3] == 0?"04":" *")+
+        "  │  "+(currentPos[2] == 0?"03":" *")+
+        "  │  "+(currentPos[1] == 0?"02":" *")+
+        "  │  "+(currentPos[0] == 0?"01":" *")+"  ║  \n" +
+        "\t\t\t ╚══════╧══════╧══════╧══════╧══════╧══════╝  \n";
+    }
+
+    public String printAllPlayerStatus(){
+        return "";
+    }
+
+    public String printPlayerPosition(String name, int price, int rent){ 
+        //SquareController.SquareName(pos)
+        int pid = PlayerController.getCurrentPlayer();
+        String msg = 
+            "Player " + pid;
+
+        int pos = PlayerController.getPlayerCurrentSquare(pid);
+        msg += ", your position is in board " + pos + nl;
+
+        int currentPos[] = new int[20];
+        currentPos[pos] = 1;
+        msg += printPlayerPositionInMP(currentPos);
+
+        if(name != "-1"){
+            msg += "Square Name: " + name + nl;
+            msg += "Square Price: " + price + nl;
+            msg += "Square Rent: " + rent + nl;
+        }
         return msg;
     }
 }

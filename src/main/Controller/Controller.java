@@ -15,20 +15,16 @@ public class Controller {
         return rand.nextInt(number);
     }
 
-    public static int getRandom(int min, int max){
-        return rand.nextInt(max - min + 1) + min;
-    }
-    
     public static int[] rollingDice() {
-        /**
-         * This function will randomly generate 2 number in a specific range.
+        /*
+          This function will randomly generate 2 number in a 4 side of die.
          */
         int numberOfDice = 2;
         int numberOfSide = 4;
 
         int[] r = new int[numberOfDice];
-        r[0] = rand.nextInt(numberOfSide)+1;
-        r[1] = rand.nextInt(numberOfSide)+1;
+        for(int i = 0; i < numberOfDice; i++)
+            r[i] = getRandom(numberOfSide)+1;
         return r;
     }
 }

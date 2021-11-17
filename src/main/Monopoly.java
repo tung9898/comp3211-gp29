@@ -9,31 +9,32 @@ import View.*;
 
 public class Monopoly{
     /**
-     * Declare the borad, using a list of object.
+     * Declare the board, using a list of object.
      */
-    
-    static int currentPlayer;
-/*     static int numberOfDice = 2;
-    static int numberOfSide = 4; */
+
+//    static int numberOfDice = 2;
+//    static int numberOfSide = 4;
     static int MaximumNumberOfPlayer = 6;
     static int MinimumNumberOfPlayer = 2;
 
+
     static GameStatus gameStatusModel;
     static GameStatusView gameStatusView = new GameStatusView();
+
     static GameStatusController statusController;
 
     static SquareController squareController = new SquareController();
 
     public static void main(String[] args) {
-        /**
-         * This function is the main function of Monopoly.  
+        /*
+          This function is the main function of Monopoly.
          */
 
         // init board using list, make a list of square, from 0 to 19
         System.out.println(UserInterface.gsv.printWelcome());
         // Ask for start game or load game
         int action = -1;
-        Scanner userInput = new Scanner(System.in); // need userInput.close(); ?
+        Scanner userInput = new Scanner(System.in);
         // 3 for testing save file function
         while(!(action == 1 || action == 2 || action == 3)){
             System.out.print(UserInterface.printBeginActionInput());
@@ -53,7 +54,7 @@ public class Monopoly{
                     System.out.print(UserInterface.pv.printNumberOfPlayerInput(MinimumNumberOfPlayer, MaximumNumberOfPlayer));
                     numberOfPlayer = myObj.nextInt();
                     if (MinimumNumberOfPlayer <= numberOfPlayer && numberOfPlayer <= MaximumNumberOfPlayer){
-                        InitSqaure(numberOfPlayer);
+                        InitSquare(numberOfPlayer);
                         break;
                     }
                     else{
@@ -61,18 +62,11 @@ public class Monopoly{
                     }
                 }
                 // start the game
-                boolean keepTheGameRun = true;
-                while(keepTheGameRun) {
-                    GameStart();
-                    if(GameStart()==false){
-                        break;
-                    }
+                while (GameStart());
                     // ask for input if player want to continue;
                         // break if necessary
                     // ask for input if player want to change to number of player;
                         // call InitSquare if necessary
-                }
-                // end
                 break;
             case 2:
                 // Load file
@@ -116,8 +110,8 @@ public class Monopoly{
     }
 
     public static boolean GameStart(){
-        /**
-         * This function is to run each game round. 
+        /*
+          This function is to run each game round.
          */
         int turns = statusController.getCurrentNumberOfPlayers();
         while(true){
@@ -130,9 +124,9 @@ public class Monopoly{
                 System.out.println(UserInterface.sysv.printTurnStarted(i+1));
                 int currentPos[] = new int[20];
                 currentPos[PlayerController.getPlayerCurrentSquare(i)] = 1;
-                System.out.println(UserInterface.gsv.printPlayerPositionInMP(currentPos));
+                System.out.println(UserInterface.pv.printPlayerPositionInMP(currentPos));
                 if(PlayerController.getDaysInJail(i) > -1) {
-                    // Check the player in jail days, if it is not -1, thats mean the player is in jail.
+                    // Check the player in jail days, if it is not -1, that's mean the player is in jail.
                     HandleInJail(PlayerController.getDaysInJail(i));
                 }
                 else{
@@ -167,13 +161,12 @@ public class Monopoly{
         }
     }
 
-    public static void InitSqaure(int numberOfPlayer) {
-        /**
-         * This function is to set some important data when the game starts. 
+    public static void InitSquare(int numberOfPlayer) {
+        /*
+          This function is to set some important data when the game starts.
          */
         gameStatusModel = new GameStatus(numberOfPlayer, numberOfPlayer);
-        statusController = new GameStatusController(gameStatusModel, gameStatusView);
-
+        statusController = new GameStatusController(gameStatusModel,gameStatusView);
         PlayerController.setPlayers(numberOfPlayer);
         SquareController.initBoard();
         for(int i = 0; i < numberOfPlayer; i++) {
@@ -184,10 +177,10 @@ public class Monopoly{
     }
 
     public static void bankruptcy(int id) {
-        /**
-         * This function will done all the things after a player has a
-         * negative amount of money.
-         * Set all of his/her properties to unowned.
+        /*
+          This function will done all the things after a player has a
+          negative amount of money.
+          Set all of his/her properties to unowned.
          */
         PlayerController.setPlayerBankruptcy(id);
         for(int i = 0; i < squareController.getSquare().length; i++){
@@ -196,8 +189,8 @@ public class Monopoly{
     }
 
     public static void PlayerMakeAMove(int move) {
-        /**
-         * This function will help player to make a move.
+        /*
+          This function will help player to make a move.
          */
         // check if player is in jail
         // return if jail is not break
@@ -205,7 +198,7 @@ public class Monopoly{
         // int newpos = oldpos + move;
         // if newpos > 19, newpos -= 20;
         // current player pos = newpos; // delete old pos and add new pos in Square.java
-        // newpos sqaure effect
+        // newpos square effect
 
         // Finally, Check player money. If less than 0, declare bankruptcies.
         int currentPlayer = PlayerController.getCurrentPlayer();
@@ -227,8 +220,8 @@ public class Monopoly{
     }
 
     public static void HandleInJail(int inJailDays) {
-        /**
-         * This function will
+        /*
+          This function will
          */
         int choice;
         int[] dice;
@@ -306,8 +299,8 @@ public class Monopoly{
     }
 
     public static void EffectCenter(int squareId, int currentPlayer) {
-        /**
-         * This function is to redirect the square to its belonging effect
+        /*
+          This function is to redirect the square to its belonging effect
          */
         if (squareId!=0){
             System.out.print((squareId+1)+":");
@@ -362,8 +355,8 @@ public class Monopoly{
     }
 
     public static void SquarePurchase(int squareId) {
-        /**
-         * This function is to handle the player’s purchase of property. 
+        /*
+          This function is to handle the player’s purchase of property.
          */
         String name = squareController.SquareName(squareId);
         int landPrice = squareController.SquarePrice(squareId);
@@ -408,8 +401,8 @@ public class Monopoly{
     }
 
     public static void SquarePayRent(int squareId) {
-        /**
-         * This function is to handle the player’s payment of rent and the owner’s receipt of rent.
+        /*
+          This function is to handle the player’s payment of rent and the owner’s receipt of rent.
          */
         String name = squareController.SquareName(squareId);
         int landRent = squareController.SquareRent(squareId);
