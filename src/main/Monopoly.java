@@ -123,6 +123,7 @@ public class Monopoly{
         int turns = gameStatusController.getCurrentNumberOfPlayers();
         while(true){
             gameStatusController.printRoundStarted();
+            System.out.println(UserInterface.pv.printLeaderBoard());
             for(int i = 0; i < turns; i++){
                 PlayerController.setCurrentPlayer(i);
                 if(PlayerController.getPlayerBankruptcy(i)) {

@@ -125,4 +125,13 @@ public class PlayerView extends UserInterface{
         }
         return msg;
     }
+
+    public String printLeaderBoard(){
+        String msg = "Rank" + tab + "Player ID" + tab + "Money" + nl;
+        int [][] leaderboard = PlayerController.leaderboard();
+        for (int i = 0; i < leaderboard.length; ++i) {
+            msg += leaderboard[i][0] + tab + (leaderboard[i][1] + 1) + tab + tab + leaderboard[i][2] + nl;
+        }
+        return msg;
+    }
 }
