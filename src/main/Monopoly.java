@@ -4,8 +4,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import Controller.*;
-import Model.*;
-import View.*;
+import View.UserInterface;
 
 public class Monopoly{
     /**
@@ -17,9 +16,6 @@ public class Monopoly{
     static int numberOfSide = 4; */
     static int MaximumNumberOfPlayer = 6;
     static int MinimumNumberOfPlayer = 2;
-
-    static GameStatus gameStatusModel;
-    static GameStatusView gameStatusView;
     static GameStatusController statusController;
 
     static SquareController squareController = new SquareController();
@@ -171,8 +167,6 @@ public class Monopoly{
         /**
          * This function is to set some important data when the game starts. 
          */
-        gameStatusModel = new GameStatus(numberOfPlayer, numberOfPlayer);
-        statusController = new GameStatusController(gameStatusModel, gameStatusView);
 
         PlayerController.setPlayers(numberOfPlayer);
         SquareController.initBoard();
