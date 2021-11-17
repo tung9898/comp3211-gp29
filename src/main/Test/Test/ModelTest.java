@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import Model.*;
 
-public class MonopolyTest {
+public class ModelTest {
     /* 
      * Create some objects for test checking 
     */
