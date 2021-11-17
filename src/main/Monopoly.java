@@ -4,8 +4,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import Controller.*;
-import Model.*;
-import View.*;
+import View.UserInterface;
 
 public class Monopoly{
     /**
@@ -14,16 +13,13 @@ public class Monopoly{
 
 //    static int numberOfDice = 2;
 //    static int numberOfSide = 4;
-    static int MaximumNumberOfPlayer = 6;
-    static int MinimumNumberOfPlayer = 2;
+    protected static int MaximumNumberOfPlayer = 6;
+    protected static int MinimumNumberOfPlayer = 2;
 
+    protected static Controller controller = new Controller();
+    protected static GameStatusController gameStatusController = new GameStatusController();
 
-    static GameStatus gameStatusModel;
-    static GameStatusView gameStatusView = new GameStatusView();
-
-    static GameStatusController statusController;
-
-    static SquareController squareController = new SquareController();
+    protected static SquareController squareController = new SquareController();
 
     public static void main(String[] args) {
         /*
@@ -76,12 +72,12 @@ public class Monopoly{
                 try{
                     JSONObject gameStatusObject = (JSONObject) loadObject.get("GameStatus");
 
-                    GameStatusController.setGameStatus( ((Long) gameStatusObject.get("TotalNumberOfPlayers")).intValue(),
+                    gameStatusController.setGameStatus( ((Long) gameStatusObject.get("TotalNumberOfPlayers")).intValue(),
                             ((Long) gameStatusObject.get("CurrentNumberOfPlayers")).intValue(),
                             ((Long) gameStatusObject.get("Rounds")).intValue());
 
 
-                    PlayerController.setPlayers((JSONArray) gameStatusObject.get("Players"), GameStatusController.getTotalNumberOfPlayers());
+                    PlayerController.setPlayers((JSONArray) gameStatusObject.get("Players"), gameStatusController.getTotalNumberOfPlayers());
                     System.out.println("Load successfully~");
                 }catch(NullPointerException e){
                     System.out.println("Error occur!\n" + e + "\n Load failed!");
@@ -101,7 +97,7 @@ public class Monopoly{
                 String saveFileName = userInput.next();
 
                 // Save file
-                IoController.saveFile(PlayerController.getPlayersList(), GameStatusController.getGameStatusMap(), saveFileName);
+                IoController.saveFile(PlayerController.getPlayersList(), gameStatusController.getGameStatusMap(), saveFileName);
                 // ActionController.saveFile(PlayerController.getPlayers(), gameStatusModel);
                 break;
             default:
@@ -113,9 +109,9 @@ public class Monopoly{
         /*
           This function is to run each game round.
          */
-        int turns = statusController.getCurrentNumberOfPlayers();
+        int turns = gameStatusController.getCurrentNumberOfPlayers();
         while(true){
-            statusController.printRoundStarted();
+            gameStatusController.printRoundStarted();
             for(int i = 0; i < turns; i++){
                 PlayerController.setCurrentPlayer(i);
                 if(PlayerController.getPlayerBankruptcy(i)) {
@@ -130,11 +126,11 @@ public class Monopoly{
                     HandleInJail(PlayerController.getDaysInJail(i));
                 }
                 else{
-                    System.out.println("Make the choice: 1 to roll the dice, 2 to save & exit the game");
+                    System.out.println("Make the choice: \n[1] to roll the dice, 2 to save & exit the game");
                     Scanner myObj = new Scanner(System.in);
                     int choice = myObj.nextInt();
                     if (choice==1){
-                        int[] dice = Controller.rollingDice();
+                        int[] dice = controller.rollingDice();
                         System.out.println(UserInterface.sysv.printRollDiceResult(dice));
                         PlayerMakeAMove(dice[0] + dice[1]);
                         // turns--;
@@ -146,7 +142,7 @@ public class Monopoly{
                 }
             }
             System.out.println(UserInterface.gsv.printRoundEnded());
-            if(GameStatusController.RoundEnd() || GameStatusController.getCurrentNumberOfPlayers() == 1){
+            if(gameStatusController.RoundEnd() || gameStatusController.getCurrentNumberOfPlayers() == 1){
                 PlayerController.CheckWinner();
                 System.out.println("Make the choice: 1 to play a new game, 2 to exit the game");
                 Scanner myObj = new Scanner(System.in);
@@ -165,8 +161,7 @@ public class Monopoly{
         /*
           This function is to set some important data when the game starts.
          */
-        gameStatusModel = new GameStatus(numberOfPlayer, numberOfPlayer);
-        statusController = new GameStatusController(gameStatusModel,gameStatusView);
+        gameStatusController = new GameStatusController(numberOfPlayer);
         PlayerController.setPlayers(numberOfPlayer);
         SquareController.initBoard();
         for(int i = 0; i < numberOfPlayer; i++) {
@@ -235,7 +230,7 @@ public class Monopoly{
                 System.out.println("Enter 1 to roll the dice:");
                 choice = myObj.nextInt();
                 if (choice==1){
-                    dice = Controller.rollingDice();
+                    dice = controller.rollingDice();
                     System.out.println(UserInterface.sysv.printRollDiceResult(dice));
                     if (dice[0]==dice[1]){
                         System.out.println("You succeed to get out of the jail. Congratulation!");
@@ -258,7 +253,7 @@ public class Monopoly{
             while(true){
                 System.out.println("Enter 1 to roll the dice, 2 to pay a fine of HKD 150:");
                 choice = myObj.nextInt();
-                dice = Controller.rollingDice();
+                dice = controller.rollingDice();
                 if (choice==1){
                     System.out.println(UserInterface.sysv.printRollDiceResult(dice));
                     if (dice[0]==dice[1]){

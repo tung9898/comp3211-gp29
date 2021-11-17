@@ -10,78 +10,83 @@ public class GameStatusController extends Controller{
       *  This controller relates to the game status
      */
 
-    protected static GameStatus model;
-    protected static GameStatusView view;
+    protected GameStatus model;
+    protected GameStatusView view = new GameStatusView();
 
-    public GameStatusController(GameStatus model, GameStatusView view){
+    public GameStatusController(){}
+
+    public GameStatusController(GameStatus model){
         this.model = model;
-        this.view = view;
+    }
+
+    public GameStatusController(int numberOfPlayer){
+        this.model = new GameStatus(numberOfPlayer, numberOfPlayer);
     }
 
 
-    public static void setGameStatus(int _TotalNumberOfPlayers, int _CurrentNumberOfPlayers, int _Rounds){
-        model = new GameStatus(_TotalNumberOfPlayers, _CurrentNumberOfPlayers, _Rounds);                
+    public void setGameStatus(int _TotalNumberOfPlayers, int _CurrentNumberOfPlayers, int _Rounds){
+        this.model = new GameStatus(_TotalNumberOfPlayers, _CurrentNumberOfPlayers, _Rounds);                
     }
     
-    public static int getTotalNumberOfPlayers() {
+    public int getTotalNumberOfPlayers() {
         /* 
          * This function return the number of total player,
          * including the player is already bankruptcy.
          */
-        return model.getCurrentNumberOfPlayers();
+        return this.model.getCurrentNumberOfPlayers();
     }
 
-    public static void setTotalNumberOfPlayers(int totalNumberOfPlayers) {
+    public void setTotalNumberOfPlayers(int totalNumberOfPlayers) {
         /*
          * This function can only run before the first round start.
          * By using this function, the number of total players will be changed;
          * Max value = 6
          * Min value = 2
          */
-        if(model.getRounds() == 0) model.setTotalNumberOfPlayers(totalNumberOfPlayers);
+        if(this.model.getRounds() == 0) this.model.setTotalNumberOfPlayers(totalNumberOfPlayers);
     }
 
-    public static int getCurrentNumberOfPlayers() {
+    public int getCurrentNumberOfPlayers() {
         /* 
          * This function return the number of current player.
          */
-        return model.getCurrentNumberOfPlayers();
+        return this.model.getCurrentNumberOfPlayers();
     }
 
-    public static void setCurrentNumberOfPlayers(int currentNumberOfPlayers) {
+    public void setCurrentNumberOfPlayers(int currentNumberOfPlayers) {
         /*
          * This function is to set the current number of players,
          * if a player went bankruptcy, this function will be call.
          * If only 1 player left in the board, winner will be that remaining player.
          */
-        model.setCurrentNumberOfPlayers(currentNumberOfPlayers);
+        this.model.setCurrentNumberOfPlayers(currentNumberOfPlayers);
         //if(model.getCurrentNumberOfPlayers() == 1) CheckWinner();
     }
 
-    public static void setRounds(int rounds){
+    public void setRounds(int rounds){
         /* 
          * This function calling the setter of round in GameStatus model.
          */
-        model.setRounds(rounds);
+        this.model.setRounds(rounds);
     }
 
-    public static int getRounds(){
+    public int getRounds(){
         /* 
          * This function calling the getter of round in GameStatus model.
          */
-        return model.getRounds();
+        return this.model.getRounds();
     }
 
-    public static boolean RoundEnd() {
+    public boolean RoundEnd() {
         /*
          * This function will be called when all player taking their turns once.
          * This function checks the rounds if it is more than 100.
          */
 
-        if(getRounds() > 100){
+        if(this.getRounds() > 100){
             return true;
         } else{
-            setRounds(getRounds()+1);
+            this.setRounds(this.getRounds()+1);
             return false;
         }
     }
@@ -119,11 +124,11 @@ public class GameStatusController extends Controller{
         System.out.println(view.printRoundStarted(model.getRounds()));
     }
 
-    public static Map<String, Object> getGameStatusMap(){
+    public Map<String, Object> getGameStatusMap(){
         Map<String,Object> gameStatusMap = new HashMap<String, Object>();
-        gameStatusMap.put("TotalNumberOfPlayers", model.getTotalNumberOfPlayers());
-        gameStatusMap.put("CurrentNumberOfPlayers", model.getCurrentNumberOfPlayers());
-        gameStatusMap.put("Rounds", model.getRounds());
+        gameStatusMap.put("TotalNumberOfPlayers", this.model.getTotalNumberOfPlayers());
+        gameStatusMap.put("CurrentNumberOfPlayers", this.model.getCurrentNumberOfPlayers());
+        gameStatusMap.put("Rounds", this.model.getRounds());
         return gameStatusMap;
     }
 }

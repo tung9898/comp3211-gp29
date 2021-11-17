@@ -9,13 +9,13 @@ public class Controller {
       *  This controller mainly for player's action
      */
 
-    protected static Random rand = new Random();
+    protected Random rand = new Random();
 
-    public static int getRandom(int number){
-        return rand.nextInt(number);
+    public int getRandom(int number){
+        return this.rand.nextInt(number);
     }
 
-    public static int[] rollingDice() {
+    public int[] rollingDice() {
         /*
           This function will randomly generate 2 number in a 4 side of die.
          */

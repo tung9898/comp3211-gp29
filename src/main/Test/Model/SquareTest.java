@@ -1,6 +1,8 @@
-package Model;
+package Test.Model;
 
 import org.junit.jupiter.api.Test;
+
+import Model.Square;
 
 import static org.junit.jupiter.api.Assertions.*;
 
