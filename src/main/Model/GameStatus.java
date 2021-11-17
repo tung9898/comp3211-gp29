@@ -6,6 +6,7 @@ import java.util.Map;
 public class GameStatus{
     protected int TotalNumberOfPlayers;
     protected int CurrentNumberOfPlayers;
+    protected int CurrentPlayer;
     protected int Rounds = 1;
 
     public GameStatus(int totalNumberOfPlayers, int currentNumberOfPlayers){
@@ -43,6 +44,14 @@ public class GameStatus{
          * This function return the number of current player.
          */
         return CurrentNumberOfPlayers;
+    }
+
+    public void setCurrentPlayer(int currentPlayer){
+        CurrentPlayer = currentPlayer;
+    }
+
+    public int getCurrentPlayer(){
+        return CurrentPlayer;
     }
 
     public void setRounds(int rounds){

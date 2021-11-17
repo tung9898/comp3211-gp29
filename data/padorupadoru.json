@@ -1,0 +1,1 @@
+{"GameStatus":{"CurrentPlayer":1,"Rounds":2,"CurrentNumberOfPlayers":2,"TotalNumberOfPlayers":2,"Players":[{"Player":{"Money":800,"CurrentSquare":11,"Id":0,"DaysInJail":-1,"Bankruptcy":false,"Name":"Player 1"}},{"Player":{"Money":1500,"CurrentSquare":5,"Id":1,"DaysInJail":-1,"Bankruptcy":false,"Name":"Player 2"}}]}}

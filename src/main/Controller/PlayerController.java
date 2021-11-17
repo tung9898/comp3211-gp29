@@ -136,22 +136,22 @@ public class PlayerController extends Controller{
         model.setMoney(money);
     }
 
-    public static int PayTax() {
+    public int PayTax() {
         /*
          * This function will take the player 10% of his/her money for tax.
          * */
-        return TaxCalculate(PlayerController.getCurrentPlayer());
+        return TaxCalculate(currentPlayer);
     }
 
-    public static int TaxCalculate(int id) {
+    public int TaxCalculate(int id) {
        int percent = 10;
-       int x = PlayerController.getPlayerMoney(id);
+       int x = this.getPlayerMoney(id);
        x = x / (100 - percent);
        x = x - x % 10;
        return x;
     }
 
-    public static void CheckWinner(){
+    public void CheckWinner(){
         /*
          * This function will be called if there is only 1 player left
          * or after 100 rounds. 
@@ -165,7 +165,7 @@ public class PlayerController extends Controller{
         }
     }
 
-    public static Map<String, Object> getPlayerMap(Player player){
+    public Map<String, Object> getPlayerMap(Player player){
         Map<String,Object> playerMap = new HashMap<String, Object>();
         playerMap.put("Name",player.getName());
         playerMap.put("Id",player.getId());
@@ -176,7 +176,7 @@ public class PlayerController extends Controller{
         return playerMap;
     }
 
-    public static List<Map<String, Object>> getPlayersList(){
+    public List<Map<String, Object>> getPlayersList(){
         List<Map<String, Object>> playersList = new ArrayList<Map<String, Object>>();
         for(int i = 0; i < players.length; i++){
             playersList.add(getPlayerMap(players[i]));
@@ -184,12 +184,12 @@ public class PlayerController extends Controller{
         return playersList;
     }
 
-    public static void setPlayers(JSONArray _players, int playerLength){
+    public void setPlayers(JSONArray _players, int playerLength){
         players = new Player[playerLength];
         _players.forEach( player -> parsePlayerObject( (JSONObject) player ) );
     }
 
-    public static void parsePlayerObject(JSONObject player){
+    public void parsePlayerObject(JSONObject player){
         JSONObject playerObject = (JSONObject) player.get("Player");
         players[((Long) playerObject.get("Id")).intValue()] = new Player( String.valueOf(playerObject.get("Name")), 
                                                                                         ((Long) playerObject.get("Id")).intValue(), 
@@ -205,58 +205,58 @@ public class PlayerController extends Controller{
         System.out.println("CurrentSquare: "+players[((Long) playerObject.get("Id")).intValue()].getCurrentSquare());
         System.out.println("DaysInJail: "+players[((Long) playerObject.get("Id")).intValue()].getDaysInJail());
         System.out.println("Bankruptcy: "+players[((Long) playerObject.get("Id")).intValue()].getBankruptcy());
-}
+    }
 
-    public static Player[] getPlayers(){
+    public Player[] getPlayers(){
         /*
           This function will return the list of the player
          */
         return players;
     }
 
-    public static void setPlayers(int number){
+    public void setPlayers(int number){
         /*
           This function will create the player list
          */
         players = new Player[number];
     }
 
-    public static void setPlayer(int number){
+    public void setPlayer(int number){
         /*
           This function will create a player
          */
         players[number] = new Player(number);
     }
 
-    public static void setPlayersMoney(int playerNum, int money){
+    public void setPlayersMoney(int playerNum, int money){
         /*
           This function will set money of a player
          */
         players[playerNum].setMoney(money);
     }
 
-    public static int getPlayerMoney(int playerNum){
+    public int getPlayerMoney(int playerNum){
         /*
           This function will get money of a player
          */
         return players[playerNum].getMoney();
     }
 
-    public static void setCurrentPlayer(int number) {
+    public void setCurrentPlayer(int number) {
         /*
           This function will set current player number
          */
         currentPlayer = number;
     }
 
-    public static int getCurrentPlayer() {
+    public int getCurrentPlayer() {
         /*
           This function will get current player number
          */
         return currentPlayer;
     }
 
-    public static boolean getPlayerBankruptcy(int playerNum) {
+    public boolean getPlayerBankruptcy(int playerNum) {
         /*
           This function will get bankruptcy status of a player
          */
@@ -264,42 +264,42 @@ public class PlayerController extends Controller{
     }
 
 
-    public static void setPlayerCurrentSquare(int playerNum, int position) {
+    public void setPlayerCurrentSquare(int playerNum, int position) {
         /*
           This function will set current square of a player
          */
         players[playerNum].setCurrentSquare(position);
     }
 
-    public static int getDaysInJail(int playerNum) {
+    public int getDaysInJail(int playerNum) {
         /*
           This function will get days in jail of a player
          */
         return players[playerNum].getDaysInJail();
     }
 
-    public static int getPlayerCurrentSquare(int playerNum){
+    public int getPlayerCurrentSquare(int playerNum){
         /*
           This function will get current square of a player
          */
         return players[playerNum].getCurrentSquare();
     }
 
-    public static void setPlayerDaysInJail(int playerNum, int days) {
+    public void setPlayerDaysInJail(int playerNum, int days) {
         /*
           This function will set current square of a player
          */
         players[playerNum].setDaysInJail(days);
     }
 
-    public static void setPlayerBankruptcy(int playerNum) {
+    public void setPlayerBankruptcy(int playerNum) {
         /*
           This function will set current square of a player
          */
         players[playerNum].setBankruptcy(true);
     }
 
-    public static int[][] leaderboard() {
+    public int[][] leaderboard() {
         int numberOfPlayer = players.length;
         int[][] lb = new int[numberOfPlayer][3]; // 0 = Player Id, 1 = Player Balance
         for(int i = 0; i < numberOfPlayer; i++){

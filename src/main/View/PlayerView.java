@@ -6,8 +6,6 @@ import Controller.PlayerController;
 
 public class PlayerView extends UserInterface{
 
-    
-
     public String printBankruptcyWarning(){ 
         return "Your money is not under 0, make your choice wisely."; 
     }
@@ -20,15 +18,15 @@ public class PlayerView extends UserInterface{
         return "Bad luck! you need to pay the bank " + m + " HKD." + nl;
     }
 
-    public String printPayTax(int pid){
-        return "Income Tax: " + (PlayerController.getPlayerMoney(pid) - PlayerController.TaxCalculate(pid)) + nl;
+    public String printPayTax(int currentPlayerMoney, int tax){
+        return "Income Tax: " + (currentPlayerMoney - tax) + nl;
     }
 
-    public String printInJailDays(){ 
-        int pid = PlayerController.getCurrentPlayer();
+    public String printInJailDays(int currentPlayer, int currentPlayerMoneyDaysInJail){ 
+        int pid = currentPlayer;
         String msg = "";
-        if(PlayerController.getDaysInJail(pid) > -1){
-            msg = "Player " + (pid+1) + ", you are in jail for " + PlayerController.getDaysInJail(pid) + " days." + nl;
+        if(currentPlayerMoneyDaysInJail > -1){
+            msg = "Player " + (pid+1) + ", you are in jail for " + currentPlayerMoneyDaysInJail + " days." + nl;
         }else{
             msg = "Player " + (pid+1) + ", you are not in jail." + nl;
         }
@@ -53,13 +51,13 @@ public class PlayerView extends UserInterface{
         return "";
     }
 
-    public String printPlayerPosition(String name, int price, int rent){ 
+    public String printPlayerPosition(int currentPlayer, int currentSquare,String name, int price, int rent){ 
         //SquareController.SquareName(pos)
-        int pid = PlayerController.getCurrentPlayer();
+        int pid = currentPlayer;
         String msg = 
             "Player " + pid;
 
-        int pos = PlayerController.getPlayerCurrentSquare(pid);
+        int pos = currentSquare;
         msg += ", your position is in board " + pos + nl;
 
         int currentPos[] = new int[20];
@@ -74,9 +72,8 @@ public class PlayerView extends UserInterface{
         return msg;
     }
 
-    public String printLeaderBoard(){
+    public String printLeaderBoard(int[][] leaderboard){
         String msg = "Rank" + tab + "Player ID" + tab + "Money" + nl;
-        int [][] leaderboard = PlayerController.leaderboard();
         for (int i = 0; i < leaderboard.length; ++i) {
             msg += leaderboard[i][0] + tab + (leaderboard[i][1] + 1) + tab + tab + leaderboard[i][2] + nl;
         }

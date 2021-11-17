@@ -27,6 +27,10 @@ public class GameStatusController extends Controller{
     public void setGameStatus(int _TotalNumberOfPlayers, int _CurrentNumberOfPlayers, int _Rounds){
         this.model = new GameStatus(_TotalNumberOfPlayers, _CurrentNumberOfPlayers, _Rounds);                
     }
+
+    public void setCurrentPlayer(int currentPlayer){
+        this.model.setCurrentPlayer(currentPlayer);
+    }
     
     public int getTotalNumberOfPlayers() {
         /* 
@@ -129,6 +133,7 @@ public class GameStatusController extends Controller{
         gameStatusMap.put("TotalNumberOfPlayers", this.model.getTotalNumberOfPlayers());
         gameStatusMap.put("CurrentNumberOfPlayers", this.model.getCurrentNumberOfPlayers());
         gameStatusMap.put("Rounds", this.model.getRounds());
+        gameStatusMap.put("CurrentPlayer", this.model.getCurrentPlayer());
         return gameStatusMap;
     }
 }

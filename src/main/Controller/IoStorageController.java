@@ -50,6 +50,7 @@ public class IoStorageController extends Controller{
         gameStatusDetail.put("TotalNumberOfPlayers", gameStatusMap.get("TotalNumberOfPlayers"));
         gameStatusDetail.put("CurrentNumberOfPlayers", gameStatusMap.get("CurrentNumberOfPlayers"));
         gameStatusDetail.put("Rounds", gameStatusMap.get("Rounds"));
+        gameStatusDetail.put("CurrentPlayer", gameStatusMap.get("CurrentPlayer"));
 
         JSONObject playerDetail = new JSONObject();
         JSONObject playerObject = new JSONObject();
