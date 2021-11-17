@@ -143,16 +143,11 @@ public class PlayerController extends Controller{
     }
 
     public static int TaxCalculate(int id) {
-        int x = PlayerController.getPlayerMoney(id);
-        x = x - (x / 10) * 9;
-        x = x - x % 10;
-        return x;
-    }
-
-    public void receiveTax(){
-        /*
-          This function will control receive tax
-        */
+       int percent = 10;
+       int x = PlayerController.getPlayerMoney(id);
+       x = x / (100 - percent);
+       x = x - x % 10;
+       return x;
     }
 
     public static void CheckWinner(){

@@ -4,14 +4,14 @@ import Model.Square;
 
 public class SquareController extends Controller{
     /**
-      * This function is mainly return value or data of the game back to other function.
-    */
+     * This function is mainly return value or data of the game back to other function.
+     */
     protected static Square[] board = new Square[20];
 
     protected static String[]Name = {"GO", "Central", "Wan Chai", "INCOME TAX", "Stanley", "JUST VISITING / IN JAIL", "Shek O", "Mong Kok", "CHANCE", "Tsing Yi", "FREE PARKING", "Shatin", "CHANCE", "Tuen Mun", "Tai Po", "GO TO JAIL", "Sai Kung", "Yuen Long", "CHANCE", "Tai O"};
     protected static int[]Price = {-1, 800, 700, -1, 600, -1, 400, 500, -1, 400, -1, 700, -1, 400, 500, -1, 400, 400, -1, 600};
     protected static int[]Rent = {-1, 90, 65, -1, 60, -1, 10, 40, -1, 15, -1, 75, -1, 20, 25, -1, 10, 25, -1, 25};
-    
+
     protected Square model;
     //private SquareView view;
 
@@ -57,15 +57,15 @@ public class SquareController extends Controller{
         return model.getOwner();
     }
 
-     public int GoSalary() {
+    public int GoSalary() {
          /*
            This function is give a player salary if he/she pass though the GO square.
            return the salary to set the money.
           */
         return 1500;
-     }
+    }
 
-     public int ChanceSalary() {
+    public int ChanceSalary() {
          /*
            This function randomly pick an integer in a specific range.
            return the value the player win or lose to set the money.
@@ -76,23 +76,23 @@ public class SquareController extends Controller{
         lowerbound /= 10;
         //int r = Monopoly.rand.nextInt(50)-30; // random integer number from 20 to -30
         int r = getRandom(Math.abs(upperbound+lowerbound))+lowerbound;
-        
-        return r * 10;
-     }
 
-     public int SquarePrice(int id) {
+        return r * 10;
+    }
+
+    public int SquarePrice(int id) {
          /*
            This function return the price of its square.
           */
-         return Price[id];
-     }
+        return Price[id];
+    }
 
-     public int SquareRent(int id) {
+    public int SquareRent(int id) {
          /*
            This function return the rent of its square.
           */
-         return Rent[id];
-     }
+        return Rent[id];
+    }
 
     public String SquareName(int id) {
         /*
@@ -143,9 +143,8 @@ public class SquareController extends Controller{
     /* public static int getBoardPrice(int number){
         return SquarePrice(number);
     }
-
     public static int getBoardRent(int number){
         return SquareRent(number);
     } */
-    
+
 }
