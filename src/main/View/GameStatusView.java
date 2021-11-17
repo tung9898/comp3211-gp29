@@ -9,7 +9,7 @@ public class GameStatusView extends UserInterface{
      * This class will print the view of the game status.
     */
     
-    public String printRoundStarted(){ 
+    public String printRoundStarted(){
         return 
         "\n\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n" +
         "+++++                   Round " + GameStatusController.getRounds() + " Start                             +++++\n" +

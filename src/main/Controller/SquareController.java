@@ -9,7 +9,6 @@ public class SquareController extends Controller{
     protected static Square[] board = new Square[20];
       
     // data for each Properties that marked by a colored stripe
-    protected static int[]PropertyPos = {2, 3, 5, 7, 8, 10, 12, 14, 15, 17, 18, 20};
     protected static String[]Name = {"GO", "Central", "Wan Chai", "INCOME TAX", "Stanley", "JUST VISITING / IN JAIL", "Shek O", "Mong Kok", "CHANCE", "Tsing Yi", "FREE PARKING", "Shatin", "CHANCE", "Tuen Mun", "Tai Po", "GO TO JAIL", "Sai Kung", "Yuen Long", "CHANCE", "Tai O"};
     protected static int[]Price = {-1, 800, 700, -1, 600, -1, 400, 500, -1, 400, -1, 700, -1, 400, 500, -1, 400, 400, -1, 600};
     protected static int[]Rent = {-1, 90, 65, -1, 60, -1, 10, 40, -1, 15, -1, 75, -1, 20, 25, -1, 10, 25, -1, 25};
@@ -82,59 +81,25 @@ public class SquareController extends Controller{
         return r * 10;
      }
 
-     public int NoEffect() {
-         /**
-          * No effect square, this function do nothing, just the its name.
-          */
-         return 0;
-     }
-
      public int SquarePrice(int id) {
          /**
           * This function return the price of its square.
           */
-        //*** is checking id==-1 necessary? id is initialized as 0 in Square class
-        if(id==-1) return -1;
-        if (!isGovernmentProperty(id)){
-            return Price[id];
-        }
-        return -1;
+         return Price[id];
      }
 
      public int SquareRent(int id) {
          /**
           * This function return the rent of its square.
           */
-        //*** is checking id==-1 necessary? id is initialized as 0 in Square class
-        if(id==-1) return -1;
-        if (!isGovernmentProperty(id)){
-            return Rent[id];
-        }
-        return -1;
+         return Rent[id];
      }
 
     public String SquareName(int id) {
         /**
           * This function return the name of its square.
           */
-        //*** is checking id==-1 necessary? id is initialized as 0 in Square class
-        if(id==-1) return "-1";
         return Name[id];
-    }
-
-    public boolean isGovernmentProperty(int id) {
-        for(int i = 0; i < PropertyPos.length; i++)
-            if(id+1 == PropertyPos[i]) return false;
-        return true;
-    }
-
-    public int getEffect() {
-        /**
-         * This function will return a integer, for Go, Change, Income tax.
-         * 0 for other or no effect squares.
-         * Go to jail will be consider as no effect.
-         */
-        return 0;
     }
 
     public Square[] getSquare(){

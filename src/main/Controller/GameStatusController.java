@@ -120,7 +120,7 @@ public class GameStatusController extends Controller{
         }
     } */
 
-    public void printRoundStarted(){
+    public static void printRoundStarted(){
         System.out.println(view.printRoundStarted());
     }
 

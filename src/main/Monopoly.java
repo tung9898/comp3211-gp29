@@ -19,7 +19,7 @@ public class Monopoly{
     static int MinimumNumberOfPlayer = 2;
 
     static GameStatus gameStatusModel;
-    static GameStatusView gameStatusView;
+    static GameStatusView gameStatusView = new GameStatusView();
     static GameStatusController statusController;
 
     static SquareController squareController = new SquareController();
@@ -119,7 +119,7 @@ public class Monopoly{
         /**
          * This function is to run each game round. 
          */
-        int turns = GameStatusController.getCurrentNumberOfPlayers();
+        int turns = statusController.getCurrentNumberOfPlayers();
         while(true){
             statusController.printRoundStarted();
             for(int i = 0; i < turns; i++){
