@@ -41,10 +41,10 @@ public class Monopoly{
                 System.out.print(UserInterface.printBeginActionInput());
                 userInput.next();
             }
+            action = userInput.nextInt();
             if(!(action == 1 || action == 2)){
                 System.out.println(UserInterface.printBeginActionInputError());
             }
-            action = userInput.nextInt();
         }
         switch (action) {
             case 1:
@@ -137,7 +137,7 @@ public class Monopoly{
                     HandleInJail(PlayerController.getDaysInJail(i));
                 }
                 else{
-                    System.out.println("Make the choice: \n[1] to roll the dice, 2 to save & exit the game");
+                    System.out.println("Make the choice: \n[1] to roll the dice, [2] to save & exit the game");
                     Scanner myObj = new Scanner(System.in);
                     int choice = myObj.nextInt();
                     if (choice==1){
@@ -155,11 +155,12 @@ public class Monopoly{
             System.out.println(UserInterface.gsv.printRoundEnded());
             if(gameStatusController.RoundEnd() || gameStatusController.getCurrentNumberOfPlayers() == 1){
                 PlayerController.CheckWinner();
-                System.out.println("Make the choice: 1 to play a new game, 2 to exit the game");
+                System.out.println("Make the choice: [1] to play a new game, [2] to exit the game");
                 Scanner myObj = new Scanner(System.in);
                 int choice = myObj.nextInt();
                 if (choice==1){
                     //new game
+
                 }
                 if (choice==2){
                     return false;
