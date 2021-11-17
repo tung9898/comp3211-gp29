@@ -18,8 +18,11 @@ public class Monopoly{
 
     protected static Controller controller = new Controller();
     protected static GameStatusController gameStatusController = new GameStatusController();
-
+    protected static IoStorageController ioStorageController = new IoStorageController();
     protected static SquareController squareController = new SquareController();
+    protected static PlayerController playerController = new PlayerController();
+
+    protected static UserInterface userInterface = new UserInterface();
 
     public static void main(String[] args) {
         /*
@@ -27,7 +30,7 @@ public class Monopoly{
          */
 
         // init board using list, make a list of square, from 0 to 19
-        System.out.println(UserInterface.gsv.printWelcome());
+        System.out.println(userInterface.printWelcome());
         // Ask for start game or load game
         int action = -1;
         Scanner userInput = new Scanner(System.in);
@@ -53,7 +56,7 @@ public class Monopoly{
                 int numberOfPlayer;
                 Scanner myObj = new Scanner(System.in);
                 while(true) {
-                    System.out.print(UserInterface.pv.printNumberOfPlayerInput(MinimumNumberOfPlayer, MaximumNumberOfPlayer));
+                    System.out.print(userInterface.printNumberOfPlayerInput(MinimumNumberOfPlayer, MaximumNumberOfPlayer));
                     try{
                         numberOfPlayer = myObj.nextInt();
                         if (MinimumNumberOfPlayer <= numberOfPlayer && numberOfPlayer <= MaximumNumberOfPlayer){
@@ -61,10 +64,10 @@ public class Monopoly{
                             break;
                         }
                         else{
-                            System.out.println(UserInterface.pv.printNumberOfPlayerInputError(MinimumNumberOfPlayer, MaximumNumberOfPlayer));
+                            System.out.println(userInterface.printNumberOfPlayerInputError(MinimumNumberOfPlayer, MaximumNumberOfPlayer));
                         }
                     } catch(Exception e){
-                        System.out.println(UserInterface.pv.printNumberOfPlayerInputError(MinimumNumberOfPlayer, MaximumNumberOfPlayer));
+                        System.out.println(userInterface.printNumberOfPlayerInputError(MinimumNumberOfPlayer, MaximumNumberOfPlayer));
                         myObj = new Scanner(System.in);
                     }
                 }
@@ -77,9 +80,9 @@ public class Monopoly{
                 break;
             case 2:
                 // Load file
-                String loadFileName = askForLoadFileName(IoController.getFilesList());
+                String loadFileName = askForLoadFileName(ioStorageController.getFilesList());
                 // Load the data from file
-                JSONObject loadObject = IoController.loadFile(loadFileName);
+                JSONObject loadObject = ioStorageController.loadFile(loadFileName);
                 try{
                     JSONObject gameStatusObject = (JSONObject) loadObject.get("GameStatus");
 
@@ -88,7 +91,7 @@ public class Monopoly{
                             ((Long) gameStatusObject.get("Rounds")).intValue());
 
 
-                    PlayerController.setPlayers((JSONArray) gameStatusObject.get("Players"), gameStatusController.getTotalNumberOfPlayers());
+                    playerController.setPlayers((JSONArray) gameStatusObject.get("Players"), gameStatusController.getTotalNumberOfPlayers());
                     System.out.println("Load successfully~");
                 }catch(NullPointerException e){
                     System.out.println("Error occur!\n" + e + "\n Load failed!");
@@ -123,45 +126,80 @@ public class Monopoly{
         int turns = gameStatusController.getCurrentNumberOfPlayers();
         while(true){
             gameStatusController.printRoundStarted();
-            System.out.println(UserInterface.pv.printLeaderBoard());
             for(int i = 0; i < turns; i++){
                 PlayerController.setCurrentPlayer(i);
                 if(PlayerController.getPlayerBankruptcy(i)) {
                     continue;
                 }
-                System.out.println(UserInterface.sysv.printTurnStarted(i+1));
+                System.out.println(userInterface.printTurnStarted(i+1));
                 int currentPos[] = new int[20];
                 currentPos[PlayerController.getPlayerCurrentSquare(i)] = 1;
-                System.out.println(UserInterface.pv.printPlayerPositionInMP(currentPos));
+                System.out.println(userInterface.printPlayerPositionInMP(currentPos));
                 if(PlayerController.getDaysInJail(i) > -1) {
                     // Check the player in jail days, if it is not -1, that's mean the player is in jail.
                     HandleInJail(PlayerController.getDaysInJail(i));
                 }
                 else{
-                    System.out.println("Make the choice: \n[1] to roll the dice, [2] to save & exit the game");
-                    Scanner myObj = new Scanner(System.in);
-                    int choice = myObj.nextInt();
+                    System.out.println("Make the choice:"
+                                        +"\n[1] Roll dice"
+                                        +"\n[2] Show leaderboard"
+                                        +"\n[3] Save game"
+                                        +"\n[4] Save & Exit the game");
+                    Scanner userInput = new Scanner(System.in);
+                    int choice = userInput.nextInt();
+                    while(!(choice >= 1 && choice <= 4)){
+                        System.out.print(UserInterface.printBeginActionInput());
+                        while(!(userInput.hasNextInt())){
+                            if(!(choice >= 1 && choice <= 4)){
+                                System.out.println(UserInterface.printBeginActionInputError());
+                            }
+                            System.out.print(UserInterface.printBeginActionInput());
+                            userInput.next();
+                        }
+                        choice = userInput.nextInt();
+                        if(!(choice >= 1 && choice <= 4)){
+                            System.out.println(UserInterface.printBeginActionInputError());
+                        }
+                    }
+                    switch(choice){
+                        case 1:
+                            int[] dice = controller.rollingDice();
+                            System.out.println(userInterface.printRollDiceResult(dice));
+                            PlayerMakeAMove(dice[0] + dice[1]);
+                            // turns--;
+                            System.out.println(userInterface.printTurnEnded());
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            saveFile();
+                            break;
+                        case 4:
+                            saveFile();
+                            return false;
+                        default:
+                            break;
+                    }
                     if (choice==1){
                         int[] dice = controller.rollingDice();
-                        System.out.println(UserInterface.sysv.printRollDiceResult(dice));
+                        System.out.println(userInterface.printRollDiceResult(dice));
                         PlayerMakeAMove(dice[0] + dice[1]);
                         // turns--;
-                        System.out.println(UserInterface.sysv.printTurnEnded());
+                        System.out.println(userInterface.printTurnEnded());
                     }
                     if (choice==2){
                         return false;
                     }
                 }
             }
-            System.out.println(UserInterface.gsv.printRoundEnded());
+            System.out.println(userInterface.printRoundEnded());
             if(gameStatusController.RoundEnd() || gameStatusController.getCurrentNumberOfPlayers() == 1){
                 PlayerController.CheckWinner();
-                System.out.println("Make the choice: [1] to play a new game, [2] to exit the game");
+                System.out.println("Make the choice: 1 to play a new game, 2 to exit the game");
                 Scanner myObj = new Scanner(System.in);
                 int choice = myObj.nextInt();
                 if (choice==1){
                     //new game
-
                 }
                 if (choice==2){
                     return false;
@@ -245,7 +283,7 @@ public class Monopoly{
                     choice = myObj.nextInt();
                     if (choice==1){
                         dice = controller.rollingDice();
-                        System.out.println(UserInterface.sysv.printRollDiceResult(dice));
+                        System.out.println(userInterface.printRollDiceResult(dice));
                         if (dice[0]==dice[1]){
                             System.out.println("You succeed to get out of the jail. Congratulation!");
                             PlayerController.setPlayerDaysInJail(currentPlayer,-1);
@@ -273,7 +311,7 @@ public class Monopoly{
                 choice = myObj.nextInt();
                 dice = controller.rollingDice();
                 if (choice==1){
-                    System.out.println(UserInterface.sysv.printRollDiceResult(dice));
+                    System.out.println(userInterface.printRollDiceResult(dice));
                     if (dice[0]==dice[1]){
                         System.out.println("You succeed to get out of the jail. Congratulation!");
                         PlayerController.setPlayerDaysInJail(currentPlayer,-1);
@@ -300,7 +338,7 @@ public class Monopoly{
                     System.out.println("Fine paid. You can get out of the jail now.");
                     PlayerController.setPlayersMoney(currentPlayer, PlayerController.getPlayerMoney(currentPlayer)-150);
                     PlayerController.setPlayerDaysInJail(currentPlayer,-1);
-                    System.out.println(UserInterface.sysv.printRollDiceResult(dice));
+                    System.out.println(userInterface.printRollDiceResult(dice));
                     PlayerMakeAMove(dice[0]+dice[1]);
                     break;
                 }
@@ -430,15 +468,15 @@ public class Monopoly{
         int fileNumber = -1;
         do{
             // Print files' information
-            System.out.println(UserInterface.iosv.printFileExistMessage());
+            System.out.println("Here are the files:");
             for(int i = 0; i < filenames.length; i++){
                 System.out.printf("[%1$s] %2$s %n", i, filenames[i]);
             }
-            System.out.print(UserInterface.iosv.printFileChoiceInput());
+            System.out.print("Input your choice (number only):");
 
             // Validate the input is or not a number
             while(!(userInput.hasNextInt())){
-                System.out.print(UserInterface.iosv.printFileChoiceInput());
+                System.out.print("Input your choice (number only):");
                 userInput.next();
             }
             fileNumber = userInput.nextInt();
@@ -446,5 +484,20 @@ public class Monopoly{
                 fileNumber < filenames.length &&
                 filenames[fileNumber].contains(".json")));
         return filenames[fileNumber];
+    }
+
+    public static void saveFile(){
+        // Ask user to input file name
+        Scanner userInput = new Scanner(System.in);
+        System.out.print("Input your file name:");
+        while (!userInput.hasNext("[^\\/:*?\"<>|]*$")) {
+            System.out.print("Input your file name (no \\/:*?\"<>|):");
+            userInput.next();
+        }
+        String saveFileName = userInput.next();
+
+        // Save file
+        ioStorageController.saveFile(playerController.getPlayersList(), gameStatusController.getGameStatusMap(), saveFileName);
+        
     }
 }

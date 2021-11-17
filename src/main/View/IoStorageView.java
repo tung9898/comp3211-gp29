@@ -1,6 +1,6 @@
 package View;
 
-public class IOStorageView extends UserInterface{
+public class IoStorageView extends UserInterface{
     
     public String printLoadFileSuccessMessage(){
         return "Load Successfully~";

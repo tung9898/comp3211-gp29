@@ -9,21 +9,24 @@ import java.util.List;
 import java.util.Map;
 
 import Model.IoStorage;
-import View.UserInterface;
+import View.IoStorageView;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class IoController extends Controller{
+public class IoStorageController extends Controller{
     /** 
       *  This controller mainly for operations with system
      */
-    protected IoStorage model;
 
-    public IoController(){}
-    public IoController(IoStorage model){
+    protected IoStorage model;
+    protected IoStorageView ioStorageView = new IoStorageView();
+
+    public IoStorageController(){}
+
+    public IoStorageController(IoStorage model){
         this.model = model;
     }
 
@@ -41,10 +44,9 @@ public class IoController extends Controller{
         return model.getFileLocation();
     }
 
-    public static void saveFile(List<Map<String, Object>> playersList, Map<String, Object> gameStatusMap, String fileName){
+    public void saveFile(List<Map<String, Object>> playersList, Map<String, Object> gameStatusMap, String fileName){
         JSONObject gameStatusDetail = new JSONObject();
         JSONObject gameStatusObject = new JSONObject();
-        JSONArray gameStatusArray = new JSONArray();
         gameStatusDetail.put("TotalNumberOfPlayers", gameStatusMap.get("TotalNumberOfPlayers"));
         gameStatusDetail.put("CurrentNumberOfPlayers", gameStatusMap.get("CurrentNumberOfPlayers"));
         gameStatusDetail.put("Rounds", gameStatusMap.get("Rounds"));
@@ -89,7 +91,7 @@ public class IoController extends Controller{
         }
     }
     
-    public static JSONObject loadFile(String fileLocation){
+    public JSONObject loadFile(String fileLocation){
         IoStorage io = new IoStorage();
         io.setFileLocation(fileLocation);
     
@@ -107,13 +109,13 @@ public class IoController extends Controller{
         return obj;
     }
 
-    public static String[] getFilesList(){
+    public String[] getFilesList(){
         String[] filenames;
         File f = new File("data");
         //System.out.println("Working Directory = " + System.getProperty("user.dir"));
         // Does data folder exist?
         if(!f.exists()){
-            System.out.println(UserInterface.iosv.printNoDataFolderExistError());
+            System.out.println(ioStorageView.printNoDataFolderExistError());
             return null;
         }
 
@@ -121,7 +123,7 @@ public class IoController extends Controller{
 
         // Does any files exist in data folder?
         if(!(filenames.length > 0 && Arrays.stream(filenames).anyMatch(str -> str.contains(".json")))){
-            System.out.println(UserInterface.iosv.printNoDataFilesExistError());
+            System.out.println(ioStorageView.printNoDataFilesExistError());
             return null;
         }
         return filenames;
