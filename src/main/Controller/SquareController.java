@@ -4,16 +4,14 @@ import Model.Square;
 
 public class SquareController extends Controller{
     /**
-      * This function is mainly return value or data of the game back to other function.
-    */
+     * This function is mainly return value or data of the game back to other function.
+     */
     protected static Square[] board = new Square[20];
-      
-    // data for each Property that marked by a colored stripe
-    protected static int[]PropertyPos = {2, 3, 5, 7, 8, 10, 12, 14, 15, 17, 18, 20};
+
     protected static String[]Name = {"GO", "Central", "Wan Chai", "INCOME TAX", "Stanley", "JUST VISITING / IN JAIL", "Shek O", "Mong Kok", "CHANCE", "Tsing Yi", "FREE PARKING", "Shatin", "CHANCE", "Tuen Mun", "Tai Po", "GO TO JAIL", "Sai Kung", "Yuen Long", "CHANCE", "Tai O"};
     protected static int[]Price = {-1, 800, 700, -1, 600, -1, 400, 500, -1, 400, -1, 700, -1, 400, 500, -1, 400, 400, -1, 600};
     protected static int[]Rent = {-1, 90, 65, -1, 60, -1, 10, 40, -1, 15, -1, 75, -1, 20, 25, -1, 10, 25, -1, 25};
-    
+
     protected Square model;
     //private SquareView view;
 
@@ -59,15 +57,15 @@ public class SquareController extends Controller{
         return model.getOwner();
     }
 
-     public int GoSalary() {
+    public int GoSalary() {
          /*
            This function is give a player salary if he/she pass though the GO square.
            return the salary to set the money.
           */
         return 1500;
-     }
+    }
 
-     public int ChanceSalary() {
+    public int ChanceSalary() {
          /*
            This function randomly pick an integer in a specific range.
            return the value the player win or lose to set the money.
@@ -78,63 +76,29 @@ public class SquareController extends Controller{
         lowerbound /= 10;
         //int r = Monopoly.rand.nextInt(50)-30; // random integer number from 20 to -30
         int r = getRandom(Math.abs(upperbound+lowerbound))+lowerbound;
-        
+
         return r * 10;
-     }
+    }
 
-     public int NoEffect() {
-         /*
-           No effect square, this function do nothing, just its name.
-          */
-         return 0;
-     }
-
-     public int SquarePrice(int id) {
+    public int SquarePrice(int id) {
          /*
            This function return the price of its square.
           */
-        //*** is checking id==-1 necessary? id is initialized as 0 in Square class
-        if(id==-1) return -1;
-        if (!isGovernmentProperty(id)){
-            return Price[id];
-        }
-        return -1;
-     }
+        return Price[id];
+    }
 
-     public int SquareRent(int id) {
+    public int SquareRent(int id) {
          /*
            This function return the rent of its square.
           */
-        //*** is checking id==-1 necessary? id is initialized as 0 in Square class
-        if(id==-1) return -1;
-        if (!isGovernmentProperty(id)){
-            return Rent[id];
-        }
-        return -1;
-     }
+        return Rent[id];
+    }
 
     public String SquareName(int id) {
         /*
            This function return the name of its square.
           */
-        //*** is checking id==-1 necessary? id is initialized as 0 in Square class
-        if(id==-1) return "-1";
         return Name[id];
-    }
-
-    public boolean isGovernmentProperty(int id) {
-        for(int i = 0; i < PropertyPos.length; i++)
-            if(id+1 == PropertyPos[i]) return false;
-        return true;
-    }
-
-    public int getEffect() {
-        /*
-          This function will return an integer, for Go, Change, Income tax.
-          0 for other or no effect squares.
-          Go to jail will be considered as no effect.
-         */
-        return 0;
     }
 
     public Square[] getSquare(){
@@ -179,9 +143,8 @@ public class SquareController extends Controller{
     /* public static int getBoardPrice(int number){
         return SquarePrice(number);
     }
-
     public static int getBoardRent(int number){
         return SquareRent(number);
     } */
-    
+
 }

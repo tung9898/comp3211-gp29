@@ -4,7 +4,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import Controller.*;
-import View.UserInterface;
+import Model.*;
+import View.*;
 
 public class Monopoly{
     /**
@@ -15,6 +16,11 @@ public class Monopoly{
 //    static int numberOfSide = 4;
     static int MaximumNumberOfPlayer = 6;
     static int MinimumNumberOfPlayer = 2;
+
+
+    static GameStatus gameStatusModel;
+    static GameStatusView gameStatusView = new GameStatusView();
+
     static GameStatusController statusController;
 
     static SquareController squareController = new SquareController();
@@ -57,10 +63,10 @@ public class Monopoly{
                 }
                 // start the game
                 while (GameStart());
-                    // ask for input if player want to continue;
-                        // break if necessary
-                    // ask for input if player want to change to number of player;
-                        // call InitSquare if necessary
+                // ask for input if player want to continue;
+                // break if necessary
+                // ask for input if player want to change to number of player;
+                // call InitSquare if necessary
                 break;
             case 2:
                 // Load file
@@ -69,12 +75,12 @@ public class Monopoly{
                 JSONObject loadObject = IoController.loadFile(loadFileName);
                 try{
                     JSONObject gameStatusObject = (JSONObject) loadObject.get("GameStatus");
-                    
-                    GameStatusController.setGameStatus( ((Long) gameStatusObject.get("TotalNumberOfPlayers")).intValue(), 
-                                                                ((Long) gameStatusObject.get("CurrentNumberOfPlayers")).intValue(),
-                                                                ((Long) gameStatusObject.get("Rounds")).intValue());
-                    
-                    
+
+                    GameStatusController.setGameStatus( ((Long) gameStatusObject.get("TotalNumberOfPlayers")).intValue(),
+                            ((Long) gameStatusObject.get("CurrentNumberOfPlayers")).intValue(),
+                            ((Long) gameStatusObject.get("Rounds")).intValue());
+
+
                     PlayerController.setPlayers((JSONArray) gameStatusObject.get("Players"), GameStatusController.getTotalNumberOfPlayers());
                     System.out.println("Load successfully~");
                 }catch(NullPointerException e){
@@ -107,7 +113,7 @@ public class Monopoly{
         /*
           This function is to run each game round.
          */
-        int turns = GameStatusController.getCurrentNumberOfPlayers();
+        int turns = statusController.getCurrentNumberOfPlayers();
         while(true){
             statusController.printRoundStarted();
             for(int i = 0; i < turns; i++){
@@ -159,7 +165,8 @@ public class Monopoly{
         /*
           This function is to set some important data when the game starts.
          */
-
+        gameStatusModel = new GameStatus(numberOfPlayer, numberOfPlayer);
+        statusController = new GameStatusController(gameStatusModel,gameStatusView);
         PlayerController.setPlayers(numberOfPlayer);
         SquareController.initBoard();
         for(int i = 0; i < numberOfPlayer; i++) {
@@ -344,7 +351,7 @@ public class Monopoly{
                     }
                 }
                 break;
-       }
+        }
     }
 
     public static void SquarePurchase(int squareId) {
@@ -355,40 +362,34 @@ public class Monopoly{
         int landPrice = squareController.SquarePrice(squareId);
         int currentPlayer = PlayerController.getCurrentPlayer();
         int balance = PlayerController.getPlayerMoney(currentPlayer);
-        if(balance >= landPrice){
-            // confirm message, return if fail to confirm.
-            PlayerController.setPlayersMoney(currentPlayer, balance-landPrice);
-            squareController.setBoardOwner(squareId, currentPlayer);
-            // successful message
-        }else{
-            // fail to pay message
-            System.out.println(name+" is unowned.");
-            System.out.println("Price of "+name+" is $"+landPrice);
-            System.out.println("You have $"+balance);
-            Scanner myObj = new Scanner(System.in);
-            int choice;
-            while(true){
-                System.out.println("Would you like to buy the property? Enter 1 to buy, 2 to do nothing:");
-                choice = myObj.nextInt();
-                if(choice==1){
-                    if(balance >= landPrice){
-                        PlayerController.setPlayersMoney(currentPlayer, balance-landPrice);
-                        squareController.setBoardOwner(squareId, currentPlayer);
-                        System.out.println("You have bought "+name+". Remaining amount of money: $"+PlayerController.getPlayerMoney(currentPlayer));
-                        break;
-                    }
-                    else{
-                        System.out.println("You only have $"+PlayerController.getPlayerMoney(currentPlayer)+". You do not have enough money to buy "+name+".");
-                        break;
-                    }
-                }
-                if(choice==2){
-                    System.out.println("You chose not to buy "+name+". No effect.");
+
+        // fail to pay message
+        System.out.println(name+" is unowned.");
+        System.out.println("Price of "+name+" is $"+landPrice);
+        System.out.println("You have $"+balance);
+        Scanner myObj = new Scanner(System.in);
+        int choice;
+        while(true){
+            System.out.println("Would you like to buy the property? Enter 1 to buy, 2 to do nothing:");
+            choice = myObj.nextInt();
+            if(choice==1){
+                if(balance >= landPrice){
+                    PlayerController.setPlayersMoney(currentPlayer, balance-landPrice);
+                    squareController.setBoardOwner(squareId, currentPlayer);
+                    System.out.println("You have bought "+name+". Remaining amount of money: $"+PlayerController.getPlayerMoney(currentPlayer));
                     break;
                 }
                 else{
-                    System.out.println("You can only enter 1 or 2 to continue.");
+                    System.out.println("You only have $"+PlayerController.getPlayerMoney(currentPlayer)+". You do not have enough money to buy "+name+".");
+                    break;
                 }
+            }
+            if(choice==2){
+                System.out.println("You chose not to buy "+name+". No effect.");
+                break;
+            }
+            else{
+                System.out.println("You can only enter 1 or 2 to continue.");
             }
         }
     }
@@ -428,8 +429,8 @@ public class Monopoly{
                 userInput.next();
             }
             fileNumber = userInput.nextInt();
-       }while(!(fileNumber >= 0 && 
-                fileNumber < filenames.length && 
+        }while(!(fileNumber >= 0 &&
+                fileNumber < filenames.length &&
                 filenames[fileNumber].contains(".json")));
         return filenames[fileNumber];
     }

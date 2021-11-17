@@ -77,10 +77,10 @@ public class PlayerView extends UserInterface{
         "  │  "+(currentPos[15] == 0?"16":" *")+"  ║  \n" +
         "\t\t\t ║──────┼──────┴──────┴──────┴──────┼──────╢  \n" +
         "\t\t\t ║  "+(currentPos[9] == 0?"10":" *")+
-        "  │                           │  "+(currentPos[16] == 0?"10":" *")+"  ║  \n" +
+        "  │                           │  "+(currentPos[16] == 0?"17":" *")+"  ║  \n" +
         "\t\t\t ║──────┤                           ├──────║  \n" +
         "\t\t\t ║  "+(currentPos[8] == 0?"09":" *")+
-        "  │                           │  "+(currentPos[17] == 0?"09":" *")+"  ║  \n" +
+        "  │                           │  "+(currentPos[17] == 0?"18":" *")+"  ║  \n" +
         "\t\t\t ║──────┤          MONOPOLY         ├──────║  \n" +
         "\t\t\t ║  "+(currentPos[7] == 0?"08":" *")+
         "  │                           │  "+(currentPos[18] == 0?"19":" *")+"  ║  \n" +

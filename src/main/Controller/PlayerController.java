@@ -150,12 +150,6 @@ public class PlayerController extends Controller{
        return x;
     }
 
-    public void receiveTax(){
-        /*
-          This function will control receive tax
-        */
-    }
-
     public static void CheckWinner(){
         /*
          * This function will be called if there is only 1 player left
