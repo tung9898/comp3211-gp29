@@ -126,7 +126,7 @@ public class Monopoly{
                 System.out.println(UserInterface.sysv.printTurnStarted(i+1));
                 int currentPos[] = new int[20];
                 currentPos[PlayerController.getPlayerCurrentSquare(i)] = 1;
-                System.out.println(UserInterface.gsv.printPlayerPositionInMP(currentPos));
+                System.out.println(UserInterface.pv.printPlayerPositionInMP(currentPos));
                 if(PlayerController.getDaysInJail(i) > -1) {
                     // Check the player in jail days, if it is not -1, thats mean the player is in jail.
                     HandleInJail(PlayerController.getDaysInJail(i));
