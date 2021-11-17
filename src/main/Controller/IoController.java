@@ -27,10 +27,16 @@ public class IoController extends Controller{
     }
 
     public void setFileLocation(String fileLocation) {
+        /*
+          This function will call model IoStorage to set the file location.
+         */
         model.setFileLocation(fileLocation);
     }
 
     public String getFileLocation() {
+        /*
+          This function will call IoStorage to return the file location.
+         */
         return model.getFileLocation();
     }
 
