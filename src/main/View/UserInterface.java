@@ -16,6 +16,10 @@ public class UserInterface {
         return "Input Your Action (1 or 2) : ";
     }
 
+    public static String printBeginActionInputError(){
+        return "Error. Please input again";
+    }
+
     public static String printMenuInput(){ 
         return "Press P for menu"; 
     }

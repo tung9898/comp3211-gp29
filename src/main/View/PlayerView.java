@@ -68,6 +68,10 @@ public class PlayerView extends UserInterface{
 
     public String printPlayerPositionInMP(int currentPos[]){ 
         return
+        "1 GO\t 2 CENTRAL\t 3 Wan Chai\t 4 INCOME TAX(PAY 10%)\t 5 Stanley\n"+
+        "6 JUST VISITING (IN JAIL)\t 7 Shek O\t 8 Mong Kok\t 9 ? CHANCE\t 10 Tsing Yi\n"+
+        "11 FREE PARKING\t 12 Shatin\t 13 ? CHANCE\t 14 Tuen Mun\t 15 Tai Po\n"+
+        "16 GO TO JAIL\t 17 Sai Kung\t 18 Yuen Long\t 19 ? CHANCE\t 20 Tai O\n\n"+
         "\t\t\t ╔══════╤══════╤══════╤══════╤══════╤══════╗ \n" +
         "\t\t\t ║  "+(currentPos[10] == 0?"11":" *")+
         "  │  "+(currentPos[11] == 0?"12":" *")+

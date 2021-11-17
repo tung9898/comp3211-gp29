@@ -35,8 +35,14 @@ public class Monopoly{
         while(!(action == 1 || action == 2 || action == 3)){
             System.out.print(UserInterface.printBeginActionInput());
             while(!(userInput.hasNextInt())){
+                if(!(action == 1 || action == 2 || action == 3)){
+                    System.out.println(UserInterface.printBeginActionInputError());
+                }
                 System.out.print(UserInterface.printBeginActionInput());
                 userInput.next();
+            }
+            if(!(action == 1 || action == 2 || action == 3)){
+                System.out.println(UserInterface.printBeginActionInputError());
             }
             action = userInput.nextInt();
         }
@@ -48,13 +54,18 @@ public class Monopoly{
                 Scanner myObj = new Scanner(System.in);
                 while(true) {
                     System.out.print(UserInterface.pv.printNumberOfPlayerInput(MinimumNumberOfPlayer, MaximumNumberOfPlayer));
-                    numberOfPlayer = myObj.nextInt();
-                    if (MinimumNumberOfPlayer <= numberOfPlayer && numberOfPlayer <= MaximumNumberOfPlayer){
-                        InitSquare(numberOfPlayer);
-                        break;
-                    }
-                    else{
+                    try{
+                        numberOfPlayer = myObj.nextInt();
+                        if (MinimumNumberOfPlayer <= numberOfPlayer && numberOfPlayer <= MaximumNumberOfPlayer){
+                            InitSquare(numberOfPlayer);
+                            break;
+                        }
+                        else{
+                            System.out.println(UserInterface.pv.printNumberOfPlayerInputError(MinimumNumberOfPlayer, MaximumNumberOfPlayer));
+                        }
+                    } catch(Exception e){
                         System.out.println(UserInterface.pv.printNumberOfPlayerInputError(MinimumNumberOfPlayer, MaximumNumberOfPlayer));
+                        myObj = new Scanner(System.in);
                     }
                 }
                 // start the game
@@ -85,7 +96,7 @@ public class Monopoly{
                     System.out.println("Error occur!\n" + e + "\n Load failed!");
                 }
                 break;
-            case 3:
+            /* case 3:
                 // Save file
                 // Ask user to input file name
                 userInput = new Scanner(System.in);
@@ -99,7 +110,7 @@ public class Monopoly{
                 // Save file
                 IoController.saveFile(PlayerController.getPlayersList(), gameStatusController.getGameStatusMap(), saveFileName);
                 // ActionController.saveFile(PlayerController.getPlayers(), gameStatusModel);
-                break;
+                break; */
             default:
                 break;
         }
@@ -228,25 +239,30 @@ public class Monopoly{
         if (inJailDays==0){
             while(true){
                 System.out.println("Enter 1 to roll the dice:");
-                choice = myObj.nextInt();
-                if (choice==1){
-                    dice = controller.rollingDice();
-                    System.out.println(UserInterface.sysv.printRollDiceResult(dice));
-                    if (dice[0]==dice[1]){
-                        System.out.println("You succeed to get out of the jail. Congratulation!");
-                        PlayerController.setPlayerDaysInJail(currentPlayer,-1);
-                        PlayerMakeAMove(dice[0]+dice[1]);
-                        break;
+                try {
+                    choice = myObj.nextInt();
+                    if (choice==1){
+                        dice = controller.rollingDice();
+                        System.out.println(UserInterface.sysv.printRollDiceResult(dice));
+                        if (dice[0]==dice[1]){
+                            System.out.println("You succeed to get out of the jail. Congratulation!");
+                            PlayerController.setPlayerDaysInJail(currentPlayer,-1);
+                            PlayerMakeAMove(dice[0]+dice[1]);
+                            break;
+                        }
+                        else{
+                            System.out.println("You failed to get out of the jail. Try again in the next round.");
+                            PlayerController.setPlayerDaysInJail(currentPlayer,inJailDays+1);
+                            break;
+                        }
                     }
                     else{
-                        System.out.println("You failed to get out of the jail. Try again in the next round.");
-                        PlayerController.setPlayerDaysInJail(currentPlayer,inJailDays+1);
-                        break;
+                        System.out.println("You can only enter 1 to continue.");
                     }
-                }
-                else{
+                } catch (Exception e) {
                     System.out.println("You can only enter 1 to continue.");
                 }
+                    
             }
         }
         else{
