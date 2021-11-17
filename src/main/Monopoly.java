@@ -31,6 +31,10 @@ public class Monopoly{
           This function is the main function of Monopoly.
          */
 
+         Game();
+    }
+
+    public static void Game(){
         // init board using list, make a list of square, from 0 to 19
         System.out.println(userInterface.printWelcome());
         // Ask for start game or load game
@@ -103,21 +107,6 @@ public class Monopoly{
                 }
                 while (GameStart());
                 break;
-            /* case 3:
-                // Save file
-                // Ask user to input file name
-                userInput = new Scanner(System.in);
-                System.out.print("Input your file name:");
-                while (!userInput.hasNext("[^\\/:*?\"<>|]")) {
-                    System.out.print("Input your file name (no \\/:*?\"<>|):");
-                    userInput.next();
-                }
-                String saveFileName = userInput.next();
-
-                // Save file
-                IoController.saveFile(PlayerController.getPlayersList(), gameStatusController.getGameStatusMap(), saveFileName);
-                // ActionController.saveFile(PlayerController.getPlayers(), gameStatusModel);
-                break; */
             default:
                 break;
         }
@@ -191,11 +180,14 @@ public class Monopoly{
             System.out.println(userInterface.printRoundEnded());
             if(gameStatusController.RoundEnd() || gameStatusController.getCurrentNumberOfPlayers() == 1){
                 playerController.CheckWinner();
-                System.out.println("Make the choice: 1 to play a new game, 2 to exit the game");
+                System.out.println("Make the choice: "+
+                                "\n[1] New game"+ 
+                                "\n[2] Exit game");
                 Scanner myObj = new Scanner(System.in);
                 int choice = myObj.nextInt();
                 if (choice==1){
                     //new game
+                    Game();
                 }
                 if (choice==2){
                     return false;
