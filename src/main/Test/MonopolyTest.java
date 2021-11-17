@@ -23,11 +23,11 @@ public class MonopolyTest {
     @DisplayName("Test player model")
     public void testPlayer(){
         /////////////////////////////////////////////////////////////////////////////
-        /**
-         * Test Case 1
-         * - Test the getter and setter methods in Player class
-         * - Player id should be ranged from 0 to (numberOfPlayers-1)
-         * 
+        /*
+          Test Case 1
+          - Test the getter and setter methods in Player class
+          - Player id should be ranged from 0 to (numberOfPlayers-1)
+
         */
         /////////////////////////////////////////////////////////////////////////////
         /* 
@@ -63,10 +63,10 @@ public class MonopolyTest {
     @DisplayName("Test game status model")
     public void testGameStatus(){
         /////////////////////////////////////////////////////////////////////////////
-        /**
-         * Test Case 2
-         * - Test the getter and setter methods in GameStatus class
-         * 
+        /*
+          Test Case 2
+          - Test the getter and setter methods in GameStatus class
+
         */
         /////////////////////////////////////////////////////////////////////////////
         /* 
@@ -84,11 +84,11 @@ public class MonopolyTest {
     @DisplayName("Test square model")
     public void testSquare(){
         /////////////////////////////////////////////////////////////////////////////
-        /**
-         * Test Case 3
-         * - Test the getter and setter methods in Square class
-         * - Square id should be ranged from 0 to 19. Unowned or squares' id should be -1.
-         * 
+        /*
+          Test Case 3
+          - Test the getter and setter methods in Square class
+          - Square id should be ranged from 0 to 19. Unowned or squares' id should be -1.
+
         */
         /////////////////////////////////////////////////////////////////////////////
         /* 
@@ -137,11 +137,11 @@ public class MonopolyTest {
     @DisplayName("Test Io Storage model")
     public void testIoStorage(){
         /////////////////////////////////////////////////////////////////////////////
-        /**
-         * Test Case 4
-         * - Test the getter and setter methods in Square class
-         * - Square id should be ranged from 0 to 19. Unowned or squares' id should be -1.
-         * 
+        /*
+          Test Case 4
+          - Test the getter and setter methods in Square class
+          - Square id should be ranged from 0 to 19. Unowned or squares' id should be -1.
+
         */
         /////////////////////////////////////////////////////////////////////////////
         /* 

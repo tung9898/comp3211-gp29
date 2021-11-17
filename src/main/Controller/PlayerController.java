@@ -27,99 +27,99 @@ public class PlayerController extends Controller{
     }
 
     public void setName(String name) {
-        /**
-         * This function call player model to set the player name.
+        /*
+          This function call player model to set the player name.
          */
         model.setName(name);
     }
 
     public String getName() {
-        /**
-         * This function will call player model to return the name of the player
+        /*
+          This function will call player model to return the name of the player
          */
         return model.getName();
     }
 
     public void setId(int id) {
-        /**
-         * This function will call player model to set the player ID.
+        /*
+          This function will call player model to set the player ID.
          */
         model.setId(id);
     }
 
     public int getId() {
-        /**
-         * This function will call player model to return the ID of the player
+        /*
+          This function will call player model to return the ID of the player
          */
         return model.getId();
     }
 
     public void setMoney(int money){
-        /**
-         * This function will call player model to set the player's money.
+        /*
+          This function will call player model to set the player's money.
         */
         model.setMoney(money);
     }
 
     public int getMoney() {
-        /**
-         * This function will call player model to return the player's money.
+        /*
+          This function will call player model to return the player's money.
          */
         return model.getMoney();
     }
 
     public void setCurrentSquare(int currentSquare) {
-        /**
-         * This function will call the player model to set the player location where he/she current on.
+        /*
+          This function will call the player model to set the player location where he/she is current on.
          */
         model.setCurrentSquare(currentSquare);
     }
 
     public int getCurrentSquare() {
-        /**
-         * This function will call player model to return the location where the player is current on.
+        /*
+          This function will call player model to return the location where the player is current on.
          */
         return model.getCurrentSquare();
     }
 
     public void setDaysInJail(int daysInJail) {
-        /**
-         * This funtion will call player model to set the player in jail days.
+        /*
+          This function will call player model to set the player in jail days.
          */
         model.setDaysInJail(daysInJail);
     }
 
 
     public int getDaysInJail() {
-        /**
-         * This function will call player model to return days of in jail of the player.
+        /*
+          This function will call player model to return days of in jail of the player.
          */
         return model.getDaysInJail();
     }
 
     public void setBankruptcy(boolean bankruptcy){
-        /**
-         * This funtion will call player model to set the bankruptcy status of the player.
+        /*
+          This function will call player model to set the bankruptcy status of the player.
          */
         model.setBankruptcy(bankruptcy);
     }
 
     public boolean getBankruptcy(){
-        /**
-         * This function will call player model to return the bankruptcy status of the player.
+        /*
+          This function will call player model to return the bankruptcy status of the player.
          */
         return model.getBankruptcy();
     }
 
     public void playerLeave(){
-        /**
-         * This function will remove a player
+        /*
+          This function will remove a player
          */
     }
 
     public void addMoney(int income){
-        /**
-         * This function will add the player's money by the income.
+        /*
+          This function will add the player's money by the income.
          */
         int money = model.getMoney();
         money += income;
@@ -127,8 +127,8 @@ public class PlayerController extends Controller{
     }
 
     public void reduceMoney(int outcome){
-        /**
-         * This function will subtract the player's money by the income.
+        /*
+          This function will subtract the player's money by the income.
          */
         int money = model.getMoney();
         money -= outcome;
@@ -151,8 +151,8 @@ public class PlayerController extends Controller{
     }
 
     public void receiveTax(){
-        /**
-         * This function will control receive tax
+        /*
+          This function will control receive tax
         */
     }
 
@@ -203,7 +203,7 @@ public class PlayerController extends Controller{
                                                                                         ((Long) playerObject.get("DaysInJail")).intValue(),
                                                                                         (Boolean) playerObject.get("Bankruptcy"));
         
-        // Can delete the printlns
+        // Can delete the println(s)
         System.out.println("Name: "+players[((Long) playerObject.get("Id")).intValue()].getName());
         System.out.println("Id: "+players[((Long) playerObject.get("Id")).intValue()].getId());
         System.out.println("Money: "+players[((Long) playerObject.get("Id")).intValue()].getMoney());
@@ -213,93 +213,93 @@ public class PlayerController extends Controller{
 }
 
     public static Player[] getPlayers(){
-        /**
-         * This function will return the list of the player
+        /*
+          This function will return the list of the player
          */
         return players;
     }
 
     public static void setPlayers(int number){
-        /**
-         * This function will create the player list
+        /*
+          This function will create the player list
          */
         players = new Player[number];
     }
 
     public static void setPlayer(int number){
-        /**
-         * This function will create a player
+        /*
+          This function will create a player
          */
         players[number] = new Player(number);
     }
 
     public static void setPlayersMoney(int playerNum, int money){
-        /**
-         * This function will set money of a player
+        /*
+          This function will set money of a player
          */
         players[playerNum].setMoney(money);
     }
 
     public static int getPlayerMoney(int playerNum){
-        /**
-         * This function will get money of a player
+        /*
+          This function will get money of a player
          */
         return players[playerNum].getMoney();
     }
 
     public static void setCurrentPlayer(int number) {
-        /**
-         * This function will set current player number
+        /*
+          This function will set current player number
          */
         currentPlayer = number;
     }
 
     public static int getCurrentPlayer() {
-        /**
-         * This function will get current player number
+        /*
+          This function will get current player number
          */
         return currentPlayer;
     }
 
     public static boolean getPlayerBankruptcy(int playerNum) {
-        /**
-         * This function will get bankruptcy status of a player
+        /*
+          This function will get bankruptcy status of a player
          */
         return players[playerNum].getBankruptcy();
     }
 
 
     public static void setPlayerCurrentSquare(int playerNum, int position) {
-        /**
-         * This function will set current square of a player
+        /*
+          This function will set current square of a player
          */
         players[playerNum].setCurrentSquare(position);
     }
 
     public static int getDaysInJail(int playerNum) {
-        /**
-         * This function will get days in jail of a player
+        /*
+          This function will get days in jail of a player
          */
         return players[playerNum].getDaysInJail();
     }
 
     public static int getPlayerCurrentSquare(int playerNum){
-        /**
-         * This function will get current square of a player
+        /*
+          This function will get current square of a player
          */
         return players[playerNum].getCurrentSquare();
     }
 
     public static void setPlayerDaysInJail(int playerNum, int days) {
-        /**
-         * This function will set current square of a player
+        /*
+          This function will set current square of a player
          */
         players[playerNum].setDaysInJail(days);
     }
 
     public static void setPlayerBankruptcy(int playerNum) {
-        /**
-         * This function will set current square of a player
+        /*
+          This function will set current square of a player
          */
         players[playerNum].setBankruptcy(true);
     }

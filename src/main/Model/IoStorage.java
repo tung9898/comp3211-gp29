@@ -14,15 +14,15 @@ public class IoStorage{
     }
 
     public void setFileLocation(String fileLocation) {
-        /**
-         * This function will set the file location.
+        /*
+          This function will set the file location.
          */
         this.fileLocation = fileLocation;
     }
 
     public String getFileLocation() {
-        /**
-         * This function will return the file location.
+        /*
+          This function will return the file location.
          */
         return fileLocation;
     }
