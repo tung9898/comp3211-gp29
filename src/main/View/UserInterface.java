@@ -24,11 +24,11 @@ public class UserInterface {
     }
 
     public static String printTurnStarted(int i){ 
-        return nl + "------------------------‖ It is player " + i + "'s turn ‖------------------------" + nl; 
+        return nl + "------------------------------ It is player " + i + "'s turn ---------------------------------" + nl; 
     }
 
     public static String printTurnEnded(){ 
-        return nl + "------------------------------‖ Turn end ‖------------------------------" + nl; 
+        return nl + "------------------------- Turn end -----------------------------" + nl; 
     }
 
     public static String printDice(int i){
@@ -66,11 +66,16 @@ public class UserInterface {
         tab + tab + tab + "║           [2] LOAD GAME               ║" + nl +
         tab + tab + tab + "║                                       ║" + nl +
         tab + tab + tab + "╚═══════════════════════════════════════╝" + nl + nl +
-        "====================================================" + nl +
-        " INSTRUCTION" + nl +
-        "   Description: " + nl +
-        "     This is a Monopoly Board Game. Please Enjoy it ~" + nl + nl +
-        "====================================================" + nl;
+        "======================================================================================" + nl +
+        "Command-line Monopoly game version 1.0.5" + nl +
+        "Copyright (C) 2021 POLYU SE Group29" + nl + nl +
+        "This is a free Monopoly Board Game. It supports 2-6 multi-players." + nl + nl + nl +
+        "***   What you can play   ***" + nl +
+        "-- Roll dice to move" + nl + 
+        "-- Buy Land" + nl + 
+        "-- Try to get out the jail" + nl + nl + nl +
+        "Hope you play with fun. Please Enjoy it ~" + nl +
+        "======================================================================================" + nl;
     }
 
     public String printMonopolyBoard(){ 
@@ -95,15 +100,20 @@ public class UserInterface {
         "\t\t\t ╚══════╧══════╧══════╧══════╧══════╧══════╝  \n"; 
     }
 
-    public String printMenu(){ 
+    public String printMenu_Style_1(){ 
         return 
-        "**************************\n"+
-        "*          MENU          *\n"+
-        "**************************\n"+
-        "* Options:               *\n" +
-        "*      [1] Save file     *\n" +
-        "*      [2] Load file     *\n" +
-        "**************************\n"; 
+        "Options:\n" +
+        "[1] Roll the dice\n"+
+        "[2] Show leaderboard\n"+
+        "[3] Save game\n" +
+        "[4] Save & exit the game"; 
+    }
+
+    public String printMenu_Style_2(){ 
+        return 
+        "Options:\n" +
+        "[1] Play a NEW game\n" +
+        "[2] Exit the game"; 
     }
 
     public String printNumberOfPlayerInputError(int min, int max){
@@ -118,7 +128,7 @@ public class UserInterface {
         /* String msg = "------------------------------------------\nPlease enter the number of players from range of ";
         msg += min + " to " + max + ":";
         return msg; */
-        String msg = "------------------------------------------" + nl + "How many players ? ";
+        String msg = "How many players ? ";
         msg += "(" + min + " to " + max + ") : ";
         return msg;
     }

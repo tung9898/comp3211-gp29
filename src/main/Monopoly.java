@@ -4,6 +4,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import Controller.*;
+import View.GameStatusView;
+import View.PlayerView;
 import View.UserInterface;
 
 public class Monopoly{
@@ -107,6 +109,7 @@ public class Monopoly{
                 }
                 while (GameStart());
                 break;
+                
             default:
                 break;
         }
@@ -134,11 +137,7 @@ public class Monopoly{
                     HandleInJail(playerController.getDaysInJail(currentPlayer));
                 }
                 else{
-                    System.out.println("Make the choice:"
-                                        +"\n[1] Roll dice"
-                                        +"\n[2] Show leaderboard"
-                                        +"\n[3] Save game"
-                                        +"\n[4] Save & Exit the game");
+                    gameStatusController.printMenu_Style_1();
                     Scanner userInput = new Scanner(System.in);
                     int choice = userInput.nextInt();
                     while(!(choice >= 1 && choice <= 4)){
@@ -164,6 +163,7 @@ public class Monopoly{
                             System.out.println(userInterface.printTurnEnded());
                             break;
                         case 2:
+                            playerController.printLeaderboard();
                             break;
                         case 3:
                             saveFile();
@@ -180,9 +180,7 @@ public class Monopoly{
             System.out.println(userInterface.printRoundEnded());
             if(gameStatusController.RoundEnd() || gameStatusController.getCurrentNumberOfPlayers() == 1){
                 playerController.CheckWinner();
-                System.out.println("Make the choice: "+
-                                "\n[1] New game"+ 
-                                "\n[2] Exit game");
+                gameStatusController.printMenu_Style_2();
                 Scanner myObj = new Scanner(System.in);
                 int choice = myObj.nextInt();
                 if (choice==1){

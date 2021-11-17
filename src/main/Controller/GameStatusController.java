@@ -128,6 +128,14 @@ public class GameStatusController extends Controller{
         System.out.println(view.printRoundStarted(model.getRounds()));
     }
 
+    public void printMenu_Style_1(){
+        System.out.println(view.printMenu_Style_1());
+    }
+
+    public void printMenu_Style_2(){
+        System.out.println(view.printMenu_Style_2());
+    }
+
     public Map<String, Object> getGameStatusMap(){
         Map<String,Object> gameStatusMap = new HashMap<String, Object>();
         gameStatusMap.put("TotalNumberOfPlayers", this.model.getTotalNumberOfPlayers());

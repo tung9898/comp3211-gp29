@@ -3,12 +3,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.swing.text.PlainView;
+
 import java.util.*;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import Model.Player;
+import View.PlayerView;
 
 public class PlayerController extends Controller{
     /** 
@@ -19,7 +23,7 @@ public class PlayerController extends Controller{
     protected static int currentPlayer;
 
     protected Player model;
-    //private PlayerView view;
+    protected PlayerView view = new PlayerView();
 
     public PlayerController(){}
     public PlayerController(Player model/* , PlayerView view */){
@@ -321,5 +325,9 @@ public class PlayerController extends Controller{
             rank += 1;
         }
         return lb;
+    }
+
+    public void printLeaderboard(){
+        System.out.println(view.printLeaderBoard(leaderboard()));
     }
 }
