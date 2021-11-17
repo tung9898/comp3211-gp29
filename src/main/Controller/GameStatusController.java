@@ -83,7 +83,7 @@ public class GameStatusController extends Controller{
          * This function checks the rounds if it is more than 100.
          */
 
-        if(this.getRounds() > 100){
+        if(this.getRounds() >= 100){
             return true;
         } else{
             this.setRounds(this.getRounds()+1);

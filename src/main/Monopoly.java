@@ -32,16 +32,16 @@ public class Monopoly{
         int action = -1;
         Scanner userInput = new Scanner(System.in);
         // 3 for testing save file function
-        while(!(action == 1 || action == 2 || action == 3)){
+        while(!(action == 1 || action == 2)){
             System.out.print(UserInterface.printBeginActionInput());
             while(!(userInput.hasNextInt())){
-                if(!(action == 1 || action == 2 || action == 3)){
+                if(!(action == 1 || action == 2)){
                     System.out.println(UserInterface.printBeginActionInputError());
                 }
                 System.out.print(UserInterface.printBeginActionInput());
                 userInput.next();
             }
-            if(!(action == 1 || action == 2 || action == 3)){
+            if(!(action == 1 || action == 2)){
                 System.out.println(UserInterface.printBeginActionInputError());
             }
             action = userInput.nextInt();

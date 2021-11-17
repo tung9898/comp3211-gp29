@@ -21,6 +21,7 @@ public class PlayerController extends Controller{
     protected Player model;
     //private PlayerView view;
 
+    public PlayerController(){}
     public PlayerController(Player model/* , PlayerView view */){
         this.model = model;
         //this.view = view;

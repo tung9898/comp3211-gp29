@@ -22,6 +22,7 @@ public class IoController extends Controller{
      */
     protected IoStorage model;
 
+    public IoController(){}
     public IoController(IoStorage model){
         this.model = model;
     }
