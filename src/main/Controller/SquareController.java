@@ -9,6 +9,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import Model.Square;
+import View.SquareView;
 
 public class SquareController extends Controller{
     /**
@@ -21,7 +22,7 @@ public class SquareController extends Controller{
     protected static int[]Rent = {-1, 90, 65, -1, 60, -1, 10, 40, -1, 15, -1, 75, -1, 20, 25, -1, 10, 25, -1, 25};
 
     protected Square model;
-    //private SquareView view;
+    protected SquareView view = new SquareView();
 
     public SquareController(){}
     public SquareController(Square model/* , SquareView view */){
@@ -186,6 +187,30 @@ public class SquareController extends Controller{
                                                                         String.valueOf(squareObject.get("Name")), 
                                                                         ((Long) squareObject.get("Price")).intValue(), 
                                                                         ((Long) squareObject.get("Rent")).intValue());
+    }
+
+    public void printPassGO(int salary){
+        System.out.print(view.printPassGO(salary));
+    }
+
+    public void printSquarePurchase(String squareName,int squarePrice, int balance){
+        System.out.print(view.printSquarePurchase(squareName,squarePrice,balance));
+    }
+
+    public void printSquarePurchaseSuccess(String squareName, int balance){
+        System.out.print(view.printSquarePurchaseSuccess(squareName,balance));
+    }
+
+    public void printSquarePurchaseFailed(String squareName, int balance){
+        System.out.print(view.printSquarePurchaseFailed(squareName,balance));
+    }
+
+    public void printSquarePurchaseNo(String squareName){
+        System.out.print(view.printSquarePurchaseNo(squareName));
+    }
+
+    public void printSquarePayRentMessage(String squareName,int squareOwner, int squareRent){
+        System.out.print(view.printSquarePayRentMessage(squareName,squareOwner,squareRent));
     }
 
 }

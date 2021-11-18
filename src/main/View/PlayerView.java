@@ -6,20 +6,24 @@ import Controller.PlayerController;
 
 public class PlayerView extends UserInterface{
 
-    public String printBankruptcyWarning(){ 
-        return "Your money is not under 0, make your choice wisely."; 
+    public String printBankruptcyWarning(){
+        return "Your money is now under 0, make your choice wisely.";
     }
 
-    public String printChancepositive(int m){
-        return "Congratulations!! you won " + m + " HKD!!" + nl;
+    public String printMoney(int money){
+        return "You now have $" + money + nl;
     }
 
-    public String printChancenegative(int m){
-        return "Bad luck! you need to pay the bank " + m + " HKD." + nl;
+    public String printChancePositive(int m){
+        return "Congratulations!! you won $" + m + "!" + nl;
     }
 
-    public String printPayTax(int currentPlayerMoney, int tax){
-        return "Income Tax: " + (currentPlayerMoney - tax) + nl;
+    public String printChanceNegative(int m){
+        return "Sorry! you lost $" + m + "." + nl;
+    }
+
+    public String printPayTax(int tax){
+        return "You have to pay $" + tax + " tax." + nl;
     }
 
     public String printInJailDays(int currentPlayer, int currentPlayerMoneyDaysInJail){ 
