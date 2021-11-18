@@ -155,7 +155,7 @@ public class PlayerController extends Controller{
        return x;
     }
 
-    public void CheckWinner(){
+    public List<String> CheckWinner(){
         /*
          * This function will be called if there is only 1 player left
          * or after 100 rounds. 
@@ -163,10 +163,24 @@ public class PlayerController extends Controller{
          * Tie (multiple winners) is possible.
          */
         // print out winner and stop the game (maybe ask for restart)
-        List<Integer> Winner = new ArrayList<Integer>();
+        List<String> Winner = new ArrayList<String>();
+        int amount = 0;
         for(int i = 0; i < players.length; i++) {
-            if(!players[i].getBankruptcy()) Winner.add(players[i].getId());
+            if(players[i].getMoney() > amount){
+                amount = players[i].getMoney();
+                Winner = new ArrayList<String>();
+                Winner.add(players[i].getId() + "(" + players[i].getName() + ")" );
+            } 
+            else if (players[i].getMoney() == amount){
+                amount = players[i].getMoney();
+                Winner.add(players[i].getId() + "(" + players[i].getName() + ")" );
+            }
         }
+        return Winner;
+    }
+
+    public void printWinner(){
+        System.out.println(view.printWinner(CheckWinner()));
     }
 
     public Map<String, Object> getPlayerMap(Player player){
@@ -262,6 +276,13 @@ public class PlayerController extends Controller{
           This function will get current player number
          */
         return currentPlayer;
+    }
+
+    public String getPlayerById(int id){
+        /**
+         * This function will get player name by id
+         */
+        return players[id].getName();
     }
 
     public boolean getPlayerBankruptcy(int playerNum) {

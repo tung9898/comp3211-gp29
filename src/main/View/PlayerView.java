@@ -117,9 +117,17 @@ public class PlayerView extends UserInterface{
     }
 
     public String printLeaderBoard(int[][] leaderboard){
-        String msg = "Rank" + tab + "Player ID" + tab + "Money" + nl;
+        String msg = "Rank" + tab + "Player ID" + tab + "Player Name" + "Money" + nl;
         for (int i = 0; i < leaderboard.length; ++i) {
             msg += leaderboard[i][0] + tab + (leaderboard[i][1] + 1) + tab + tab + leaderboard[i][2] + nl;
+        }
+        return msg;
+    }
+
+    public String printWinner(List<String> winnerList){
+        String msg = "Winners List" + nl;
+        for (int i = 0; i < winnerList.size(); ++i) {
+            msg += "Player " + winnerList.get(i) + nl;
         }
         return msg;
     }

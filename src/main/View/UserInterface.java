@@ -8,7 +8,7 @@ public class UserInterface {
     protected static String to = "-";
 
     public static String printBeginActionInput(){
-        return "Input Your Action (1 or 2) : ";
+        return "Input Your Action : ";
     }
 
     public static String printBeginActionInputError(){
@@ -23,8 +23,8 @@ public class UserInterface {
         return "Press ENTER to roll the dice: "; 
     }
 
-    public static String printTurnStarted(int i){ 
-        return nl + "------------------------------ It is player " + i + "'s turn ---------------------------------" + nl; 
+    public static String printTurnStarted(int i, String name){ 
+        return nl + "------------------------------ It is player " + i + " (" + name + ") 's turn ---------------------------------" + nl; 
     }
 
     public static String printTurnEnded(){ 

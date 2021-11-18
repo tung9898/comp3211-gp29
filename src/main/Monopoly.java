@@ -129,7 +129,7 @@ public class Monopoly{
                 if(playerController.getPlayerBankruptcy(currentPlayer)) {
                     continue;
                 }
-                System.out.println(userInterface.printTurnStarted(currentPlayer+1));
+                System.out.println(userInterface.printTurnStarted(currentPlayer+1, playerController.getPlayerById(currentPlayer)));
                 int currentPos[] = new int[20];
                 currentPos[playerController.getPlayerCurrentSquare(currentPlayer)] = 1;
                 System.out.println(userInterface.printPlayerPositionInMP(currentPos));
@@ -180,7 +180,7 @@ public class Monopoly{
             currentPlayer = 0;
             System.out.println(userInterface.printRoundEnded());
             if(gameStatusController.RoundEnd() || gameStatusController.getCurrentNumberOfPlayers() == 1){
-                playerController.CheckWinner();
+                playerController.printWinner();
                 gameStatusController.printMenu_Style_2();
                 Scanner myObj = new Scanner(System.in);
                 int choice = myObj.nextInt();
