@@ -43,9 +43,9 @@ public class UserInterface {
         return
                 "======================================================================================" + nl +
                 "     Command-line Monopoly game version 1.0.5" + nl +
-                "     Copyright (C) 2021 POLYU SE Group29" + nl + nl +
+                "     Copyright (C) 2021 PolyU SE Group29" + nl + nl +
                 "     This is a free Monopoly Board Game. It supports 2-6 multi-players." + nl + nl + nl +
-                "***   Game Rules   ***" + nl +
+                "***********************************   Game Rules   ***********************************" + nl +
                 "-- You can buy property that have price on it" + nl +
                 "-- You must pay rent if you step on a property that owned by other player" + nl +
                 "-- If you got into jail and you want to pay to leave, you must pay before rolling the dice."  + nl +
@@ -164,6 +164,6 @@ public class UserInterface {
         return 
         "\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n" +
         "                              Round End\n" +
-        "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n\n";
+        "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
     }
 }
