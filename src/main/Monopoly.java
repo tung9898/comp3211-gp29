@@ -408,19 +408,26 @@ public class Monopoly{
         Scanner myObj = new Scanner(System.in);
         int choice;
         while(true){
-            System.out.println("Would you like to buy the property? Enter 1 to buy, 2 to do nothing:");
-            choice = myObj.nextInt();
+            while(true){
+                System.out.println("Would you like to buy the property? Enter 1 to buy, 2 to do nothing:");
+                String input = myObj.nextLine();
+                try{
+                    choice = Integer.parseInt(input);
+                    break;
+                } catch (NumberFormatException e){
+                    System.out.println("Please input integer inside the range.");
+                }
+            }
             if(choice==1){
                 if(balance >= landPrice){
                     playerController.setPlayersMoney(currentPlayer, balance-landPrice);
                     squareController.setBoardOwner(squareId, currentPlayer);
                     System.out.println("You have bought "+name+". Remaining amount of money: $"+playerController.getPlayerMoney(currentPlayer));
-                    break;
                 }
                 else{
                     System.out.println("You only have $"+playerController.getPlayerMoney(currentPlayer)+". You do not have enough money to buy "+name+".");
-                    break;
                 }
+                break;
             }
             if(choice==2){
                 System.out.println("You chose not to buy "+name+". No effect.");
