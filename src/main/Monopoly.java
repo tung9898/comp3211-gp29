@@ -138,42 +138,48 @@ public class Monopoly{
                     HandleInJail(playerController.getDaysInJail(currentPlayer));
                 }
                 else{
-                    gameStatusController.printMenu_Style_1();
-                    Scanner userInput = new Scanner(System.in);
-                    int choice = userInput.nextInt();
-                    while(!(choice >= 1 && choice <= 4)){
-                        System.out.print(UserInterface.printBeginActionInput());
-                        while(!(userInput.hasNextInt())){
+                    while(true){
+                        gameStatusController.printMenu_Style_1();
+                        Scanner userInput = new Scanner(System.in);
+                        int choice = userInput.nextInt();
+                        while(!(choice >= 1 && choice <= 4)){
+                            System.out.print(UserInterface.printBeginActionInput());
+                            while(!(userInput.hasNextInt())){
+                                if(!(choice >= 1 && choice <= 4)){
+                                    System.out.println(UserInterface.printBeginActionInputError());
+                                }
+                                System.out.print(UserInterface.printBeginActionInput());
+                                userInput.next();
+                            }
+                            choice = userInput.nextInt();
                             if(!(choice >= 1 && choice <= 4)){
                                 System.out.println(UserInterface.printBeginActionInputError());
                             }
-                            System.out.print(UserInterface.printBeginActionInput());
-                            userInput.next();
                         }
-                        choice = userInput.nextInt();
-                        if(!(choice >= 1 && choice <= 4)){
-                            System.out.println(UserInterface.printBeginActionInputError());
+                        boolean action = false;
+                        switch(choice){
+                            case 1:
+                                int[] dice = controller.rollingDice();
+                                System.out.println(userInterface.printRollDiceResult(dice));
+                                PlayerMakeAMove(dice[0] + dice[1]);
+                                // turns--;
+                                System.out.println(userInterface.printTurnEnded());
+                                action = true;
+                                break;
+                            case 2:
+                                playerController.printLeaderboard();
+                                break;
+                            case 3:
+                                saveFile();
+                                break;
+                            case 4:
+                                saveFile();
+                                action = true;
+                                return false;
+                            default:
+                                break;
                         }
-                    }
-                    switch(choice){
-                        case 1:
-                            int[] dice = controller.rollingDice();
-                            System.out.println(userInterface.printRollDiceResult(dice));
-                            PlayerMakeAMove(dice[0] + dice[1]);
-                            // turns--;
-                            System.out.println(userInterface.printTurnEnded());
-                            break;
-                        case 2:
-                            playerController.printLeaderboard();
-                            break;
-                        case 3:
-                            saveFile();
-                            break;
-                        case 4:
-                            saveFile();
-                            return false;
-                        default:
-                            break;
+                        if(action) break;
                     }
                 }
             }
