@@ -44,7 +44,11 @@ public class IoStorageController extends Controller{
         return model.getFileLocation();
     }
 
-    public void saveFile(List<Map<String, Object>> playersList, Map<String, Object> gameStatusMap, String fileName){
+    public void saveFile(List<Map<String, Object>> playersList, 
+                         Map<String, Object> gameStatusMap,
+                         List<Map<String, Object>> boardList,
+                         String fileName){
+
         JSONObject gameStatusDetail = new JSONObject();
         JSONObject gameStatusObject = new JSONObject();
         gameStatusDetail.put("TotalNumberOfPlayers", gameStatusMap.get("TotalNumberOfPlayers"));
@@ -72,7 +76,27 @@ public class IoStorageController extends Controller{
             }
         //}
         
+        JSONObject squareDetail = new JSONObject();
+        JSONObject squareObject = new JSONObject();
+        JSONArray boardArray = new JSONArray();
+
+        //if(playersList.size() != 0){
+            for(int i = 0; i < boardList.size(); i++){
+                squareDetail = new JSONObject();
+                squareObject = new JSONObject();
+                // First get for arraylist, second get for map
+                squareDetail.put("Id", boardList.get(i).get("Id"));
+                squareDetail.put("Name", boardList.get(i).get("Name"));
+                squareDetail.put("Owner", boardList.get(i).get("Owner"));
+                squareDetail.put("Price", boardList.get(i).get("Price"));
+                squareDetail.put("Rent", boardList.get(i).get("Rent"));
+                squareObject.put("Square",squareDetail);
+                boardArray.add(squareObject);
+            }
+        //}
+
         gameStatusDetail.put("Players", playersArray);
+        gameStatusDetail.put("Board", boardArray);
         gameStatusObject.put("GameStatus", gameStatusDetail);
 
         // Create file

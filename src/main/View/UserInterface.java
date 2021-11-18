@@ -7,31 +7,31 @@ public class UserInterface {
     protected static String colon = ":";
     protected static String to = "-";
 
-    public static String printBeginActionInput(){
-        return "Input Your Action (1 or 2) : ";
+    public String printBeginActionInput(){
+        return "Input Your Action : ";
     }
 
-    public static String printBeginActionInputError(){
+    public String printBeginActionInputError(){
         return "Error. Please input again";
     }
 
-    public static String printMenuInput(){ 
+    public String printMenuInput(){ 
         return "Press P for menu"; 
     }
 
-    public static String printRequestRollDice(){ 
+    public String printRequestRollDice(){ 
         return "Press ENTER to roll the dice: "; 
     }
 
-    public static String printTurnStarted(int i){ 
-        return nl + "------------------------------ It is player " + i + "'s turn ---------------------------------" + nl; 
+    public String printTurnStarted(int i, String name){ 
+        return nl + "------------------------------ It is player " + i + " (" + name + ") 's turn ---------------------------------" + nl; 
     }
 
-    public static String printTurnEnded(){ 
+    public String printTurnEnded(){ 
         return nl + "------------------------- Turn end -----------------------------" + nl; 
     }
 
-    public static String printDice(int i){
+    public String printDice(int i){
         switch(i){
             case 1: return "１";
             case 2: return "２";
@@ -43,7 +43,7 @@ public class UserInterface {
         return "";
     }
 
-    public static String printRollDiceResult(int[] d){
+    public String printRollDiceResult(int[] d){
         String msg = "";
         for(int i = 0; i < d.length; i++){
             msg += "Dice " + (i+1) + " : " + printDice(d[i]) + "\n";
@@ -123,9 +123,9 @@ public class UserInterface {
     public String printNumberOfPlayerInputError(int min, int max){
         return 
         nl +
-        " ┌──────────────────────────────────────────────────────────────────────────────────┐" + nl +
-        " │ Error: The game only accommodates "+ min +" to " + max +" players. Enter again." + tab + tab + "    │" + nl +
-        " └──────────────────────────────────────────────────────────────────────────────────┘" + nl;
+        " ──────────────────────────────────────────────────────────────────────────────────" + nl +
+        "  Error: The game only accommodates "+ min +" to " + max +" players. Enter again."  + nl +
+        " ──────────────────────────────────────────────────────────────────────────────────" + nl;
     }
 
     public String printNumberOfPlayerInput(int min, int max){
@@ -175,7 +175,7 @@ public class UserInterface {
     public String printRoundEnded(){ 
         return 
         "\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n" +
-        "+++++                         Round End                             +++++\n" +
+        "                              Round End\n" +
         "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n\n";
     }
 }

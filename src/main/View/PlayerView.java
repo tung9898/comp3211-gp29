@@ -2,24 +2,28 @@ package View;
 
 import java.util.List;
 
-import Controller.PlayerController;
+import Model.Player;
 
 public class PlayerView extends UserInterface{
 
-    public String printBankruptcyWarning(){ 
-        return "Your money is not under 0, make your choice wisely."; 
+    public String printBankruptcyWarning(){
+        return "Your money is now under 0, make your choice wisely.";
     }
 
-    public String printChancepositive(int m){
-        return "Congratulations!! you won " + m + " HKD!!" + nl;
+    public String printMoney(int money){
+        return "You now have $" + money + nl;
     }
 
-    public String printChancenegative(int m){
-        return "Bad luck! you need to pay the bank " + m + " HKD." + nl;
+    public String printChancePositive(int m){
+        return "Congratulations!! you won $" + m + "!" + nl;
     }
 
-    public String printPayTax(int currentPlayerMoney, int tax){
-        return "Income Tax: " + (currentPlayerMoney - tax) + nl;
+    public String printChanceNegative(int m){
+        return "Sorry! you lost $" + m + "." + nl;
+    }
+
+    public String printPayTax(int tax){
+        return "You have to pay $" + tax + " tax." + nl;
     }
 
     public String printInJailDays(int currentPlayer, int currentPlayerMoneyDaysInJail){ 
@@ -116,16 +120,27 @@ public class PlayerView extends UserInterface{
         return msg;
     }
 
-    public String printLeaderBoard(int[][] leaderboard){
+    public String printLeaderBoard(int[][] leaderboard, Player[] players){
         String msg = "==============================================\n";
-        msg += "Rank" + tab + "Player ID" + tab + "Money" + nl;
+        msg += "Rank" + tab + "Money" + tab +  "Player ID" + tab + "Player Name" + nl;
         for (int i = 0; i < leaderboard.length; ++i) {
             // leaderboard[i] is the i rank in the LeaderBoard
             // leaderboard[i][0] is the rank number, they will be the same if they own the same balance.
             // leaderboard[i][1] is the player ID and leaderboard[i][2] is the player balance.
-            msg += leaderboard[i][0] + tab + tab + (leaderboard[i][1] + 1) + tab + tab + tab + "$" + leaderboard[i][2] + nl;
+            msg += leaderboard[i][0] + tab + 
+                    "$" + leaderboard[i][2] + tab + tab + 
+                    (leaderboard[i][1] + 1) + tab +
+                    players[leaderboard[i][1]].getName() + nl;
         }
         msg += "==============================================\n";
+        return msg;
+    }
+
+    public String printWinner(List<String> winnerList){
+        String msg = "Winners List" + nl;
+        for (int i = 0; i < winnerList.size(); ++i) {
+            msg += "Player " + winnerList.get(i) + nl;
+        }
         return msg;
     }
 }
