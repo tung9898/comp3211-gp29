@@ -255,6 +255,8 @@ public class Monopoly{
 
         if (playerController.getPlayerMoney(currentPlayer)<0){
             bankruptcy(currentPlayer);
+            int currentPlayerNum = gameStatusController.getCurrentNumberOfPlayers();
+            gameStatusController.setCurrentNumberOfPlayers(currentPlayerNum - 1);
         }
     }
 
