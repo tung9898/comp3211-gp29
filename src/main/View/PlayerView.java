@@ -6,9 +6,9 @@ import Model.Player;
 
 public class PlayerView extends UserInterface{
 
-    public String printBankruptcyWarning(){
+    /* public String printBankruptcyWarning(){
         return "Your money is now under 0, make your choice wisely.";
-    }
+    } */
 
     public String printMoney(int money){
         return "You now have $" + money + nl;
@@ -26,7 +26,7 @@ public class PlayerView extends UserInterface{
         return "You have to pay $" + tax + " tax." + nl;
     }
 
-    public String printInJailDays(int currentPlayer, int currentPlayerMoneyDaysInJail){ 
+    /* public String printInJailDays(int currentPlayer, int currentPlayerMoneyDaysInJail){ 
         int pid = currentPlayer;
         String msg = "";
         if(currentPlayerMoneyDaysInJail > -1){
@@ -35,7 +35,7 @@ public class PlayerView extends UserInterface{
             msg = "Player " + (pid+1) + ", you are not in jail." + nl;
         }
         return msg; 
-    }
+    } */
 
     public String printWinnerMessage(List<Integer> w){
         String msg;
@@ -93,10 +93,6 @@ public class PlayerView extends UserInterface{
         "  │  "+(currentPos[1] == 0?"02":" *")+
         "  │  "+(currentPos[0] == 0?"01":" *")+"  ║  \n" +
         "\t\t\t ╚══════╧══════╧══════╧══════╧══════╧══════╝  \n";
-    }
-
-    public String printAllPlayerStatus(){
-        return "";
     }
 
     public String printPlayerPosition(int currentPlayer, int currentSquare,String name, int price, int rent){ 

@@ -153,4 +153,8 @@ public class IoStorageController extends Controller{
         }
         return filenames;
     }
+
+    public void printFileChoiceInput(){
+        System.out.println(ioStorageView.printFileChoiceInput());
+    }
 }

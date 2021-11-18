@@ -22,8 +22,8 @@ public class GameStatusView extends UserInterface{
         "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n\n";
     }
 
-    public String printRoundOver100(){ 
+    /* public String printRoundOver100(){ 
         return "Game Over, round is over 100.";
-    }
+    } */
 
 }

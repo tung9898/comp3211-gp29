@@ -4,6 +4,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import Controller.*;
+import View.IoStorageView;
 import View.UserInterface;
 
 public class Monopoly{
@@ -472,11 +473,11 @@ public class Monopoly{
             for(int i = 0; i < filenames.length; i++){
                 System.out.printf("[%1$s] %2$s %n", i, filenames[i]);
             }
-            System.out.print("Input your choice (number only):");
+            ioStorageController.printFileChoiceInput();
 
             // Validate the input is or not a number
             while(!(userInput.hasNextInt())){
-                System.out.print("Input your choice (number only):");
+                ioStorageController.printFileChoiceInput();
                 userInput.next();
             }
             fileNumber = userInput.nextInt();
