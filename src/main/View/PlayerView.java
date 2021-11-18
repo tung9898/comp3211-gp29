@@ -123,9 +123,9 @@ public class PlayerView extends UserInterface{
             // leaderboard[i] is the i rank in the LeaderBoard
             // leaderboard[i][0] is the rank number, they will be the same if they own the same balance.
             // leaderboard[i][1] is the player ID and leaderboard[i][2] is the player balance.
-            msg += leaderboard[i][0] + tab + 
-                    "$" + leaderboard[i][2] + tab + tab + 
-                    (leaderboard[i][1] + 1) + tab +
+            msg += leaderboard[i][0] + tab + tab +
+                    "$" + leaderboard[i][2] + tab + tab +
+                    (leaderboard[i][1] + 1) + tab + tab +
                     players[leaderboard[i][1]].getName() + nl;
         }
         msg += "==============================================\n";
