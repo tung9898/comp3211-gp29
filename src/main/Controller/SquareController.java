@@ -79,14 +79,8 @@ public class SquareController extends Controller{
            This function randomly pick an integer in a specific range.
            return the value the player win or lose to set the money.
           */
-        int upperbound = 200;
-        int lowerbound = -300;
-        upperbound /= 10;
-        lowerbound /= 10;
-        //int r = Monopoly.rand.nextInt(50)-30; // random integer number from 20 to -30
-        int r = getRandom(Math.abs(upperbound+lowerbound))+lowerbound;
-
-        return r * 10;
+        int r = rand.nextInt(51);
+        return (r - 30) * 10;
     }
 
     public int SquarePrice(int id) {
