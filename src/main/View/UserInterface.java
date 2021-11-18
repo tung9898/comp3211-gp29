@@ -123,9 +123,9 @@ public class UserInterface {
     public String printNumberOfPlayerInputError(int min, int max){
         return 
         nl +
-        " ┌──────────────────────────────────────────────────────────────────────────────────┐" + nl +
-        " │ Error: The game only accommodates "+ min +" to " + max +" players. Enter again." + tab + tab + "    │" + nl +
-        " └──────────────────────────────────────────────────────────────────────────────────┘" + nl;
+        " ──────────────────────────────────────────────────────────────────────────────────" + nl +
+        "  Error: The game only accommodates "+ min +" to " + max +" players. Enter again."  + nl +
+        " ──────────────────────────────────────────────────────────────────────────────────" + nl;
     }
 
     public String printNumberOfPlayerInput(int min, int max){
@@ -175,7 +175,7 @@ public class UserInterface {
     public String printRoundEnded(){ 
         return 
         "\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n" +
-        "+++++                         Round End                             +++++\n" +
+        "                              Round End\n" +
         "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n\n";
     }
 }

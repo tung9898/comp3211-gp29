@@ -11,14 +11,14 @@ public class GameStatusView extends UserInterface{
     public String printRoundStarted(int r){
         return 
         "\n\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n" +
-        "+++++                   Round " + r + " Start                             +++++\n" +
+        "                        Round " + r + " Start\n" +
         "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n"; 
     }
 
     public String printRoundEnded(){ 
         return 
         "\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n" +
-        "+++++                         Round End                             +++++\n" +
+        "                              Round End\n" +
         "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n\n";
     }
 

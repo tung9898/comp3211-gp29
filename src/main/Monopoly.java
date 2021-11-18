@@ -345,12 +345,13 @@ public class Monopoly{
           This function is to redirect the square to its belonging effect
          */
         if (squareId!=0){
-            System.out.print((squareId+1)+":");
+            System.out.print((squareId+1)+": ");
         }
         switch(squareId+1){
             case 9:
             case 13:
             case 19:
+                System.out.print(squareController.SquareName(squareId)+": ");
                 int chance = squareController.ChanceSalary();
                 if (chance <0){
                     playerController.printChanceNegative(Math.abs(chance));
