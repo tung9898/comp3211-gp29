@@ -117,12 +117,8 @@ public class PlayerView extends UserInterface{
     }
 
     public String printLeaderBoard(int[][] leaderboard){
-<<<<<<< HEAD
-        String msg = "Rank" + tab + "Player ID" + tab + "Player Name" + "Money" + nl;
-=======
         String msg = "==============================================\n";
         msg += "Rank" + tab + "Player ID" + tab + "Money" + nl;
->>>>>>> 15b44780bacdc895ae0051d8bcaa063b4bcab807
         for (int i = 0; i < leaderboard.length; ++i) {
             // leaderboard[i] is the i rank in the LeaderBoard
             // leaderboard[i][0] is the rank number, they will be the same if they own the same balance.
