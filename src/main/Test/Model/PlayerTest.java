@@ -1,4 +1,4 @@
-package Test.Model;
+package Model;
 
 import org.junit.jupiter.api.Test;
 
@@ -42,68 +42,51 @@ class PlayerTest {
     }
 
     @Test
-    void setName() {
-        player1.setName("Elon Musk");
+    void Name() {
+        player1.setName("hello");
+        assertEquals("hello",player1.getName());
+
+        player1.setName("Jeff Bezos");
+        assertEquals("Jeff Bezos",player1.getName());
     }
 
     @Test
-    void getName() {
-        player1.setName("Elon Musk");
-        assertEquals("Elon Musk",player1.getName());
+    void Id() {
+        for(int i = 0; i < 6; i++){
+            player1.setId(i);
+            assertEquals(i,player1.getId());
+        }
     }
 
     @Test
-    void setId() {
-        player1.setId(1);
+    void Money() {
+        for(int i = 0; i < 1000000; i++){
+            player1.setMoney(i);
+            assertEquals(i,player1.getMoney());
+        }
     }
 
     @Test
-    void getId() {
-        player1.setId(1);
-        assertEquals(1,player1.getId());
+    void CurrentSquare() {
+        for(int i = 0; i <= 20; i++){
+            player1.setCurrentSquare(i);
+            assertEquals(i,player1.getCurrentSquare());
+        }
     }
 
     @Test
-    void setMoney() {
-        player1.setMoney(5000);
+    void DaysInJail() {
+        for(int i = -1; i <= 3; i++){
+            player1.setDaysInJail(i);
+            assertEquals(i,player1.getDaysInJail());
+        }
     }
 
     @Test
-    void getMoney() {
-        player1.setMoney(5000);
-        assertEquals(5000,player1.getMoney());
-    }
-
-    @Test
-    void setCurrentSquare() {
-        player1.setCurrentSquare(5);
-    }
-
-    @Test
-    void getCurrentSquare() {
-        player1.setCurrentSquare(5);
-        assertEquals(5,player1.getCurrentSquare());
-    }
-
-    @Test
-    void setDaysInJail() {
-        player1.setDaysInJail(2);
-    }
-
-    @Test
-    void getDaysInJail() {
-        player1.setDaysInJail(2);
-        assertEquals(2,player1.getDaysInJail());
-    }
-
-    @Test
-    void setBankruptcy() {
-        player1.setBankruptcy(true);
-    }
-
-    @Test
-    void getBankruptcy() {
+    void Bankruptcy() {
         player1.setBankruptcy(true);
         assertEquals(true,player1.getBankruptcy());
+        player1.setBankruptcy(false);
+        assertEquals(false,player1.getBankruptcy());
     }
 }

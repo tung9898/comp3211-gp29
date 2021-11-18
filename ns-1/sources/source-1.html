@@ -1,0 +1,166 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > GameStatus</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">Model</a>
+</div>
+
+<h1>Coverage Summary for Class: GameStatus (Model)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">GameStatus</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (14/14)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package Model;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import java.util.HashMap;
+<i class="no-highlight">4</i>&nbsp;import java.util.Map;
+<i class="no-highlight">5</i>&nbsp;
+<i class="no-highlight">6</i>&nbsp;public class GameStatus{
+<i class="no-highlight">7</i>&nbsp;    protected int TotalNumberOfPlayers;
+<i class="no-highlight">8</i>&nbsp;    protected int CurrentNumberOfPlayers;
+<b class="fc"><i class="no-highlight">9</i>&nbsp;    protected int Rounds = 1;</b>
+<i class="no-highlight">10</i>&nbsp;
+<b class="fc"><i class="no-highlight">11</i>&nbsp;    public GameStatus(int totalNumberOfPlayers, int currentNumberOfPlayers){</b>
+<b class="fc"><i class="no-highlight">12</i>&nbsp;        setTotalNumberOfPlayers(totalNumberOfPlayers);</b>
+<b class="fc"><i class="no-highlight">13</i>&nbsp;        setCurrentNumberOfPlayers(currentNumberOfPlayers);</b>
+<i class="no-highlight">14</i>&nbsp;    }
+<i class="no-highlight">15</i>&nbsp;
+<b class="fc"><i class="no-highlight">16</i>&nbsp;    public GameStatus(int totalNumberOfPlayers, int currentNumberOfPlayers, int rounds){</b>
+<b class="fc"><i class="no-highlight">17</i>&nbsp;        setTotalNumberOfPlayers(totalNumberOfPlayers);</b>
+<b class="fc"><i class="no-highlight">18</i>&nbsp;        setCurrentNumberOfPlayers(currentNumberOfPlayers);</b>
+<b class="fc"><i class="no-highlight">19</i>&nbsp;        setRounds(rounds);</b>
+<i class="no-highlight">20</i>&nbsp;    }
+<i class="no-highlight">21</i>&nbsp;
+<i class="no-highlight">22</i>&nbsp;    public void setTotalNumberOfPlayers(int totalNumberOfPlayers) {
+<i class="no-highlight">23</i>&nbsp;        /* 
+<i class="no-highlight">24</i>&nbsp;         * This function will set the number of total player.
+<i class="no-highlight">25</i>&nbsp;         */
+<b class="fc"><i class="no-highlight">26</i>&nbsp;        TotalNumberOfPlayers = totalNumberOfPlayers;</b>
+<i class="no-highlight">27</i>&nbsp;    }
+<i class="no-highlight">28</i>&nbsp;
+<i class="no-highlight">29</i>&nbsp;    public int getTotalNumberOfPlayers() {
+<i class="no-highlight">30</i>&nbsp;        /* 
+<i class="no-highlight">31</i>&nbsp;         * This function return the number of total player,
+<i class="no-highlight">32</i>&nbsp;         * including the player is already bankruptcy.
+<i class="no-highlight">33</i>&nbsp;         */
+<b class="fc"><i class="no-highlight">34</i>&nbsp;        return TotalNumberOfPlayers;</b>
+<i class="no-highlight">35</i>&nbsp;    }
+<i class="no-highlight">36</i>&nbsp;
+<i class="no-highlight">37</i>&nbsp;    public void setCurrentNumberOfPlayers(int currentNumberOfPlayers) {
+<b class="fc"><i class="no-highlight">38</i>&nbsp;        CurrentNumberOfPlayers = currentNumberOfPlayers;</b>
+<i class="no-highlight">39</i>&nbsp;    }
+<i class="no-highlight">40</i>&nbsp;
+<i class="no-highlight">41</i>&nbsp;    public int getCurrentNumberOfPlayers() {
+<i class="no-highlight">42</i>&nbsp;        /* 
+<i class="no-highlight">43</i>&nbsp;         * This function return the number of current player.
+<i class="no-highlight">44</i>&nbsp;         */
+<b class="fc"><i class="no-highlight">45</i>&nbsp;        return CurrentNumberOfPlayers;</b>
+<i class="no-highlight">46</i>&nbsp;    }
+<i class="no-highlight">47</i>&nbsp;
+<i class="no-highlight">48</i>&nbsp;    public void setRounds(int rounds){
+<i class="no-highlight">49</i>&nbsp;        /* 
+<i class="no-highlight">50</i>&nbsp;         * This function will set the game round.
+<i class="no-highlight">51</i>&nbsp;         */
+<b class="fc"><i class="no-highlight">52</i>&nbsp;        Rounds = rounds;</b>
+<i class="no-highlight">53</i>&nbsp;    }
+<i class="no-highlight">54</i>&nbsp;
+<i class="no-highlight">55</i>&nbsp;    public int getRounds(){
+<i class="no-highlight">56</i>&nbsp;        /* 
+<i class="no-highlight">57</i>&nbsp;         * This function return the game round.
+<i class="no-highlight">58</i>&nbsp;         */
+<b class="fc"><i class="no-highlight">59</i>&nbsp;        return Rounds;</b>
+<i class="no-highlight">60</i>&nbsp;    }
+<i class="no-highlight">61</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-11-18 01:01</div>
+</div>
+</body>
+</html>

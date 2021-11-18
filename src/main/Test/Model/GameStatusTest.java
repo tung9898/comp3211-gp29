@@ -1,4 +1,4 @@
-package Test.Model;
+package Model;
 
 import org.junit.jupiter.api.Test;
 
@@ -10,38 +10,66 @@ class GameStatusTest {
     GameStatus gs = new GameStatus(5, 5, 20);
     GameStatus gs2 = new GameStatus(3, 3);
     @Test
-    void setTotalNumberOfPlayers() {
-        gs.setCurrentNumberOfPlayers(5);
+    void TotalNumberOfPlayers1() {
+        for(int i = 6; i >= 0; i--){
+            gs.setTotalNumberOfPlayers(i);
+            assertEquals(i, gs.getTotalNumberOfPlayers());
+        }
     }
 
     @Test
-    void getTotalNumberOfPlayers() {
-        gs.setCurrentNumberOfPlayers(5);
-        assertEquals(5, gs.getTotalNumberOfPlayers());
-        assertEquals(3, gs2.getTotalNumberOfPlayers());
+    void TotalNumberOfPlayers2() {
+        for(int i = 6; i >= 0; i--){
+            gs2.setTotalNumberOfPlayers(i);
+            assertEquals(i, gs2.getTotalNumberOfPlayers());
+        }
     }
 
     @Test
-    void setCurrentNumberOfPlayers() {
-        gs.setCurrentNumberOfPlayers(4);
+    void CurrentNumberOfPlayers1() {
+        for(int i = 6; i >= 0; i--){
+            gs.setCurrentNumberOfPlayers(i);
+            assertEquals(i, gs.getCurrentNumberOfPlayers());
+        }
     }
 
     @Test
-    void getCurrentNumberOfPlayers() {
-        gs.setCurrentNumberOfPlayers(4);
-        assertEquals(4, gs.getCurrentNumberOfPlayers());
-        assertEquals(3, gs2.getTotalNumberOfPlayers());
+    void CurrentNumberOfPlayers2() {
+        for(int i = 6; i >= 0; i--){
+            gs2.setCurrentNumberOfPlayers(i);
+            assertEquals(i, gs2.getCurrentNumberOfPlayers());
+        }
     }
 
     @Test
-    void setRounds() {
-        gs.setRounds(5);
-        assertEquals(5, gs.getRounds());
+    void CurrentPlayer1() {
+        for(int i = 6; i >= 0; i--){
+            gs.setCurrentPlayer(i);
+            assertEquals(i, gs.getCurrentPlayer());
+        }
     }
 
     @Test
-    void getRounds() {
-        gs2.setRounds(3);
-        assertEquals(3, gs2.getTotalNumberOfPlayers());
+    void CurrentPlayer2() {
+        for(int i = 6; i >= 0; i--){
+            gs2.setCurrentPlayer(i);
+            assertEquals(i, gs2.getCurrentPlayer());
+        }
+    }
+
+    @Test
+    void Rounds1() {
+        for(int i = 0; i <= 100; i++){
+            gs.setRounds(i);
+            assertEquals(i, gs.getRounds());
+        }
+    }
+
+    @Test
+    void Rounds2() {
+        for(int i = 0; i <= 100; i++){
+            gs2.setRounds(i);
+            assertEquals(i, gs2.getRounds());
+        }
     }
 }
