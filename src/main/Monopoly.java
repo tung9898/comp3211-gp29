@@ -43,17 +43,17 @@ public class Monopoly{
         Scanner userInput = new Scanner(System.in);
         // 3 for testing save file function
         while(!(action == 1 || action == 2)){
-            System.out.print(UserInterface.printBeginActionInput());
+            System.out.print(userInterface.printBeginActionInput());
             while(!(userInput.hasNextInt())){
                 if(!(action == 1 || action == 2)){
-                    System.out.println(UserInterface.printBeginActionInputError());
+                    System.out.println(userInterface.printBeginActionInputError());
                 }
-                System.out.print(UserInterface.printBeginActionInput());
+                System.out.print(userInterface.printBeginActionInput());
                 userInput.next();
             }
             action = userInput.nextInt();
             if(!(action == 1 || action == 2)){
-                System.out.println(UserInterface.printBeginActionInputError());
+                System.out.println(userInterface.printBeginActionInputError());
             }
         }
         
@@ -141,45 +141,50 @@ public class Monopoly{
                     while(true){
                         gameStatusController.printMenu_Style_1();
                         Scanner userInput = new Scanner(System.in);
-                        int choice = userInput.nextInt();
-                        while(!(choice >= 1 && choice <= 4)){
-                            System.out.print(UserInterface.printBeginActionInput());
-                            while(!(userInput.hasNextInt())){
-                                if(!(choice >= 1 && choice <= 4)){
-                                    System.out.println(UserInterface.printBeginActionInputError());
+                        try{
+                            int choice = userInput.nextInt();
+
+                            while(!(choice >= 1 && choice <= 4)){
+                                System.out.print(userInterface.printBeginActionInput());
+                                while(!(userInput.hasNextInt())){
+                                    if(!(choice >= 1 && choice <= 4)){
+                                        System.out.println(userInterface.printBeginActionInputError());
+                                    }
+                                    System.out.print(userInterface.printBeginActionInput());
+                                    userInput.next();
                                 }
-                                System.out.print(UserInterface.printBeginActionInput());
-                                userInput.next();
+                                choice = userInput.nextInt();
+                                if(!(choice >= 1 && choice <= 4)){
+                                    System.out.println(userInterface.printBeginActionInputError());
+                                }
                             }
-                            choice = userInput.nextInt();
-                            if(!(choice >= 1 && choice <= 4)){
-                                System.out.println(UserInterface.printBeginActionInputError());
+                            boolean action = false;
+                            switch(choice){
+                                case 1:
+                                    int[] dice = controller.rollingDice();
+                                    System.out.println(userInterface.printRollDiceResult(dice));
+                                    PlayerMakeAMove(dice[0] + dice[1]);
+                                    // turns--;
+                                    System.out.println(userInterface.printTurnEnded());
+                                    action = true;
+                                    break;
+                                case 2:
+                                    playerController.printLeaderboard();
+                                    break;
+                                case 3:
+                                    saveFile();
+                                    break;
+                                case 4:
+                                    saveFile();
+                                    action = true;
+                                    return false;
+                                default:
+                                    break;
                             }
+                            if(action) break;
+                        } catch(Exception e){
+                            userInterface.printBeginActionInputError();
                         }
-                        boolean action = false;
-                        switch(choice){
-                            case 1:
-                                int[] dice = controller.rollingDice();
-                                System.out.println(userInterface.printRollDiceResult(dice));
-                                PlayerMakeAMove(dice[0] + dice[1]);
-                                // turns--;
-                                System.out.println(userInterface.printTurnEnded());
-                                action = true;
-                                break;
-                            case 2:
-                                playerController.printLeaderboard();
-                                break;
-                            case 3:
-                                saveFile();
-                                break;
-                            case 4:
-                                saveFile();
-                                action = true;
-                                return false;
-                            default:
-                                break;
-                        }
-                        if(action) break;
                     }
                 }
             }
@@ -274,7 +279,7 @@ public class Monopoly{
                     choice = myObj.nextInt();
                     if (choice==1){
                         dice = controller.rollingDice();
-                        System.out.println(UserInterface.printRollDiceResult(dice));
+                        System.out.println(userInterface.printRollDiceResult(dice));
                         if (dice[0]==dice[1]){
                             System.out.println("You succeed to get out of the jail. Congratulation!");
                             playerController.setPlayerDaysInJail(currentPlayer,-1);
@@ -302,7 +307,7 @@ public class Monopoly{
                 choice = myObj.nextInt();
                 dice = controller.rollingDice();
                 if (choice==1){
-                    System.out.println(UserInterface.printRollDiceResult(dice));
+                    System.out.println(userInterface.printRollDiceResult(dice));
                     if (dice[0]==dice[1]){
                         System.out.println("You succeed to get out of the jail. Congratulation!");
                         playerController.setPlayerDaysInJail(currentPlayer,-1);
