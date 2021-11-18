@@ -335,11 +335,10 @@ public class PlayerController extends Controller {
                 return entry1[2] < entry2[2] ? 1 : -1;
             }
         });
-
+        
         lb[0][0] = 1;
-        for (int i = 1, rank = 1; i < numberOfPlayer; i++) {
-            lb[i][0] = lb[i][2] == lb[i - 1][2] ? rank : rank + 1;
-            rank += 1;
+        for(int i = 1; i < numberOfPlayer; i++){
+            lb[i][0] = lb[i][2] == lb[i-1][2] ? lb[i-1][0] : lb[i-1][0]+1;
         }
         return lb;
     }
