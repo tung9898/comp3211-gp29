@@ -186,13 +186,6 @@ public class SquareController extends Controller{
                                                                         String.valueOf(squareObject.get("Name")), 
                                                                         ((Long) squareObject.get("Price")).intValue(), 
                                                                         ((Long) squareObject.get("Rent")).intValue());
-        
-        // Can delete the println(s)
-        System.out.println("Name: "+board[((Long) squareObject.get("Id")).intValue()].getName());
-        System.out.println("Id: "+board[((Long) squareObject.get("Id")).intValue()].getId());
-        System.out.println("Owner: "+board[((Long) squareObject.get("Id")).intValue()].getOwner());
-        System.out.println("Price: "+board[((Long) squareObject.get("Id")).intValue()].getPrice());
-        System.out.println("Rent: "+board[((Long) squareObject.get("Id")).intValue()].getRent());
     }
 
 }

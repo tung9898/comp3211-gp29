@@ -215,15 +215,7 @@ public class PlayerController extends Controller{
                                                                                         ((Long) playerObject.get("CurrentSquare")).intValue(), 
                                                                                         ((Long) playerObject.get("DaysInJail")).intValue(),
                                                                                         (Boolean) playerObject.get("Bankruptcy"));
-        
-        // Can delete the println(s)
-        System.out.println("Name: "+players[((Long) playerObject.get("Id")).intValue()].getName());
-        System.out.println("Id: "+players[((Long) playerObject.get("Id")).intValue()].getId());
-        System.out.println("Money: "+players[((Long) playerObject.get("Id")).intValue()].getMoney());
-        System.out.println("CurrentSquare: "+players[((Long) playerObject.get("Id")).intValue()].getCurrentSquare());
-        System.out.println("DaysInJail: "+players[((Long) playerObject.get("Id")).intValue()].getDaysInJail());
-        System.out.println("Bankruptcy: "+players[((Long) playerObject.get("Id")).intValue()].getBankruptcy());
-    }
+       }
 
     public Player[] getPlayers(){
         /*
