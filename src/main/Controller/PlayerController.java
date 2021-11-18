@@ -344,8 +344,8 @@ public class PlayerController extends Controller {
         return lb;
     }
 
-    public void printLeaderboard() {
-        System.out.println(view.printLeaderBoard(leaderboard()));
+    public void printLeaderboard(){
+        System.out.println(view.printLeaderBoard(leaderboard(), players));
     }
 
     public void printChancePositive(int chance){
