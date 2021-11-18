@@ -31,22 +31,10 @@ public class UserInterface {
         return nl + "------------------------- Turn end -----------------------------" + nl; 
     }
 
-    public String printDice(int i){
-        switch(i){
-            case 1: return "１";
-            case 2: return "２";
-            case 3: return "３";
-            case 4: return "４";
-            case 5: return "５";
-            case 6: return "６";
-        }
-        return "";
-    }
-
     public String printRollDiceResult(int[] d){
         String msg = "";
         for(int i = 0; i < d.length; i++){
-            msg += "Dice " + (i+1) + " : " + printDice(d[i]) + "\n";
+            msg += "Dice " + (i+1) + " : " + d[i] + "\n";
         }
         return msg;
     }
