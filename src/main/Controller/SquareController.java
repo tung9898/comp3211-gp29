@@ -176,7 +176,6 @@ public class SquareController extends Controller{
 
     public void setBoard(JSONArray _board, int boardLength){
         board = new Square[boardLength];
-        System.out.println("wtf?");
         _board.forEach( square -> parseSquareObject( (JSONObject) square ) );
     }
 
