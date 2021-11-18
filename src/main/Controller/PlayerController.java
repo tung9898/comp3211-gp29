@@ -345,6 +345,6 @@ public class PlayerController extends Controller{
     }
 
     public void printLeaderboard(){
-        System.out.println(view.printLeaderBoard(leaderboard()));
+        System.out.println(view.printLeaderBoard(leaderboard(), players));
     }
 }
