@@ -4,8 +4,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import Controller.*;
-import View.GameStatusView;
-import View.PlayerView;
 import View.UserInterface;
 
 public class Monopoly{
@@ -27,6 +25,7 @@ public class Monopoly{
     protected static UserInterface userInterface = new UserInterface();
 
     protected static int currentPlayer = 0;
+    protected final static int boardLength = 20;
 
     public static void main(String[] args) {
         /*
@@ -102,6 +101,7 @@ public class Monopoly{
                     currentPlayer = ((Long) gameStatusObject.get("CurrentPlayer")).intValue();
 
                     playerController.setPlayers((JSONArray) gameStatusObject.get("Players"), gameStatusController.getTotalNumberOfPlayers());
+                    squareController.setBoard((JSONArray) gameStatusObject.get("Board"), boardLength);
                     System.out.println("Load successfully~");
                 }catch(NullPointerException e){
                     System.out.println("Error occur!\n" + e + "\n Load failed!");
@@ -499,7 +499,10 @@ public class Monopoly{
         String saveFileName = userInput.next();
 
         // Save file
-        ioStorageController.saveFile(playerController.getPlayersList(), gameStatusController.getGameStatusMap(), saveFileName);
+        ioStorageController.saveFile(playerController.getPlayersList(), 
+                                     gameStatusController.getGameStatusMap(), 
+                                     squareController.getBoardList(),
+                                     saveFileName);
         
     }
 }

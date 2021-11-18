@@ -1,5 +1,13 @@
 package Controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import Model.Square;
 
 public class SquareController extends Controller{
@@ -146,5 +154,45 @@ public class SquareController extends Controller{
     public static int getBoardRent(int number){
         return SquareRent(number);
     } */
+
+    public Map<String, Object> getSquareMap(Square square){
+        Map<String,Object> squareMap = new HashMap<String, Object>();
+        squareMap.put("Id", square.getId());
+        squareMap.put("Name", square.getName());
+        squareMap.put("Owner", square.getOwner());
+        squareMap.put("Price", square.getPrice());
+        squareMap.put("Rent", square.getRent());
+        return squareMap;
+    }
+
+    public List<Map<String, Object>> getBoardList(){
+        List<Map<String, Object>> boardList = new ArrayList<Map<String, Object>>();
+        for(int i = 0; i < board.length; i++){
+            boardList.add(getSquareMap(board[i]));
+        }
+        return boardList;
+    }
+
+    public void setBoard(JSONArray _board, int boardLength){
+        board = new Square[boardLength];
+        System.out.println("wtf?");
+        _board.forEach( square -> parseSquareObject( (JSONObject) square ) );
+    }
+
+    public void parseSquareObject(JSONObject square){
+        JSONObject squareObject = (JSONObject) square.get("Square");
+        board[((Long) squareObject.get("Id")).intValue()] = new Square( ((Long) squareObject.get("Id")).intValue(), 
+                                                                        ((Long) squareObject.get("Owner")).intValue(),
+                                                                        String.valueOf(squareObject.get("Name")), 
+                                                                        ((Long) squareObject.get("Price")).intValue(), 
+                                                                        ((Long) squareObject.get("Rent")).intValue());
+        
+        // Can delete the println(s)
+        System.out.println("Name: "+board[((Long) squareObject.get("Id")).intValue()].getName());
+        System.out.println("Id: "+board[((Long) squareObject.get("Id")).intValue()].getId());
+        System.out.println("Owner: "+board[((Long) squareObject.get("Id")).intValue()].getOwner());
+        System.out.println("Price: "+board[((Long) squareObject.get("Id")).intValue()].getPrice());
+        System.out.println("Rent: "+board[((Long) squareObject.get("Id")).intValue()].getRent());
+    }
 
 }
